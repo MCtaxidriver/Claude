@@ -1,0 +1,67 @@
+Warum braucht es eine nachgeführte Betriebsdokumentation?	Damit Systeme wartbar bleiben und kritische Situationen schnell gelöst werden können. [Q: Modulbeschreibung 1.2]	Handlungsziel 1: Betriebsdokumentation
+Nenne fünf Inhalte einer Betriebsdokumentation.	Zum Beispiel Zweck und Verantwortliche, Systemübersicht, Netzwerkplan, Serverkonfiguration (Betriebssystem, Speicher, Anwendungen), Log-Dateien, Zutritts- und Schutzmassnahmen. [Q: Vorlage Datenschutz.ch]	Handlungsziel 1: Betriebsdokumentation
+Gehören Passwörter in die Betriebsdokumentation?	Nein, laut der Vorlage gehören sie ins Notfallkonzept. [Q]	Handlungsziel 1: Betriebsdokumentation
+Wann führst du die Doku nach?	Nach jeder Änderung, zum Beispiel Patch, neuer Service oder neue Berechtigung. [Q: Handlungsziel 3]	Handlungsziel 1: Betriebsdokumentation
+Welche Services nennt das Modul als verbreitet?	Verzeichnisdienst, File, Print, DHCP, DNS. [Q]	Handlungsziel 1: Betriebsdokumentation
+Welche Windows-Bordmittel überwachen einen Server?	Leistungsüberwachung (perfmon), Ressourcenmonitor, Ereignisanzeige, Task-Manager. [Q: Lerndokumentation, W]	Handlungsziel 2: Überwachen und betreiben mit Bordmitteln
+Welcher Zähler zeigt die CPU-Last?	\Processor(_Total)\% Processor Time. [Q]	Handlungsziel 2: Überwachen und betreiben mit Bordmitteln
+Ab wann deutet die Prozessor-Warteschlange auf Überlast hin?	Dauerhaft über 2 gilt als Richtwert. [Q: ChannelPartner]	Handlungsziel 2: Überwachen und betreiben mit Bordmitteln
+Was bedeuten viele Page Reads und Writes pro Sekunde?	Meist zu wenig RAM. [Q]	Handlungsziel 2: Überwachen und betreiben mit Bordmitteln
+Was zeigt Current Disk Queue Length dauerhaft hoch?	Die Platte ist ausgelastet. [Q]	Handlungsziel 2: Überwachen und betreiben mit Bordmitteln
+Wie liest du den Dienststatus per PowerShell?	"Get-Service, mit Filter zum Beispiel Get-Service ""wmi*"". [Q]"	Handlungsziel 2: Überwachen und betreiben mit Bordmitteln
+Event-ID 7036 und 7034, was heisst das?	7036: Dienst gestartet oder gestoppt. 7034: Dienst unerwartet beendet. [Q: Drittquellen] Sicherheitslog: 4624 Anmeldung ok, 4625 Anmeldung fehlgeschlagen, 4740 Konto gesperrt. [Q: Microsoft Learn]	Handlungsziel 2: Überwachen und betreiben mit Bordmitteln
+Was ist eine Baseline und wozu brauchst du sie?	Normalwerte des Systems im Betrieb. Schwellwerte sinnvoll setzen geht nur im Vergleich dazu. [Q, W]	Handlungsziel 2: Überwachen und betreiben mit Bordmitteln
+Beschreibe den Patch-Prozess in Schritten.	Inventar, Priorisierung nach Risiko, Test in Testumgebung, Backup und Rollback-Plan, Pilotgruppe, gestaffelter Rollout im Wartungsfenster, Kontrolle, Doku nachführen. [Q: n-able, TechTarget]	Handlungsziel 3: Updates und Patches
+Woher beziehst du Patches?	Von vertrauenswürdigen Quellen, also dem Hersteller, und du prüfst Hashwert oder Signatur. [Q: Modulbeschreibung 3.2]	Handlungsziel 3: Updates und Patches
+Welche Gefahren haben Patches für ein Unternehmen?	Inkompatibilität, Neustart nötig, Dienstausfall. [Q: Modulbeschreibung 3.3, Quellen]	Handlungsziel 3: Updates und Patches
+Was ist WSUS?	Serverrolle, mit der Microsoft-Updates zentral genehmigt und verteilt werden. Wird nicht mehr aktiv entwickelt. [Q: Microsoft Learn]	Handlungsziel 3: Updates und Patches
+Wie prüfst du, welche Updates installiert sind?	Get-HotFix. [Q]	Handlungsziel 3: Updates und Patches
+Unterschied Hotfix und Upgrade?	Hotfix behebt schnell einen Fehler oder eine Sicherheitslücke. Upgrade wechselt die Version, zum Beispiel Windows 10 zu 11. [Q: Lerndokumentation]	Handlungsziel 3: Updates und Patches
+Nenne zwei Techniken zur zentralen Erfassung von Performance-Daten.	SNMP und WMI. [Q: Modulbeschreibung 4.1]	Handlungsziel 4: Monitoring einbinden
+Was ist der Unterschied zwischen SNMP v2c und v3?	v2c: nur Community-String, Klartext. v3: Benutzer, Authentifizierung (MD5 oder SHA), optional Verschlüsselung (DES oder AES). [Q: Paessler, NinjaOne]	Handlungsziel 4: Monitoring einbinden
+Wie heissen die Sicherheitsstufen bei SNMPv3?	noAuthNoPriv, authNoPriv, authPriv. [Q]	Handlungsziel 4: Monitoring einbinden
+Wie installierst du den SNMP-Dienst auf Windows Server?	Install-WindowsFeature SNMP-Service,SNMP-WMI-Provider -IncludeManagementTools. [Q: theitbros]	Handlungsziel 4: Monitoring einbinden
+Welche Einstellung ist beim SNMP-Dienst Pflicht?	Community bzw. Zugriff und erlaubte Hosts, mindestens die IP des Monitoring-Servers. [Q: Paessler]	Handlungsziel 4: Monitoring einbinden
+Auf welchem Port läuft SNMP?	UDP 161 (Abfragen). [W]	Handlungsziel 4: Monitoring einbinden
+Wie setzt du in PRTG einen Schwellwert?	Grenzwerte am Kanal des Sensors setzen, zum Beispiel Warnung ab 60 und Fehler ab 80. [Q: PRTG-Handbuch]	Handlungsziel 4: Monitoring einbinden
+Wie löst PRTG eine Mail aus?	Mit einem Benachrichtigungs-Trigger auf Warning oder Down und einer Benachrichtigungsvorlage. [Q]	Handlungsziel 4: Monitoring einbinden
+Warum Alarme regelmässig testen?	Damit du weisst, dass das Überwachungssystem zuverlässig funktioniert (Leistungsziel f5.4). [Q: Bildungsplan]	Handlungsziel 4: Monitoring einbinden
+Welche Last erzeugt WMI-Überwachung?	Über DCOM hohe Last, Paessler empfiehlt maximal etwa 200 solcher Sensoren pro Probe. [Q]	Handlungsziel 4: Monitoring einbinden
+Was ersetzt WMIC?	PowerShell, zum Beispiel Get-CimInstance. [Q: Microsoft Learn]	Handlungsziel 4: Monitoring einbinden
+Was heisst AGDLP?	Accounts in globale Gruppen, diese in domänenlokale Gruppen, dort die Permissions auf die Ressource. [Q: Tenfold, ManageEngine]	Handlungsziel 5: Berechtigungen
+Warum AGDLP statt Rechte direkt auf Benutzer?	Übersicht, einfacher bei Wechseln, ACLs verweisen nur auf Gruppen. [Q]	Handlungsziel 5: Berechtigungen
+Unterschied Freigabe- und NTFS-Rechte?	Freigaberechte gelten nur über das Netz und kennen Lesen, Ändern, Vollzugriff. NTFS-Rechte gelten immer und sind feiner. Es gilt die restriktivere Ebene. [Q: Netwrix, Varonis]	Handlungsziel 5: Berechtigungen
+Was gewinnt, Erlauben oder Verweigern?	Verweigern. [Q]	Handlungsziel 5: Berechtigungen
+Was bedeutet Vererbung?	Rechte eines übergeordneten Ordners gelten für Unterordner und Dateien. [Q: Lerndokumentation]	Handlungsziel 5: Berechtigungen
+Was kopiert icacls /inheritancelevel:d?	Es schaltet die Vererbung ab und kopiert die geerbten Einträge als explizite ACEs. [Q]	Handlungsziel 5: Berechtigungen
+Authentisierung, Authentifizierung, Autorisierung?	Identität behaupten, Identität prüfen, Zugriff gewähren. [Q: Lerndokumentation]	Handlungsziel 5: Berechtigungen
+Wie dokumentierst du Rechte?	Zum Beispiel mit einer Matrix Benutzergruppen gegen Shares. [Q: Modul 117, 5.2]	Handlungsziel 5: Berechtigungen
+Was ist das Least-Privilege-Prinzip?	Jeder bekommt nur die Rechte, die er für die Aufgabe braucht. [W]	Handlungsziel 5: Berechtigungen
+Nenne zwei typische Anpassungen auf Umsystemen.	DNS-Einträge und Firewall-Regeln. [Q: Modulbeschreibung 6.1]	Handlungsziel 6: Umsysteme
+Was muss ein Änderungsauftrag an Dritte enthalten?	Quelle, Ziel, Protokoll und Port, Zweck, Befristung, Testverfahren. [W, siehe Beispiel in der Vorbereitungsdatei]	Handlungsziel 6: Umsysteme
+Wie testest du eine Firewall-Anpassung?	Von der Quelle aus verbinden, zum Beispiel Test-NetConnection -ComputerName SRV01 -Port 443. [W]	Handlungsziel 6: Umsysteme
+Wozu -CreatePtr beim DNS-A-Record?	Es legt automatisch den Reverse-Eintrag an. [Q]	Handlungsziel 6: Umsysteme
+Wie berechnest du bei 10.89.14.24/29 Netz-ID, Broadcast, erste und letzte Host-IP?	Netz-ID 10.89.14.24, Broadcast 10.89.14.31, Hosts .25 bis .30, Maske 255.255.255.248. [Q: Lerndokumentation]	Vorwissen aus 117 und 123
+Was weist DHCP einem Client zu?	IP-Adresse, Subnetmaske, Gateway, DNS-Server, Lease-Dauer. [Q]	Vorwissen aus 117 und 123
+Wann statische, wann dynamische IP?	Server, Drucker, Netzkomponenten statisch oder per Reservation. Clients dynamisch. [Q: Modul 123 1.5, W]	Vorwissen aus 117 und 123
+Welche Schritte hat die Inbetriebnahme eines Serverdienstes?	Installieren, konfigurieren, starten, auf Client verfügbar machen, testen. [Q: Modul 123 2.1]	Vorwissen aus 117 und 123
+Was ist RAID 5, wie viele Platten, wie viel Kapazität?	Striping mit Parität, mindestens 3 Platten, eine Platte Kapazität geht für Parität weg, eine Platte darf ausfallen. [Q: Lerndokumentation]	Vorwissen aus 117 und 123
+Welche Backup-Arten gibt es?	Voll, differentiell (alles seit dem letzten Voll-Backup), inkrementell (seit dem letzten Backup). [W]	Vorwissen aus 117 und 123
+Was rät das NCSC beim Backup?	Regelmässig sichern, externe Medien danach trennen, Wiederherstellung testen. [Q: Netzwoche]	Vorwissen aus 117 und 123
+In welcher Reihenfolge richtest du einen Netzwerkdrucker auf dem Druckserver ein?	Treiber (Add-PrinterDriver), Port (Add-PrinterPort), Drucker (Add-Printer). [Q: Microsoft Learn]	Zusatzkarten: Print, GPO, Backup (51 bis 56)
+Wie verbindet sich ein Client mit dem freigegebenen Drucker?	Add-Printer -ConnectionName \\printServer\printerName. [Q]	Zusatzkarten: Print, GPO, Backup (51 bis 56)
+Der Drucker druckt nicht mehr, Warteschlange hängt. Erste Schritte?	Get-PrintJob ansehen, hängenden Auftrag entfernen, Dienst Druckwarteschlange neu starten. [W]	Zusatzkarten: Print, GPO, Backup (51 bis 56)
+Wie wendest du eine Gruppenrichtlinie sofort an und wie prüfst du, was gilt?	gpupdate /force und gpresult /r. [Q]	Zusatzkarten: Print, GPO, Backup (51 bis 56)
+Wie verknüpfst du ein GPO mit einer OU?	"New-GPO -Name ""MyGPO"" | New-GPLink -Target ""ou=MyOU,dc=contoso,dc=com"" -LinkEnabled Yes. [Q]"	Zusatzkarten: Print, GPO, Backup (51 bis 56)
+Wie sicherst und stellst du Dateien mit Windows Server Backup wieder her?	wbadmin start backup ... und wbadmin start recovery -itemType:File .... Danach den Restore testen. [Q: wbadmin-Doku, NCSC]	Zusatzkarten: Print, GPO, Backup (51 bis 56)
+Welche Gruppenbereiche kennt Active Directory und wer darf Mitglied sein?	Global: Konten und globale Gruppen der eigenen Domäne. Domänenlokal: Konten und Gruppen aus beliebigen (auch vertrauten) Domänen. Universell: Konten und globale/universelle Gruppen aus der ganzen Gesamtstruktur. [Q: Microsoft Learn, Sicherheitsgruppen]	Zusatzkarten: Active Directory, Gruppenrichtlinien, Delegation (57 bis 63)
+Wo kann eine domänenlokale Gruppe Berechtigungen erteilen?	Nur innerhalb derselben Domäne. Globale Gruppen können in jeder Domäne der Gesamtstruktur Rechte erhalten. [Q]	Zusatzkarten: Active Directory, Gruppenrichtlinien, Delegation (57 bis 63)
+In welcher Reihenfolge werden Gruppenrichtlinien angewendet und was gewinnt?	Lokal, dann Standort, Domäne, OU. Die tiefste OU wird zuletzt angewendet und gewinnt bei Konflikten. Erzwungene Links setzen sich durch und gehen vor «Vererbung blockieren». [Q: Microsoft Learn, Gruppenrichtlinienverarbeitung (Details via Suchergebnis)]	Zusatzkarten: Active Directory, Gruppenrichtlinien, Delegation (57 bis 63)
+Wie oft aktualisiert ein Client die Gruppenrichtlinien im Hintergrund?	Standard alle 90 Minuten plus zufällig bis zu 30 Minuten. Sofort geht es mit gpupdate /force. [Q]	Zusatzkarten: Active Directory, Gruppenrichtlinien, Delegation (57 bis 63)
+Welche Standardgruppe gibt Lesezugriff auf Ereignisprotokolle ohne Adminrechte?	Ereignisprotokollleser (Event Log Readers). [Q]	Zusatzkarten: Active Directory, Gruppenrichtlinien, Delegation (57 bis 63)
+Welche Gruppe darf Leistungszähler, Protokolle und Warnungen verwalten, ohne Administrator zu sein?	Leistungsprotokollbenutzer. Systemmonitorbenutzer dürfen die Leistungsindikatoren nur ansehen. [Q]	Zusatzkarten: Active Directory, Gruppenrichtlinien, Delegation (57 bis 63)
+Was dürfen DHCP-Administratoren und was DHCP-Benutzer?	Administratoren erstellen, löschen und verwalten Bereiche und können die DHCP-Datenbank sichern und wiederherstellen. Benutzer haben nur lesenden Zugriff. [Q]	Zusatzkarten: Active Directory, Gruppenrichtlinien, Delegation (57 bis 63)
+Aus welchen Schritten besteht der Patch-Zyklus?	Planen, Beschaffen, Testen, Installieren, Dokumentieren. [Q: Checkliste Patch Management, Bayerisches Landesamt für Datenschutzaufsicht]	Zusatzkarten: Patch-Management (64 bis 67)
+Worauf achtest du bei der Quelle eines Patches?	Nur seriöse Quellen, nicht auf Fake-Patches auf fremden Websites hereinfallen. Integrität und Authentizität per Prüfsumme oder digitaler Signatur sicherstellen. [Q: gleiche Checkliste]	Zusatzkarten: Patch-Management (64 bis 67)
+Wie priorisierst du Patches?	Nach dem Risiko bei Nichteinspielung, zum Beispiel nach der Einstufung des Herstellers oder von CERT-Bund. Hilfsmittel sind CVE und CVSS. [Q: gleiche Checkliste]	Zusatzkarten: Patch-Management (64 bis 67)
+Was gehört zu einem Patch-Konzept?	Inventarliste der Hard- und Software, Netzpläne, Update-Plan mit Versionsständen, Zuständigkeiten, Regeln zur Priorisierung. [Q]	Zusatzkarten: Patch-Management (64 bis 67)
