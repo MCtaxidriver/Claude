@@ -190,7 +190,11 @@ Für 188 gilt im schriftlichen Teil «nach Vorgabe des üK-Anbieters». Beim Fol
   - Die Module sind schweizweit standardisiert (Modulbaukasten). Lerncoaches kommen oft direkt aus laufenden Betriebsprojekten.
   - Räume mit Input-Bereichen und Lernnischen, du kannst dich frei zusammensetzen.
   - Insgesamt meist 35 Kurstage in der Lehre, jeweils 5 bis 6 Tage am Stück.
-- Regeln laut Suchergebnis zu einem Berner-Zeitung-Artikel (den Artikel selbst konnte ich nicht öffnen, bitte beim Sekretariat bestätigen lassen): Wer mehr als einen Tag des fünftägigen Kurses verpasst, muss ihn wiederholen. Die Aufgaben, die du im Kurs löst, zählen für den Abschluss des Moduls. Passt zur Modul-LBV (siehe 2a).
+- Regeln laut Suchergebnis zu einem Berner-Zeitung-Artikel (den Artikel selbst konnte ich nicht öffnen, in den AGB steht davon nichts, bitte beim Sekretariat bestätigen lassen): Wer mehr als einen Tag des fünftägigen Kurses verpasst, muss ihn wiederholen. Die Aufgaben, die du im Kurs löst, zählen für den Abschluss des Moduls. Passt zur Modul-LBV (siehe 2a).
+- AGB der ICT-Learnfactory (Stand März 2025, https://www.ict-learnfactory.ch/agb), gelten für alle Aus- und Weiterbildungsangebote:
+  - Die für den Bildungsgang relevanten Unterlagen werden **am ersten Unterrichtstag verteilt** und können auf Wunsch angefordert oder eingesehen werden. Frag also das Sekretariat, ob du sie vorab einsehen darfst.
+  - Bildungsgänge können jederzeit ohne Vorankündigung angepasst werden, auch Unterrichtstage und -zeiten, Lerninhalte und Prüfungen, solange der Gesamtcharakter nicht massgeblich ändert. Plane also mit Abweichungen von dem, was ich hier aus öffentlichen Quellen zusammengetragen habe.
+  - Zur Absenzenregel (Wiederholung bei mehr als einem verpassten Tag) steht in den AGB nichts. Sie bleibt deshalb unbestätigt.
 - Zum Vergleich ICT-BZ (anderer Anbieter): Kurs 08:00 bis 16:45, eigenes Notebook mitbringen, Unterlagen früherer Kurse mitnehmen, mindestens 80 Prozent Anwesenheit. Bei der Learnfactory würde ich das beim Sekretariat bestätigen lassen.
 
 ## 2d. Was andere Lernende im üK 188 behandelt haben
