@@ -375,6 +375,29 @@ Zusammenhang zu 188: In 123 richtest du die Dienste ein, in 188 betreibst, patch
   - Das erklärt, warum Lerndokumentationen zum üK 188 oft Hardware und RAID enthalten. Im heutigen Modul 188 stehen diese Themen nicht in den Handlungszielen.
 - Subnetting üben mit Lösungen: https://administrator.de/forum/subnetting-net-id-berechnen-1611811666.html und https://coddy.tech/learn/de/courses/ip_addressing_and_subnetting/recap__subnetting_drills
 
+### Windows Server 2025: was ältere Anleitungen nicht mehr stimmt
+
+Quelle: https://learn.microsoft.com/de-de/windows-server/get-started/removed-deprecated-features-windows-server (Microsoft Learn, Seite aktualisiert 2026). Falls ihr im Kurs Server 2025 nutzt, ist das relevant:
+- WSUS: wird nicht mehr aktiv entwickelt, steht aber weiter zur Verfügung und wird unterstützt.
+- WMIC (Kommandozeile): ab Server 2025 nur noch als Feature on Demand (`DISM /Add-Capability`), wird später entfernt. Ersatz ist PowerShell, also `Get-CimInstance`.
+- VBScript: Feature on Demand, wird später entfernt. Ersatz PowerShell.
+- Windows PowerShell 2.0: mit dem Update vom September 2025 nicht mehr enthalten.
+- NTLMv1: entfernt. NTLMv2 und LANMAN: veraltet. Ersatz ist Kerberos über Negotiate.
+- SMTP-Server (IIS-Funktion): in Server 2025 entfernt.
+- Interne Windows-Datenbank (WID), die z.B. WSUS nutzt: soll später entfernt werden. Microsoft empfiehlt SQL Server.
+- TLS 1.0 und 1.1 sind standardmässig deaktiviert.
+- Dienste wie Computerbrowser und WINS sind veraltet. DNS statt WINS.
+- Zu SNMP stand auf dieser Seite nichts. Ob das SNMP-Feature in deiner Server-Version installierbar ist, siehst du mit `Get-WindowsFeature *SNMP*`.
+- Aus der Server-2016-Zeit: `wuauclt.exe /detectnow` wird nicht mehr unterstützt. Updatesuche stattdessen per PowerShell/COM oder in den Einstellungen auslösen.
+
+### Leistungsüberwachung mit Alarm (Bordmittel, Handlungsziel 2 und 4)
+
+Nur aus Drittquellen, bitte in der eigenen VM nachvollziehen:
+- `perfmon` als Administrator starten, unter Datensammlungssätze, Benutzerdefiniert, Neu, Datensammlungssatz, «Manuell erstellen (erweitert)», Typ Leistungsindikator-Warnung.
+- Indikator und Grenzwert («über» oder «unter») festlegen, Satz starten. Ausgelöste Warnungen erscheinen in der Ereignisanzeige (Anwendungsprotokoll).
+- Schwellenwerte auf Basis einer Baseline setzen. Eine Quelle nennt 4 bis 6 Wochen Beobachtung, im Kurs reicht eine kurze Messung.
+- Quellen: https://www.computerperformance.co.uk/?p=5868 und https://help.tableau.com/current/server/de-de/perf_collect_perfmon.htm
+
 ## 5. Konkrete Übungen für die zwei Wochen
 
 - Zwei VMs aufsetzen (VirtualBox oder Hyper-V), eine als Server, eine als Client
