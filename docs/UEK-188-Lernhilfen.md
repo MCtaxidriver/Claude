@@ -232,6 +232,38 @@ Weitere Linux-Quellen:
 
 ---
 
+## 2c. Konzepte in Kürze (für den schriftlichen Teil)
+
+In meinen Worten, nach den Übersichtsseiten von Microsoft Learn.
+
+**DHCP** [Q: https://learn.microsoft.com/de-de/windows-server/networking/technologies/dhcp/dhcp-top]
+- Der Server verwaltet einen Adresspool und «least» Adressen an Clients. Nicht mehr genutzte Adressen gehen automatisch an den Pool zurück.
+- Der Server speichert gültige TCP/IP-Parameter, den Pool inklusive ausgeschlossener Adressen, Reservationen (eine feste Adresse für einen bestimmten Client) und die Leasedauer.
+- Der Client bekommt Adresse und Optionen, zum Beispiel Router (Gateway), DNS-Server und DNS-Domänenname.
+- Vorteile: weniger Tippfehler und Adresskonflikte, weniger Verwaltungsaufwand, zentrale Konfiguration.
+
+**DNS** [Q: https://learn.microsoft.com/de-de/windows-server/networking/dns/dns-top]
+- Ordnet Namen IP-Adressen zu und ist in Windows-Netzen der Standard-Namensauflösungsdienst.
+- Bei einer neuen AD-Gesamtstruktur wird DNS automatisch mit installiert. AD DS braucht DNS, damit Clients Domänencontroller finden und die Domänencontroller sich untereinander finden.
+
+**Active Directory Domain Services** [Q: https://learn.microsoft.com/de-de/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview]
+- Ein Verzeichnisdienst speichert Objekte (Benutzer, Computer, Drucker, Volumes) hierarchisch. Sicherheit ist über Anmeldung und Zugriffssteuerung eingebaut. Mit einer einzigen Anmeldung im Netz erreichst du berechtigte Ressourcen.
+
+**SMB-Dateifreigabe** [Q: https://learn.microsoft.com/de-de/windows-server/storage/file-server/file-server-smb-overview]
+- SMB ist das Netzwerkprotokoll zum Lesen und Schreiben von Dateien auf einem Remoteserver über TCP/IP.
+
+**Zugriffssteuerung** [Q: https://learn.microsoft.com/de-de/windows/security/identity-protection/access-control/access-control]
+- Bausteine: Berechtigungen, Besitz von Objekten, Vererbung, Benutzerrechte, Objektüberwachung.
+- Benutzer und Gruppen sind Sicherheitsprinzipale mit eindeutiger SID.
+- Berechtigungen legen die Art des Zugriffs auf ein Objekt fest, zum Beispiel Lesen, Ändern, Besitzer ändern, Löschen.
+- Microsoft empfiehlt, Berechtigungen Gruppen zuzuweisen und nicht einzelnen Benutzern. Das verbessert auch die Leistung beim Prüfen des Zugriffs.
+- Authentifizierung kommt zuerst (wer bist du), danach die Autorisierung (was darfst du).
+
+**Überwachung allgemein** [Q: Bildungsplan f5, PRTG-Handbuch]
+- Erst festlegen, was überwacht wird und mit welcher Methode (Script, Software, Benachrichtigung). Dann Schwellwerte und Aktionen definieren und dabei Risiko und SLA beachten. Danach das Überwachungssystem regelmässig testen und die Ergebnisse dokumentieren. Bei Alarm rasch handeln.
+
+---
+
 ## 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 Voraussetzung: Ein Laptop mit Hyper-V oder VirtualBox und eine Windows-Server-Testversion (Evaluation). Falls das nicht geht, nur die Theorie-Teile und Befehle lesen.
