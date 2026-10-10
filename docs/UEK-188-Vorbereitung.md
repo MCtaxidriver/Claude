@@ -102,6 +102,14 @@ Die Kenntnisse sind laut Dokument nicht abschliessend. Die genauen Lernziele und
 - Tools, Lernplattform und Unterlagen stehen auf der Website nicht. Das Kursprogramm ist im Kursverwaltungstool OdAOrg sichtbar.
 - Jeder üK schliesst mit einer Leistungsbeurteilung ab (Prüfung und/oder Projektbewertung nach Vorgaben des Modulbaukastens), laut üK-Broschüre Bern.
 
+- Pädagogisches Konzept (PDF, 2 Seiten): https://www.ict-learnfactory.ch/_files/ugd/c05327_9d2feafdc11d41f6ba8e7d510e7bd84e.pdf
+  - Lerncoaches begleiten, du arbeitest selbstorganisiert und problembasiert an realistischen Aufgaben
+  - Lerninhalte liegen für Lernende und Lehrbetriebe transparent auf einer Plattform. Frag das Sekretariat nach dem Zugang, vielleicht kannst du schon vorher hineinschauen.
+  - Aufgaben enthalten einen Teil mit freier Wahl des Lösungswegs
+  - Du führst ein Lernjournal, in dem du das Gelernte festhältst. Selbstüberprüfungen sind nicht notenwirksam.
+  - Lehrbetriebe können firmeneigene Aufgaben einbringen. Frag deinen Berufsbildner, ob er das für den 188er plant.
+- Zum Vergleich ICT-BZ (anderer Anbieter): Kurs 08:00 bis 16:45, eigenes Notebook mitbringen, Unterlagen früherer Kurse mitnehmen, mindestens 80 Prozent Anwesenheit. Bei der Learnfactory würde ich das beim Sekretariat bestätigen lassen.
+
 ## 2d. Was andere Lernende im üK 188 behandelt haben
 
 Quelle: öffentliche Lerndokumentation eines Lernenden (Robin Rüegg, 2023, anderer Kursanbieter): https://robinrueegg.ch/my-it-skills/1-year-2/uek-188/ mit PDFs unter http://robinrueegg.ch/wp-content/uploads/2023/03/Dokumentation_Robin.pdf und http://robinrueegg.ch/wp-content/uploads/2023/03/UeK-188.pdf. Das zeigt, wie ein 188er in der Praxis aussehen kann, ist aber kein Beleg für den Ablauf bei der ICT-Learnfactory. Seine Doku ist 28 Seiten lang. Die Themen in meinen Worten:
@@ -123,7 +131,7 @@ Daraus leite ich ab, dass Subnetting, RAID, DHCP-Scope, NTFS-Rechte und Backup-A
 
 ## 3. Was ich vor dem Kurs klären würde
 
-1. Sekretariat fragen: sekretariat@ict-learnfactory.ch, +41 31 521 00 90. Fragen: Welche Plattform (Windows oder Linux), welche Monitoring-Tools, gibt es Vorabunterlagen oder Zugang zur Lernplattform?
+1. Sekretariat fragen: sekretariat@ict-learnfactory.ch, +41 31 521 00 90. Fragen: Welche Plattform (Windows oder Linux), welche Monitoring-Tools, Zugang zur Lernplattform schon vor dem Kurs, eigenes Notebook nötig, Zeiten, Art der Leistungsbeurteilung?
 2. Kursprogramm im Kursverwaltungstool OdAOrg ansehen (laut ict-learnfactory.ch ab Juli sichtbar).
 3. Modulbeschreibung selbst im Browser öffnen: https://www.modulbaukasten.ch, Modul 188 suchen, PDF herunterladen.
 4. Eigene gibb-Unterlagen zu 117 und 123 durchgehen.
@@ -154,6 +162,13 @@ Die Gliederung folgt den offiziellen Handlungszielen. Die konkreten Beispiele un
 - Betriebshandbuch, Netzwerkplan, Passwort- und Berechtigungskonzept
 - Incident-Ablauf: erkennen, eingrenzen, beheben, dokumentieren
 - Begriffe: SLA, Verfügbarkeit, RTO/RPO, Change-Management, ITIL-Grundidee
+
+### Nützliche Anleitungen für die Praxis (Monitoring)
+
+- SNMP-Dienst auf Windows Server installieren: `Install-WindowsFeature SNMP-Service,SNMP-WMI-Provider -IncludeManagementTools`. Danach in den Diensteigenschaften Community und erlaubte Hosts setzen (mindestens die IP des Monitoring-Servers zulassen). Anleitung: https://theitbros.com/snmp-service-on-windows/ und https://woshub.com/install-configure-snmp-service-windows/
+- PRTG: SNMP auf Windows einrichten: https://helpdesk.paessler.com/en/support/solutions/articles/76000042365-how-do-i-install-the-snmp-service-on-windows-systems-
+- PRTG: WMI-Dienst-Sensor: https://www.paessler.com/manuals/prtg/wmi_service_sensor (WMI belastet stärker, Paessler empfiehlt höchstens etwa 200 solcher Sensoren pro Probe)
+- Hinweis: SNMP v1 und v2c übertragen die Community im Klartext. Für die Handlungsziel-Kenntnis 4.1 (Sicherheitsmechanismen) gehört SNMPv3 mit Authentifizierung und Verschlüsselung dazu.
 
 ## 5. Konkrete Übungen für die zwei Wochen
 
