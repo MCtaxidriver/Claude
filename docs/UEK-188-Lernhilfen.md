@@ -152,6 +152,12 @@ wbadmin start backup -backupTarget:\\backupshare\backup1 -noinheritacl -nonrecur
 :: Wiederherstellung einer Datei oder eines Ordners [Q: wbadmin start recovery]
 wbadmin start recovery -version:03/31/2020-09:00 -itemType:File -items:d:\folder -recursive
 ```
+Täglichen Zeitplan anlegen [Q: Microsoft Learn, wbadmin enable backup]:
+```cmd
+wbadmin enable backup -addtarget:H: -include:T:,D:\documents -exclude:D:\documents\~tmp -vssfull -schedule:01:00
+wbadmin enable backup
+```
+Der erste Befehl legt einen täglichen Zeitplan um 01:00 an (mehrere Zeiten mit Komma, zum Beispiel `-schedule:09:00,18:00`), der zweite zeigt ohne Parameter die aktuellen Einstellungen. Du brauchst dafür Rechte als Mitglied der Gruppe Sicherungsoperatoren oder Administratoren und eine Eingabeaufforderung als Administrator. Die Laufwerks-ID für `-addtarget` findest du mit `wbadmin get disks`. Das Beispiel der Microsoft-Seite übergibt ein Passwort im Klartext, das solltest du in der Praxis nicht tun [W].
 Das Feature «Windows Server Backup» muss dafür installiert sein: `Install-WindowsFeature -Name Windows-Server-Backup -IncludeManagementTools`, Status mit `Get-WindowsFeature Windows-Server-Backup`. Das Feature stellt auch `wbadmin` bereit. Fehlen Quelldateien (Fehler 0x800f081f), hilft der Parameter `-Source` oder `DISM /Online /Enable-Feature /FeatureName:WindowsServerBackup` [Q: Microsoft Learn und Microsoft Q&A]. Danach immer einen Restore-Test machen, damit du weisst, dass es funktioniert (NCSC-Empfehlung).
 
 ### Dienste, Updates, Logs, Performance
