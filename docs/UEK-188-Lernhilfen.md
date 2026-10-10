@@ -9,7 +9,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 **Inhalt**
 
 - 1. Cheatsheet: Befehle für die Lab-Umgebung
-- 2. Lernkarten (Frage, Antwort), 72 Stück
+- 2. Lernkarten (Frage, Antwort), 74 Stück
 - 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 - 2c. Konzepte in Kürze (für den schriftlichen Teil)
 - 2d. SNMP und WMI auf dem Server einrichten (Kenntnis 4.2)
@@ -143,7 +143,7 @@ WMIC nur noch als Feature on Demand, PowerShell 2.0 nicht mehr enthalten, WSUS n
 
 ---
 
-## 2. Lernkarten (Frage, Antwort), 72 Stück
+## 2. Lernkarten (Frage, Antwort), 74 Stück
 
 Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und sprich sie laut.
 
@@ -242,6 +242,10 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 70. **Was bekommst du in der Prüfung vorgegeben?** Eine Betriebsdokumentation zum Prüfungssystem. Du analysierst damit das System und führst die Doku am Schluss nach. [Q: LBV 188-1]
 71. **Was kann PRTG automatisch erzeugen und in welchen Formaten?** Berichte nach Zeitplan oder auf Abruf als HTML, PDF, CSV oder XML, auch per E-Mail. Für PDF muss der Spooler-Dienst auf dem Core-Server laufen. [Q: PRTG-Handbuch, Reports]
 72. **Was zeigt eine Map im Monitoring?** Objekte aus dem Gerätebaum mit ihrem Status auf einer Karte oder einem Dashboard. [Q: PRTG-Handbuch, Map Designer]
+
+### Zusatzkarten: Wartung (73 bis 74)
+73. **Welche Wartungszyklen nennt der Bildungsplan?** Täglich, wöchentlich, monatlich, bei bestimmten Ereignissen und gemäss SLA. [Q: Bildungsplan f4]
+74. **Was gehört zur Schweigepflicht bei der Wartung?** Mit Daten vertrauensvoll und sorgfältig umgehen und Eingriffe nachvollziehbar dokumentieren. [Q: Bildungsplan f4]
 
 ## 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 

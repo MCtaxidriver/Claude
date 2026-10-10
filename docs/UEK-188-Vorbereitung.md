@@ -2,7 +2,7 @@
 
 Stand: 10.10.2026. Für Informatiker/in EFZ Plattformentwicklung (BiVo 2021), ICT-Learnfactory.
 
-Lernhilfen mit Cheatsheet, 72 Lernkarten und 14-Tage-Plan: siehe `UEK-188-Lernhilfen.md`. Probeprüfung mit Praxisszenario, 20 schriftlichen Fragen und Musterlösung: siehe `UEK-188-Probepruefung.md`. Einseitiger Spickzettel: `UEK-188-Spickzettel.md`. Lernkarten als CSV zum Import in Anki oder Quizlet (Tab-getrennt: Frage, Antwort, Kategorie): `UEK-188-Lernkarten.csv`.
+Lernhilfen mit Cheatsheet, 74 Lernkarten und 14-Tage-Plan: siehe `UEK-188-Lernhilfen.md`. Probeprüfung mit Praxisszenario, 20 schriftlichen Fragen und Musterlösung: siehe `UEK-188-Probepruefung.md`. Einseitiger Spickzettel: `UEK-188-Spickzettel.md`. Lernkarten als CSV zum Import in Anki oder Quizlet (Tab-getrennt: Frage, Antwort, Kategorie): `UEK-188-Lernkarten.csv`.
 
 <!-- toc -->
 **Inhalt**
@@ -66,6 +66,14 @@ Im Bildungsplan (https://www.becc.admin.ch/becc/public/bvz/beruf/download/10475)
 - f6.1 Im Team nach Best Practices ein Sicherheitskonzept für Serversysteme und -dienste erstellen (K5)
 - Themen im Text: IT-Grundschutz, Firewall, Antivirus, Berechtigungen, SSO
 - Weitere Ziele f6.2 bis f6.4: Sicherheitselemente konfigurieren (K3), regelmässig testen und dokumentieren (K4), Konzept auf Aktualität prüfen (K4)
+
+**Verwandt: f4 Serversysteme und -dienste warten und verwalten** (im Bildungsplan nicht Modul 188 zugeordnet, passt aber zu «warten»)
+- f4.1 Wartungsaufgaben und Wartungszyklen definieren (K4). Der Bildungsplan nennt täglich, wöchentlich, monatlich, bei bestimmten Ereignissen und gemäss SLA.
+- f4.2 Wartungsaufgaben zuverlässig nach Vorgabe durchführen (K3). f4.3 Ausgeführte Wartung nachvollziehbar dokumentieren (K3).
+- f4.4 Updates testen und in die Produktivumgebung einspielen (K3).
+- f4.5 Funktionalität, Performance und Sicherheit regelmässig und systematisch testen (K3).
+- f4.6 Eingriffe und Anpassungen nachvollziehbar dokumentieren und die Schweigepflicht einhalten (K3).
+Die Kompetenz fordert ausdrücklich, dass Eingriffe jederzeit nachvollziehbar sind und mit Daten vertrauensvoll und sorgfältig umgegangen wird.
 
 Zugehörige Schulmodule laut Bildungsplan bei f5: 123, 182, 346. Bei f6: 141, 143 (Backup und Restore), 169 (Container), 182.
 
