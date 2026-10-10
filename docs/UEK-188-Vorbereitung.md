@@ -2,7 +2,7 @@
 
 Stand: 10.10.2026. Für Informatiker/in EFZ Plattformentwicklung (BiVo 2021), ICT-Learnfactory.
 
-Lernhilfen mit Cheatsheet, 74 Lernkarten und 14-Tage-Plan: siehe `UEK-188-Lernhilfen.md`. Probeprüfung mit Praxisszenario, 21 schriftlichen Fragen und Musterlösung: siehe `UEK-188-Probepruefung.md`. Einseitiger Spickzettel: `UEK-188-Spickzettel.md`. Lernkarten als CSV zum Import in Anki oder Quizlet (Tab-getrennt: Frage, Antwort, Kategorie): `UEK-188-Lernkarten.csv`.
+Lernhilfen mit Cheatsheet, 74 Lernkarten und 14-Tage-Plan: siehe `UEK-188-Lernhilfen.md`. Probeprüfung mit Praxisszenario, 21 schriftlichen Fragen und Musterlösung: siehe `UEK-188-Probepruefung.md`. Einseitiger Spickzettel: `UEK-188-Spickzettel.md`. Vorlage für das Lernjournal: `UEK-188-Lernjournal-Vorlage.md`. Lernkarten als CSV zum Import in Anki oder Quizlet (Tab-getrennt: Frage, Antwort, Kategorie): `UEK-188-Lernkarten.csv`.
 
 <!-- toc -->
 **Inhalt**
