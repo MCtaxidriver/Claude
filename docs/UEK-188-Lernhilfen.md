@@ -646,6 +646,13 @@ Das Ändern von Standardpasswörtern gehört auch in die Betriebsdokumentation u
 | Ereignisse | Event Log (Windows API) Sensor, WMI Event Log Sensor |
 | Updates | Windows Updates Status (PowerShell) Sensor |
 | Eigene OIDs | SNMP Library Sensor |
+**Reports ausführen: Zeitraum wählen** [Q: https://www.paessler.com/manuals/prtg/run_reports]
+- **Aktueller Zeitraum:** Daten der laufenden Periode (heute, diese Woche, dieser Monat, dieses Jahr), je nach der im Report eingestellten Periode.
+- **Vorheriger Zeitraum:** gestern, letzte Woche, letzter Monat oder letztes Jahr.
+- **Vordefinierter Zeitraum:** ein anderer Bereich aus einer Liste.
+- **Benutzerdefiniert:** Start- und Enddatum frei wählen, mit Schnellauswahl-Buttons.
+- Einen Report kannst du sofort mit den eingestellten Werten ausführen oder nach Zeitplan laufen lassen. In einem Cluster sind Failover-Knoten standardmässig nur lesend. Für die Wochenreport-Aufgabe in der Probeprüfung wählst du die Periode «Woche» und den Zeitraum «vorheriger Zeitraum», dann zeigt der Montagsreport die letzte Woche [W].
+
 **Abhängigkeiten und Benachrichtigungs-Trigger in PRTG** [Q: https://www.paessler.com/manuals/prtg/dependencies und https://www.paessler.com/manuals/prtg/notification_triggers_settings]
 - **Abhängigkeiten (Dependencies):** Ein Master-Sensor kann abhängige Sensoren pausieren, solange er Down ist. So vermeidest du Alarmfluten und falsche Ausfallzeiten, wenn zum Beispiel das ganze Gerät nicht erreichbar ist. Bei Auto-Discovery ist der Ping-Sensor eines Geräts standardmässig der Master.
 - **Falle bei Wartung:** Pausierst du nur den Master-Sensor, pausieren die abhängigen Sensoren nicht mit und können weiter alarmieren. Pausiere stattdessen das übergeordnete Gerät. Ein pausiertes Objekt erfasst keine Daten, ändert den Status nicht und löst keine Benachrichtigungen aus. Das passt zum Wartungsfenster beim Patchen.
