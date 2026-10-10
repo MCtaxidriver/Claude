@@ -314,6 +314,37 @@ Quelle: PRTG-Handbuch, https://www.paessler.com/manuals/prtg/setting_up_a_notifi
 4. Benachrichtigung mit «Send test notification» testen. Das deckt Handlungsziel f5.4 (Überwachung regelmässig testen).
 Menünamen können je nach PRTG-Version abweichen.
 
+### Umsysteme anpassen (Handlungsziel 6)
+
+Beispiele aus der Microsoft-Doku zu `New-NetFirewallRule` (https://learn.microsoft.com/de-de/powershell/module/netsecurity/new-netfirewallrule):
+- Eingehende Regel nur aus dem lokalen Subnetz für ein Programm: `New-NetFirewallRule -DisplayName "Allow Messenger" -Direction Inbound -Program "C:\Pfad\programm.exe" -RemoteAddress LocalSubnet -Action Allow`
+- Port sperren: `New-NetFirewallRule -DisplayName "Block Outbound Port 80" -Direction Outbound -LocalPort 80 -Protocol TCP -Action Block`
+- Nur authentifizierte Verbindungen zulassen: Parameter `-Authentication Required`
+Beim Thema SNMP heisst das konkret: Auf der Firewall des Servers UDP 161 nur für die IP des Monitoring-Servers freigeben (RemoteAddress). Dass diese Anforderung für Dritte nachvollziehbar beschrieben sein muss, ist Kenntnis 6.2. Ein Beispiel für einen Änderungsauftrag: «Bitte auf Firewall FW01 eine Regel anlegen: Quelle 10.0.0.5 (Monitoring), Ziel 10.0.0.10 (SRV01), UDP 161, Zweck SNMP-Abfrage, befristet bis ..., Test: snmpwalk von 10.0.0.5».
+
+### Wichtige Event-IDs (System- und Sicherheitslog)
+
+Quellen sind Blogs und SIEM-Listen, keine Microsoft-Seiten. Die Bedeutung kannst du in der Ereignisanzeige selbst prüfen.
+- 7036: Dienst wurde gestartet oder gestoppt
+- 7034: Dienst unerwartet beendet
+- 7040: Starttyp eines Dienstes geändert
+- 4625: Anmeldung fehlgeschlagen (viele in kurzer Zeit können auf Brute Force hindeuten)
+- 4624: Anmeldung erfolgreich
+- 6005: Ereignisprotokolldienst gestartet (entspricht Systemstart)
+- 6006: Ereignisprotokolldienst beendet (sauberes Herunterfahren)
+- 6008: Vorheriges Herunterfahren war unerwartet
+- 41: Kernel-Power, Neustart ohne sauberes Herunterfahren (in den Quellen nicht belegt, bitte prüfen)
+Quellen: https://graylog.org/?p=18855 und https://manageengine.com/products/active-directory-audit/kb/system-events/event-id-6005.html
+
+### Backup (nach NCSC-Empfehlungen, Schweiz)
+
+- Regelmässig sichern. Externe Festplatte nach dem Sichern vom Gerät trennen, damit Schadsoftware das Backup nicht mitverschlüsselt.
+- Cloud ist möglich, aber prüfen, welche Daten dorthin dürfen.
+- Sichern ist nur die halbe Miete: Die Wiederherstellung regelmässig testen.
+- Ein Schweizer Gewerbeverband empfiehlt mindestens wöchentlich für kleine und mittlere Betriebe.
+- Die 3-2-1-Regel (3 Kopien, 2 Medien, 1 extern) habe ich in den Quellen nicht gefunden, sie ist aus meinem Wissen.
+Quelle: https://www.netzwoche.ch/news/2021-05-03/tipps-vom-ncsc-woran-man-bei-einem-back-up-immer-denken-sollte
+
 ## 5. Konkrete Übungen für die zwei Wochen
 
 - Zwei VMs aufsetzen (VirtualBox oder Hyper-V), eine als Server, eine als Client
