@@ -619,6 +619,14 @@ Quellen: https://www.paessler.com/manuals/prtg/system_requirements, https://www.
 - **SNMP:** Zielgeräte müssen SNMP v1, v2c oder v3 unterstützen, SNMP muss auf dem Gerät aktiviert sein und der PRTG-Server braucht Zugriff. SNMP v3 ist wegen der Verschlüsselung langsamer, bei sehr vielen Sensoren empfiehlt Paessler v1 oder v2c.
 - **WMI:** siehe https://www.paessler.com/manuals/prtg/monitoring_via_wmi (Windows-Zugangsdaten und Firewall müssen stimmen).
 
+**Erste Schritte mit PRTG** [Q: https://www.paessler.com/manuals/prtg/step_1_download_installation_and_first_login]
+1. Aktuelle stabile Version als Testversion von der Paessler-Website laden.
+2. Setup auf dem Windows-Computer ausführen, der der Core-Server werden soll, und dem Assistenten folgen.
+3. Danach im Browser die IP-Adresse oder den DNS-Namen des Core-Servers öffnen und «Log in» klicken. Benutzername und Startpasswort sind beide `prtgadmin`, das Login-Fenster füllt sie meist schon aus.
+4. Das Standardpasswort sofort ändern, unter Setup, Account Settings, My Account. Das PRTG Administration Tool auf dem Core-Server kann Login-Namen und Passwort ebenfalls ändern.
+5. Danach folgt laut Handbuch der Smart Setup (Schritt 2) zum Einrichten der ersten Geräte.
+Das Ändern von Standardpasswörtern gehört auch in die Betriebsdokumentation und passt zum Sicherheitsgedanken von Handlungsziel 5.
+
 **Passende PRTG-Sensoren** [Q: Sensorverzeichnis im PRTG-Handbuch, https://www.paessler.com/manuals/prtg/]
 | Was du überwachst | Sensor (Name laut Handbuch) |
 | --- | --- |
