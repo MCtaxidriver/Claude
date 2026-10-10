@@ -122,6 +122,12 @@ Das heisst: Üben, wie du einen Service aufsetzt, überwachst, patchst und Recht
   - Aufgaben enthalten einen Teil mit freier Wahl des Lösungswegs
   - Du führst ein Lernjournal, in dem du das Gelernte festhältst. Selbstüberprüfungen sind nicht notenwirksam.
   - Lehrbetriebe können firmeneigene Aufgaben einbringen. Frag deinen Berufsbildner, ob er das für den 188er plant.
+- Ablauf laut Berichten über die Learnfactory (Kanton Bern: https://www.bkd.be.ch/de/start/news/zeitungsartikel-einsteiger/ict-learn-factory.html):
+  - Du bekommst an den Kurstagen eine Reihe von Aufträgen und wählst Reihenfolge und Zeitpunkt selbst.
+  - Die Module sind schweizweit standardisiert (Modulbaukasten). Lerncoaches kommen oft direkt aus laufenden Betriebsprojekten.
+  - Räume mit Input-Bereichen und Lernnischen, du kannst dich frei zusammensetzen.
+  - Insgesamt meist 35 Kurstage in der Lehre, jeweils 5 bis 6 Tage am Stück.
+- Regeln laut Suchergebnis zu einem Berner-Zeitung-Artikel (den Artikel selbst konnte ich nicht öffnen, bitte beim Sekretariat bestätigen lassen): Wer mehr als einen Tag des fünftägigen Kurses verpasst, muss ihn wiederholen. Die Aufgaben, die du im Kurs löst, zählen für den Abschluss des Moduls. Passt zur Modul-LBV (siehe 2a).
 - Zum Vergleich ICT-BZ (anderer Anbieter): Kurs 08:00 bis 16:45, eigenes Notebook mitbringen, Unterlagen früherer Kurse mitnehmen, mindestens 80 Prozent Anwesenheit. Bei der Learnfactory würde ich das beim Sekretariat bestätigen lassen.
 
 ## 2d. Was andere Lernende im üK 188 behandelt haben
@@ -286,6 +292,28 @@ Quellen:
 - https://learn.microsoft.com/de-de/powershell/module/microsoft.powershell.diagnostics/get-winevent
 - https://learn.microsoft.com/de-de/powershell/module/cimcmdlets/get-ciminstance
 
+### Betriebsdokumentation (Handlungsziel 1 und 3)
+
+Die Vorlage für Gemeinden von Datenschutz.ch ist eine Schweizer «Maximalvariante» und zeigt gut, was in eine Betriebsdokumentation gehören kann: https://docs.datenschutz.ch/u/d/informationssicherheit/gemeinden/vorlage_betriebsdokumentation.docx
+Gliederung (gekürzt):
+- Allgemeines: Zweck, Zielgruppen, Verweise auf Richtlinien, Änderungskontrolle
+- Organigramm: Verantwortlichkeiten (Beschaffung, Betrieb), Kontaktpersonen
+- Lokalitäten: Standort, Zutrittsregelung, Schutzmassnahmen (Strom, Feuer, Wasser, Hitze, Einbruch, Blitz), Alarmierung (Überwachungssystem, Empfänger)
+- Systemübersicht: Architekturdiagramm, Mengengerüst, Standortpläne, Hard- und Softwareverzeichnis, Lizenzen
+- Netzwerk: Netzpläne, Zonen, Protokolle, Verschlüsselung, Authentisierung, WLAN (Access Points, SSID)
+- Server: Einsatzzweck, Betriebssystem, Konfiguration, spezielle Einstellungen, Speicher und Partitionierung, installierte Anwendungen, Referenzinstallation, externe Schnittstellen, Verzeichnisstruktur, Log-Dateien
+- Passwörter gehören laut Vorlage ins Notfallkonzept und nicht in die Betriebsdokumentation.
+Für den Kurs heisst das: Nach jeder Änderung (Patch, neuer Service, neue Berechtigung) die Doku nachführen, das ist Teil von Handlungsziel 3.
+
+### PRTG: Schwellwerte und Alarme einrichten (Handlungsziel 4, Kenntnis 4.4)
+
+Quelle: PRTG-Handbuch, https://www.paessler.com/manuals/prtg/setting_up_a_notification_example
+1. Grenzwerte am Kanal des Sensors setzen. Beispiel im Handbuch: obere Warngrenze 60, obere Fehlergrenze 80. Der Sensor wechselt dann in Warning und bei mehr als 80 in Down. Mehrere gleichartige Sensoren lassen sich mit Multi-Edit zusammen einstellen.
+2. Delta-Kanäle (Fehlerzähler) liefern Werte pro Sekunde. Ein Fehler pro 60-Sekunden-Intervall entspricht etwa 0,016 pro Sekunde, deshalb liegt die Warnschwelle für «ein Fehler» im Beispiel bei 0,1.
+3. Benachrichtigungs-Trigger anlegen (State Trigger auf Warning oder Down) und eine Benachrichtigungsvorlage wählen. Trigger lassen sich auch auf Gruppen im Gerätebaum setzen.
+4. Benachrichtigung mit «Send test notification» testen. Das deckt Handlungsziel f5.4 (Überwachung regelmässig testen).
+Menünamen können je nach PRTG-Version abweichen.
+
 ## 5. Konkrete Übungen für die zwei Wochen
 
 - Zwei VMs aufsetzen (VirtualBox oder Hyper-V), eine als Server, eine als Client
@@ -306,6 +334,7 @@ Zu den Nachbarmodulen 123, 117 und 143 gibt es Kompetenzmatrizen mit Lernzielen:
 
 ## 7. Quellen
 
+- Berner Zeitung und Kanton Bern zur Learnfactory: https://www.bkd.be.ch/de/start/news/zeitungsartikel-einsteiger/ict-learn-factory.html
 - Bildungsplan Informatiker/in EFZ (BiVo 2021), SBFI: https://www.becc.admin.ch/becc/public/bvz/beruf/download/10475
 
 - ICT-Berufsbildung Bern, üK-Broschüre: https://www.ict-berufsbildung-bern.ch/resources/uek-Broschuere.pdf
