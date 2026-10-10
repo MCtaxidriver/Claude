@@ -195,7 +195,7 @@ Für 188 gilt im schriftlichen Teil «nach Vorgabe des üK-Anbieters». Beim Fol
 - Regeln laut Suchergebnis zu einem Berner-Zeitung-Artikel: Wer mehr als einen Tag des fünftägigen Kurses verpasst, muss ihn wiederholen. Das ist jetzt durch das üK-Reglement bestätigt (Abschnitt 2e, mehr als 20 Prozent Absenz). Dass die Aufgaben im Kurs für den Modulabschluss zählen, passt zur Modul-LBV (siehe 2a).
 - AGB der ICT-Learnfactory (Stand März 2025, https://www.ict-learnfactory.ch/agb), gelten für alle Aus- und Weiterbildungsangebote:
   - Die für den Bildungsgang relevanten Unterlagen werden **am ersten Unterrichtstag verteilt** und können auf Wunsch angefordert oder eingesehen werden. Frag also das Sekretariat, ob du sie vorab einsehen darfst.
-  - Bildungsgänge können jederzeit ohne Vorankündigung angepasst werden, auch Unterrichtstage und -zeiten, Lerninhalte und Prüfungen, solange der Gesamtcharakter nicht massgeblich ändert. Plane also mit Abweichungen von dem, was ich hier aus öffentlichen Quellen zusammengetragen habe.
+  - Bildungsgänge können jederzeit ohne Vorankündigung angepasst werden, auch Unterrichtstage und -zeiten, Lerninhalte und Prüfungen, solange sich der Gesamtcharakter nicht wesentlich ändert. Plane also mit Abweichungen von dem, was ich hier aus öffentlichen Quellen zusammengetragen habe.
   - Zur Absenzenregel stehen die Details im üK-Reglement der ICT-Berufsbildung Bern (Abschnitt 2e).
 - Zum Vergleich ICT-BZ (anderer Anbieter): Kurs 08:00 bis 16:45, eigenes Notebook mitbringen, Unterlagen früherer Kurse mitnehmen, mindestens 80 Prozent Anwesenheit. Bei der Learnfactory würde ich das beim Sekretariat bestätigen lassen.
 
