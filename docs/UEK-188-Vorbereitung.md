@@ -413,6 +413,14 @@ Wichtige Kenntnisse: Vorteile zentraler Benutzerverwaltung, Konfiguration von Fi
 
 Zusammenhang zu 188: In 123 richtest du die Dienste ein, in 188 betreibst, patchst und überwachst du sie in einer bestehenden Umgebung. Wenn du die Inbetriebnahme von DHCP, DNS und File-Server aus 123 nicht mehr sicher kannst, hilft die Repetition am meisten.
 
+**Wie M123 geprüft wird (LBV 123-3, Modulbaukasten)** [Q: https://www.modulbaukasten.ch/module/123/2/de-DE, Reiter LBV]
+- Dreiteilige Prüfung, jedes Element mit Wissensteil, Planungsteil und praktischer Umsetzung. Richtzeit total 5,5 Stunden, Hilfsmittel keine.
+  1. DHCP (25 %): Wissensfragen, ein IP-Adresskonzept anhand eines Szenarios planen und im DHCP-Dienst umsetzen.
+  2. DNS (25 %): Wissensfragen, ein Namenskonzept planen und im DNS-Dienst umsetzen.
+  3. Verzeichnisdienst und File (50 %): Wissensfragen, ein Benutzer-, Freigabe- und Berechtigungskonzept planen, umsetzen und testen, inklusive Dokumentation und Betriebsfreigabe.
+- Der praktische Teil hat in jedem Element das grösste Gewicht (40 bis 50 %).
+- Das zeigt, wie du für 188 üben solltest: Konzept zuerst auf Papier (IP-Plan, Namen, Gruppen und Rechte), dann umsetzen, testen und dokumentieren.
+
 ## 4d. Zusätzliche Lernquellen (nicht offiziell, bitte kritisch lesen)
 
 - Quizlet-Karten zu Modul 123 (54 Karten, Grundlagen, AD-Installation, DHCP-Reservationen): https://quizlet.com/5789099/it-modul-123-flash-cards/ (liess sich für mich nicht öffnen, 403)
