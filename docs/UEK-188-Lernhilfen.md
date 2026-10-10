@@ -599,6 +599,7 @@ Quelle: https://learn.microsoft.com/de-de/windows-server/identity/ad-ds/manage/g
 - Danach Hintergrundaktualisierung: Standard alle 90 Minuten, plus zufällig bis zu 30 Minuten. Einstellbar per Gruppenrichtlinie. Manches wird nur bei Anmeldung oder Start verarbeitet (zum Beispiel Ordnerumleitung und Softwareinstallation).
 - Reihenfolge laut Dokumentation und Suchergebnis: lokales GPO, Standort, Domäne, OU (tiefste zuletzt, gewinnt bei Konflikten). Bei mehreren Links in einem Container hat die niedrigste Zahl die höchste Priorität.
 - **Erzwungen** ist eine Eigenschaft des Links. Erzwungene GPOs setzen sich gegen widersprüchliche nicht erzwungene durch. **Vererbung blockieren** ist eine Eigenschaft des Containers und wirkt nicht gegen erzwungene Links. Das lokale GPO wird immer verarbeitet.
+- **GPO-Filterung** [Q: https://learn.microsoft.com/de-de/windows-server/identity/ad-ds/manage/group-policy/group-policy-scope]: Sie bestimmt, für welche Benutzer und Computer ein GPO gilt. Bei der **Sicherheitsfilterung** brauchen Benutzer oder Computer die Berechtigungen «Lesen» und «Gruppenrichtlinien anwenden» auf das GPO, sonst wird es nicht angewendet. Die **WMI-Filterung** verfeinert das mit Abfragen, die Bedingungen auf dem Zielsystem prüfen, zum Beispiel Betriebssystem oder Systemfunktionen. So richtest du ein GPO gezielt an eine Gruppe, ohne eine neue OU zu bauen [W].
 - Sofort anwenden: `gpupdate /force`. Prüfen: `gpresult /r`. Modellierung und Ergebnisse gibt es auch in der Gruppenrichtlinien-Verwaltungskonsole.
 
 ---
