@@ -116,6 +116,7 @@ Das heisst: Üben, wie du einen Service aufsetzt, überwachst, patchst und Recht
 - Tools, Lernplattform und Unterlagen stehen auf der Website nicht. Das Kursprogramm ist im Kursverwaltungstool OdAOrg sichtbar.
 - Jeder üK schliesst mit einer Leistungsbeurteilung ab (Prüfung und/oder Projektbewertung nach Vorgaben des Modulbaukastens), laut üK-Broschüre Bern.
 
+- Laut ICT-Berufsbildung Bern (https://www.ict-berufsbildung-bern.ch/grundbildung/informatiker-in-efz/ueberbetriebliche-kurse) erhalten Lernende und Lehrbetriebe zu Beginn jedes Lehrjahres das Kursprogramm von der ICT-LearnFactory. Schau in deinen Mails nach oder frag deinen Berufsbildner, vermutlich hast du es schon. Dort stehen die Daten und eventuell Hinweise zur Vorbereitung. Insgesamt sind es 7 Kursmodule zu je 5 Tagen.
 - Pädagogisches Konzept (PDF, 2 Seiten): https://www.ict-learnfactory.ch/_files/ugd/c05327_9d2feafdc11d41f6ba8e7d510e7bd84e.pdf
   - Lerncoaches begleiten, du arbeitest selbstorganisiert und problembasiert an realistischen Aufgaben
   - Lerninhalte liegen für Lernende und Lehrbetriebe transparent auf einer Plattform. Frag das Sekretariat nach dem Zugang, vielleicht kannst du schon vorher hineinschauen.
@@ -153,8 +154,9 @@ Daraus leite ich ab, dass Subnetting, RAID, DHCP-Scope, NTFS-Rechte und Backup-A
 
 1. Sekretariat fragen: sekretariat@ict-learnfactory.ch, +41 31 521 00 90. Fragen: Welche Plattform (Windows oder Linux), welche Monitoring-Tools, Zugang zur Lernplattform schon vor dem Kurs, eigenes Notebook nötig, Zeiten, Art der Leistungsbeurteilung?
 2. Kursprogramm im Kursverwaltungstool OdAOrg ansehen (laut ict-learnfactory.ch ab Juli sichtbar).
-3. Modulbeschreibung selbst im Browser öffnen: https://www.modulbaukasten.ch, Modul 188 suchen, PDF herunterladen.
-4. Eigene gibb-Unterlagen zu 117 und 123 durchgehen.
+3. Kursprogramm des Lehrjahres in deinen Mails oder beim Berufsbildner suchen (kommt laut ICT-Berufsbildung Bern zu Beginn jedes Lehrjahres).
+4. Modulbeschreibung selbst im Browser öffnen: https://www.modulbaukasten.ch, Modul 188 suchen, PDF herunterladen.
+5. Eigene gibb-Unterlagen zu 117 und 123 durchgehen.
 
 ## 4. Vorbereitung nach Themen (aus meinem Fachwissen, entlang der Handlungsziele)
 
