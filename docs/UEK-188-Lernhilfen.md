@@ -264,6 +264,29 @@ In meinen Worten, nach den Übersichtsseiten von Microsoft Learn.
 
 ---
 
+## 2d. SNMP und WMI auf dem Server einrichten (Kenntnis 4.2)
+
+**SNMP-Dienst unter Windows** [Q: Paessler, https://helpdesk.paessler.com/en/support/solutions/articles/76000042365-how-do-i-install-the-snmp-service-on-windows-systems-]
+1. Dienst installieren: Server-Manager (Features, SNMP-Dienst) oder per PowerShell `Install-WindowsFeature SNMP-Service,SNMP-WMI-Provider -IncludeManagementTools`. Vor Windows 8 und Server 2012 war er standardmässig vorhanden.
+2. `services.msc` als Administrator öffnen, «SNMP Service» doppelklicken, Starttyp «Automatisch».
+3. Reiter «Sicherheit»: eigenen Community-Namen eintragen (sicherer als der Standard «public»), Recht «Nur Lesen», den Eintrag «public» entfernen.
+4. Im selben Reiter unten festlegen, von welchen IP-Adressen SNMP-Pakete angenommen werden. Mindestens die IP des Monitoring-Servers muss drin sein.
+5. Reiter «Agent»: Kontakt, Standort und die Dienstarten ankreuzen, damit alle Werte verfügbar sind.
+6. Speichern und neu starten. Hinweis von Paessler: Manche Anwendungen (zum Beispiel IIS, MS SQL Server) bringen ihre SNMP-Unterstützung nur mit, wenn der SNMP-Dienst vorher installiert war.
+7. Windows Server 2012 zeigte teils fehlende Reiter «Sicherheit», «Agent» und «Traps». Paessler verweist dafür auf einen Workaround.
+
+**WMI-Fernzugriff** [Q: Microsoft Learn, https://learn.microsoft.com/en-us/windows/win32/wmisdk/connecting-to-wmi-on-a-remote-computer]
+- Fernverbindungen mit WMI hängen von der Windows-Firewall und den DCOM-Einstellungen ab. Auch die Benutzerkontensteuerung (UAC) kann Anpassungen erfordern.
+- Die DCOM-Einstellungen müssen für eine Fernverbindung korrekt sein. Wer DCOM ändert, kann Benutzern mit tiefen Rechten Zugriff geben. Darum Rechte sparsam vergeben.
+- Zuerst Berechtigung und Verbindungskonfiguration klären, danach ist der Aufruf selbst einfach.
+- Konkrete Ports (zum Beispiel 135 und dynamische RPC-Ports bei DCOM) habe ich nicht aus einer Quelle belegt [W]. In der Praxis lieber CIM über WSMan (PowerShell-Remoting, Port 5985) nutzen, wenn das Monitoring-Tool es kann [W].
+
+**Wahl SNMP gegen WMI** [W, zusammengefasst aus den Quellen]
+- SNMP: schlank, plattformübergreifend (auch Switches, Drucker), v1 und v2c unsicher, v3 sicherer.
+- WMI: Windows-spezifisch, sehr detailliert (Dienste, Event-Logs), braucht Domänen- oder lokales Konto mit Rechten, belastet bei vielen Sensoren stärker (Paessler: höchstens etwa 200 WMI-Sensoren pro Probe).
+
+---
+
 ## 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 Voraussetzung: Ein Laptop mit Hyper-V oder VirtualBox und eine Windows-Server-Testversion (Evaluation). Falls das nicht geht, nur die Theorie-Teile und Befehle lesen.
