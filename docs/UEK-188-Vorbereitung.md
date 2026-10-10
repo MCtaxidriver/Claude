@@ -499,12 +499,29 @@ Zu den Nachbarmodulen 123, 117 und 143 gibt es Kompetenzmatrizen mit Lernzielen:
 - Modulbaukasten: https://www.modulbaukasten.ch
 - ICT-Learnfactory: https://www.ict-learnfactory.ch
 
-## 8. Was ich geprüft habe und was nichts brachte (Stand 10.10.2026, 21:25)
+## 8. Was ich geprüft habe und was nichts brachte (Stand 10.10.2026, 21:47)
 
-Damit du nichts doppelt suchst:
-- Nicht öffentlich oder nur mit Login: Kursseiten und Moodle von ICT-BZ (Zentralschweiz), Kursunterlagen und Lernplattform der ICT-Learnfactory, das Kursprogramm 2026/27 (kommt zu Lehrjahresbeginn per Mail).
-- Keine Treffer zu Modul 188: Kompetenzmatrizen ZH («ÜK-Modul, keine Matrix vorhanden»), tbz-it auf GitHub und GitLab (nur M122 und M169 gefunden), Quizlet (nur Modul 123), ict-sh.ch und ict-berufsbildung-ost.ch (nur Modulübersichten), Lernjournale und Portfolios (ausser der einen Lerndokumentation von 2023).
-- Zeitweise nicht erreichbar oder blockiert (403/503, Weiterleitungsschleifen): Quizlet, Berner Zeitung, Tages-Anzeiger, edu.juergarnold.ch.
-- Aus Sicherheitsgründen nicht genutzt: Ein Endpunkt des Modulbaukastens liefert öffentlich ein Zugriffstoken für das CRM des Verbands. Das habe ich weder verwendet noch gespeichert. Dem Verband zu melden wäre sinnvoll.
-- Nicht belegt, weil keine Quelle: Welche Tools und welche Plattform (Windows oder Linux) die Learnfactory im 188er einsetzt. Das kann nur das Sekretariat beantworten.
+Damit du nichts doppelt suchst. Ich habe die Suche in diesen Kategorien abgeschlossen:
+
+**Gefunden und ausgewertet**
+- Modulbaukasten: Modulidentifikation 188 (PDF und Web), beide Elemente der Leistungsbeurteilung, Kompetenzmatrix-Reiter, Change Log. Dazu die Beschreibungen von 123 und 117 sowie die LBV von 123 und 190.
+- Bildungsplan Informatiker/in EFZ (BiVo 2021) mit den Kompetenzen d1, f4, f5, f6 und der Modulzuordnung.
+- ICT-Berufsbildung Bern (üK-Broschüre, Seite zu den üK) und ICT-Learnfactory (Seiten zu den üK, pädagogisches Konzept), Bericht des Kantons Bern.
+- Eine öffentliche Lerndokumentation zum üK 188 (2023, anderer Anbieter) und eine alte Zusammenfassung zum Vorgänger M127.
+- Herstellerdokus: Microsoft Learn (PowerShell, AD, GPO, Event-IDs, Hyper-V, entfernte Features), Paessler (PRTG, SNMP), Ubuntu (systemd, journald, unattended-upgrades, snmpd, ufw), Zabbix. Dazu NCSC-Tipps und eine Patch-Checkliste.
+
+**Ohne Treffer zu Modul 188**
+- Kompetenzmatrizen ZH («ÜK-Modul, keine Matrix vorhanden»).
+- GitHub und GitLab: tbz-it hat M122 und M169, andere Lernportfolios behandeln Module wie 164, 152, 403, aber keine 188.
+- Quizlet (nur Modul 123), Notion, Google Docs, Foren und Reddit (Suchen ohne Treffer).
+- Websites anderer Anbieter: ict-sh.ch, ict-berufsbildung-ost.ch, wiss.ch (nur Modulübersichten).
+- Lernplattform und Kursunterlagen der Learnfactory: nicht öffentlich.
+
+**Nicht erreichbar oder nur mit Login**
+- Kursseiten und Moodle von ICT-BZ, Quizlet (403), Berner Zeitung und Tages-Anzeiger (Weiterleitungsschleife), edu.juergarnold.ch, Microsoft Evaluation Center (hohe Last), manche Microsoft-Seiten (404).
+
+**Bewusst nicht genutzt**
+- Der Endpunkt `testAuth.php` des Modulbaukastens gibt öffentlich ein Zugriffstoken für das CRM des Verbands heraus. Ich habe es weder verwendet noch gespeichert. Das sollte man dem Verband melden.
+
+**Ergebnis:** Zu Modul 188 selbst gibt es öffentlich nichts mehr, was nicht schon in diesen Dateien steht. Offen bleibt nur, was die Learnfactory intern festlegt: Monitoring-Tool, Plattform, genaue Aufgaben, Hilfsmittel. Das kann nur das Sekretariat beantworten (sekretariat@ict-learnfactory.ch, +41 31 521 00 90).
 
