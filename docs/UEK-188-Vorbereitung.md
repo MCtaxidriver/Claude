@@ -2,6 +2,8 @@
 
 Stand: 10.10.2026. Für Informatiker/in EFZ Plattformentwicklung (BiVo 2021), ICT-Learnfactory.
 
+Lernhilfen mit Cheatsheet, 50 Lernkarten und 14-Tage-Plan: siehe `UEK-188-Lernhilfen.md`.
+
 ## 1. Gesichert (aus Quellen)
 
 - Titel: Services betreiben, warten und überwachen
