@@ -265,6 +265,27 @@ Nicht belegt, bitte nicht als Fakt nehmen:
 - Modulplan Plattformentwicklung (Kanton SH): https://ict-sh.ch/wp-content/uploads/2023/06/Modulplan_INF-Plattform_BiVo2021_Kt_SH_v1.0.pdf
 - Lernzielkatalog als Excel (Leistungsziele des Bildungsplans, ohne zusätzliche Details zu 188): https://ict-sh.ch/wp-content/uploads/2023/06/Lernzielkatalog_Informatiker_BiVo21-Plattformentwickler.xlsm
 
+### Befehlsübersicht für die Services (PowerShell, Windows Server)
+
+Aus der Microsoft-Doku geprüft (Links unten):
+- DHCP-Scope anlegen: `Add-DhcpServerv4Scope -Name "Lab" -StartRange 10.10.10.1 -EndRange 10.10.10.254 -SubnetMask 255.255.255.0`. Standard-Lease 8 Tage, Scope ist standardmässig aktiv. Verwandt: Get-/Set-/Remove-DhcpServerv4Scope, Get-DhcpServerv4ScopeStatistics (Auslastung des Scopes).
+- DNS A-Record anlegen: `Add-DnsServerResourceRecordA -Name "host23" -ZoneName "contoso.com" -IPv4Address "172.18.99.23" -TimeToLive 01:00:00`. Mit `-CreatePtr` entsteht der passende Reverse-Eintrag. Verwandt: Get-/Set-/Remove-DnsServerResourceRecord.
+- Ereignisprotokolle: `Get-WinEvent -ListLog *` zeigt alle Logs mit Grösse und Anzahl Einträge. Filtern geht mit `-FilterHashtable` (z.B. nach LogName, Level, Zeitraum), `-MaxEvents` begrenzt die Anzahl.
+- WMI/CIM abfragen: `Get-CimInstance -ClassName Win32_Process` (Standardnamespace root/CIMV2). Remote mit `-ComputerName Server01` oder einer CIM-Sitzung (`New-CimSession`). CIM über WSMan ist der Nachfolger des alten WMI-Zugriffs per DCOM.
+- Performance-Zähler: siehe Get-Counter weiter oben.
+
+Aus meinem Wissen, nicht in den Quellen geprüft:
+- Dienste: `Get-Service`, `Start-Service`, `Stop-Service`, `Restart-Service`, `Set-Service -StartupType Automatic`
+- Updates: `Get-HotFix` (installierte Patches), `wuauclt` ist veraltet, besser Windows Update über die Einstellungen oder WSUS
+- Berechtigungen: `Get-Acl`, `icacls <Pfad>`, `New-SmbShare`, `Get-SmbShareAccess`
+- Netzwerk: `ipconfig /all`, `ipconfig /release` und `/renew`, `nslookup`, `Test-NetConnection -Port 161` (SNMP-Port, UDP), `Resolve-DnsName`
+
+Quellen:
+- https://learn.microsoft.com/de-de/powershell/module/dhcpserver/add-dhcpserverv4scope
+- https://learn.microsoft.com/de-de/powershell/module/dnsserver/add-dnsserverresourcerecorda
+- https://learn.microsoft.com/de-de/powershell/module/microsoft.powershell.diagnostics/get-winevent
+- https://learn.microsoft.com/de-de/powershell/module/cimcmdlets/get-ciminstance
+
 ## 5. Konkrete Übungen für die zwei Wochen
 
 - Zwei VMs aufsetzen (VirtualBox oder Hyper-V), eine als Server, eine als Client
