@@ -316,6 +316,11 @@ Zur Abfrage dient `Get-WinEvent` mit `-FilterHashtable`, zum Beispiel für Anmel
 ```powershell
 Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date).AddHours(-1)}
 ```
+**Dienst- und Neustart-Events im Systemlog:**
+- **7036:** Statusänderung eines Dienstes (läuft, gestoppt). Viele Einträge sind normal und unkritisch. [Q: Microsoft Q&A, Community]
+- **7034:** Dienst unerwartet beendet. Der Text nennt, wie oft das schon vorkam. Ursachenanalyse nötig (Berechtigungen, Systemdateien, Fehler des Dienstes), zum Beispiel `sfc /scannow` und `DISM /Online /Cleanup-Image /RestoreHealth`, Wiederherstellungsoptionen des Dienstes auf «Neu starten» setzen. [Q: Microsoft Learn, OpenSSH-Artikel, Microsoft Q&A]
+- **41 (Kernel-Power):** System ohne sauberes Herunterfahren neu gestartet. Die Ursache lässt sich aus dem Ereignis allein oft nicht ableiten, man schaut, was zum Zeitpunkt passiert ist (Stromausfall, Absturz, Netzschalter). Bugcheck-Code ungleich 0 deutet auf einen Stoppfehler, 0 kann auf Stromversorgung hinweisen. [Q: https://learn.microsoft.com/de-de/troubleshoot/windows-client/performance/event-id-41-restart]
+
 Hinweis: Diese Auditing-Events müssen aktiviert sein (Richtlinie «Überwachung»). In einer frischen Lab-VM sind nicht alle standardmässig an. [W]
 
 ---

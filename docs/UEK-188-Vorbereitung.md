@@ -337,7 +337,7 @@ Quellen sind Blogs und SIEM-Listen, keine Microsoft-Seiten. Die Bedeutung kannst
 - 6005: Ereignisprotokolldienst gestartet (entspricht Systemstart)
 - 6006: Ereignisprotokolldienst beendet (sauberes Herunterfahren)
 - 6008: Vorheriges Herunterfahren war unerwartet
-- 41: Kernel-Power, Neustart ohne sauberes Herunterfahren (in den Quellen nicht belegt, bitte prüfen)
+- 41: Kernel-Power, System wurde ohne sauberes Herunterfahren neu gestartet. Offiziell belegt: https://learn.microsoft.com/de-de/troubleshoot/windows-client/performance/event-id-41-restart (die Ursache lässt sich aus dem Ereignis allein oft nicht ableiten, ein Bugcheck-Code deutet auf einen Stoppfehler, Code 0 kann auf ein Stromversorgungsproblem hinweisen)
 Quellen: https://graylog.org/?p=18855 und https://manageengine.com/products/active-directory-audit/kb/system-events/event-id-6005.html
 
 ### Backup (nach NCSC-Empfehlungen, Schweiz)
