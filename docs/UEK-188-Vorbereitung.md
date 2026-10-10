@@ -201,7 +201,9 @@ Für 188 gilt im schriftlichen Teil «nach Vorgabe des üK-Anbieters». Beim Fol
 
 ## 2e. üK-Reglement der ICT-Berufsbildung Bern (gültig ab 01.08.2025)
 
-Quelle: https://www.ict-berufsbildung-bern.ch/resources/ueK-Reglement-20250801.pdf (6 Seiten, als Scan, ich habe die Seiten 1, 2, 4 und 5 gelesen, Seite 3 mit Zweck und Organen und Seite 6 mit den Kosten nicht). Es gilt für die ICT-Berufe im deutschsprachigen Kanton Bern, also auch für Informatiker/in EFZ bei der Learnfactory. Die Zusammenfassung ist in meinen Worten.
+Quelle: https://www.ict-berufsbildung-bern.ch/resources/ueK-Reglement-20250801.pdf (6 Seiten, als Scan, ich habe alle Seiten als Bilder gelesen). Es gilt für die ICT-Berufe im deutschsprachigen Kanton Bern, also auch für Informatiker/in EFZ bei der Learnfactory. Die Zusammenfassung ist in meinen Worten.
+
+**Organisation (Art. 1 bis 3, 14):** Das Reglement regelt Organisation und Durchführung der üK im Kanton Bern. Organe sind ICT-Berufsbildung Schweiz, ICT-Berufsbildung Bern, die kantonale Kurskommission und die akkreditierten Bildungsanbieter, die Learnfactory ist einer davon. ICT-Berufsbildung Schweiz erlässt die Vorgaben zu Modulinhalten und zu den Leistungsbeurteilungsvorgaben und Kompetenzmatrizen im Modulbaukasten (modulbaukasten.ch), also genau die Dokumente aus Abschnitt 2 und 2a. Die Kurskosten der üK in der Learnfactory legt der Vorstand von ICT-Berufsbildung Bern fest und veröffentlicht sie auf ict-berufsbildung-bern.ch.
 
 **Besuchspflicht (Art. 5):** Der üK-Besuch ist für alle Lernenden obligatorisch. Alle vorgegebenen üK-Module müssen absolviert und mit dem Kompetenznachweis abgeschlossen werden. Bei Lehrfortsetzung oder Lehrjahrwiederholung werden vorhandene Kompetenznachweise übernommen und zählen zum Qualifikationsverfahren (Art. 6).
 
