@@ -1,6 +1,6 @@
 # ÜK 188: Probeprüfung (Eigenbau) mit Musterlösung
 
-Das ist keine offizielle Prüfung. Ich habe sie aus den Handlungszielen und der Leistungsbeurteilung des Modulbaukastens abgeleitet: ein praktischer Teil (60 Prozent, Richtzeit 2 Stunden) und ein schriftlicher Teil (40 Prozent, Richtzeit 1 Stunde). Die Aufgaben der Learnfactory können anders aussehen.
+Das ist keine offizielle Prüfung. Ich habe sie aus den Handlungszielen und den Vorgaben der Leistungsbeurteilung (LBV 188-1) im Modulbaukasten abgeleitet: ein praktischer Teil (60 Prozent, Richtzeit 2 Stunden) und ein schriftlicher Teil (40 Prozent, Richtzeit 1 Stunde). Die LBV nennt AD, DNS und DHCP, Berechtigungen, Updates, Monitoring und Umsysteme als Prüfgegenstände, dazu Reports und Maps. Die genauen Aufgaben der Learnfactory kenne ich nicht.
 
 Markierung: [Q] belegt in einer Quelle (siehe `UEK-188-Vorbereitung.md` und `UEK-188-Lernhilfen.md`), [W] aus allgemeinem Fachwissen.
 
@@ -45,7 +45,7 @@ Miss CPU, freien Speicherplatz und die Netzwerkauslastung von `SRV01` und notier
 Ermittle, welche Updates installiert sind. Plane einen Patch-Durchlauf für den Server in 5 Schritten, führe vorher einen Snapshot oder ein Backup durch und halte das Vorgehen in der Betriebsdokumentation fest.
 
 **5. Monitoring einbinden (30 Minuten, Handlungsziel 4)**
-Installiere den SNMP-Dienst auf `SRV01`, erlaube nur `MON01`, binde `SRV01` in PRTG ein (Ping, CPU, freier Speicherplatz auf D:, Dienststatus DHCP). Lege begründete Grenzwerte fest, richte eine Benachrichtigung ein und teste sie, indem du einen Dienst stoppst.
+Installiere den SNMP-Dienst auf `SRV01`, erlaube nur `MON01`, binde `SRV01` in PRTG ein (Ping, CPU, freier Speicherplatz auf D:, Dienststatus DHCP). Lege begründete Grenzwerte fest, richte eine Benachrichtigung ein und teste sie, indem du einen Dienst stoppst. Erstelle einen automatischen Wochenreport (PDF) für die vier Sensoren und lege eine Map mit `SRV01` an, die den Status anzeigt.
 
 **6. Berechtigungen (20 Minuten, Handlungsziel 5)**
 Lege einen neuen Mitarbeiter `Sara Keller` an, nimm ihn in die Gruppe der Buchhaltung auf und prüfe, dass sie auf `\\SRV01\Buchhaltung` ändern darf, aber keinen Zugriff auf `\\SRV01\Geschaeftsleitung` hat. Dokumentiere die Rechte.
@@ -53,18 +53,18 @@ Lege einen neuen Mitarbeiter `Sara Keller` an, nimm ihn in die Gruppe der Buchha
 **7. Umsystem (10 Minuten, Handlungsziel 6)**
 Die Firewall auf `SRV01` blockiert die SNMP-Abfrage. Schreibe einen Änderungsauftrag für den externen Netzwerkpartner, mit dem du eine Regel für `MON01` verlangst, und gib an, wie du die Änderung testest.
 
-### Bewertungsraster (Vorschlag, 100 Punkte)
+### Bewertungsraster (an die LBV angelehnt, 100 Punkte)
 
-| Aufgabe | Punkte | Worauf geachtet wird |
+Die LBV gibt Spannen vor. Ich nehme die Mitte, damit es 100 ergibt.
+
+| Aufgabe | Punkte | LBV-Kriterium und Spanne |
 | --- | --- | --- |
-| 1 Analyse | 10 | Abweichungen gefunden und dokumentiert |
-| 2 Dienste | 10 | Richtige Befehle, Log-Eintrag gefunden |
-| 3 Baseline | 10 | Messwerte mit Zeit und Methode notiert |
-| 4 Patches | 15 | Ablauf vollständig (Test, Backup, Rollback, Doku) |
-| 5 Monitoring | 25 | SNMP korrekt, Sensoren laufen, Grenzwerte begründet, Alarm getestet |
-| 6 Berechtigungen | 15 | AGDLP eingehalten, Test erfolgreich, Doku |
-| 7 Umsystem | 10 | Auftrag vollständig und nachvollziehbar, Testverfahren genannt |
-| Dokumentation durchgehend | 5 | Nachgeführt und verständlich |
+| 1 Analyse und Konfiguration AD, DNS, DHCP | 20 | Konfigurationsanpassungen zu AD, DNS und DHCP (15 bis 25 %) |
+| 2 und 3 Dienste und Baseline | 10 | Teil der System- und Ressourcenüberwachung |
+| 5 Monitoring einbinden, Report | 20 | Überwachung mit Bordmitteln oder zentralem Monitoring (15 bis 25 %) |
+| 4 Patches | 8 | Updates prüfen und einspielen (5 bis 10 %) |
+| 6 Berechtigungen | 27 | Zugriffs- und Berechtigungskonzept (20 bis 40 %) |
+| 7 Umsystem | 15 | Anpassungen an Umsystemen (15 bis 25 %) |
 
 ### Musterlösung (Kurzfassung)
 
@@ -98,6 +98,7 @@ In PRTG Gerät `SRV01` anlegen, SNMP-Zugangsdaten hinterlegen, Sensoren hinzufü
 - Speicherplatz D:: Warnung bei weniger als 20 Prozent frei, Fehler bei weniger als 10 Prozent. Begründung: Reserve für Wachstum und Backup.
 - Dienststatus: sofort Fehler, wenn gestoppt.
 Grenzwerte am Kanal setzen, State Trigger auf Warning und Down mit E-Mail-Vorlage, mit «Send test notification» testen und dann `Stop-Service DHCPServer` für den echten Test (danach wieder starten). [Q: PRTG-Handbuch]
+Report und Map in PRTG [Q: https://www.paessler.com/manuals/prtg/reports und https://www.paessler.com/manuals/prtg/map_designer]: Berichte lassen sich auf Abruf oder nach Zeitplan als HTML, PDF, CSV oder XML erzeugen und per E-Mail versenden, die Vorlage bestimmt Aufbau und Detailtiefe. Für PDF muss der Druckwarteschlangen-Dienst (Spooler) auf dem PRTG-Core-Server laufen. Mit dem Map Designer ziehst du Objekte aus dem Gerätebaum auf eine Karte, die den Status zeigt und auch als Dashboard im Home-Menü abgelegt werden kann.
 
 **6.**
 ```powershell
@@ -130,6 +131,11 @@ Auf `SRV01` selbst: `New-NetFirewallRule -DisplayName "SNMP von MON01" -Directio
 13. Wie testest du, ob dein Alarmsystem zuverlässig funktioniert?
 14. Nenne zwei Anpassungen auf Umsystemen und wie du sie dem Betreiber beschreibst.
 15. Nenne drei Empfehlungen zu Backups und warum der Restore-Test wichtig ist.
+16. Du siehst in der Monitoring-Map `SRV01` rot und `SRV02` gelb. Wie gehst du vor?
+17. Wozu erstellst du automatische Reports und welche Inhalte gehören hinein?
+18. Nach einem Patch läuft der DHCP-Dienst nicht mehr. Nenne einen Workaround und einen langfristigen Schritt.
+19. Begründe das Berechtigungskonzept: Die Buchhaltung darf ändern, die Geschäftsleitung nur lesen. Wie setzt du es um und warum so?
+20. Du erhältst eine Betriebsdokumentation. Wie gehst du vor, um das System zu analysieren, und was ergänzt du am Schluss?
 
 ### Musterlösung Teil B
 
@@ -148,6 +154,11 @@ Auf `SRV01` selbst: `New-NetFirewallRule -DisplayName "SNMP von MON01" -Directio
 13. Mit regelmässigen Tests: Testbenachrichtigung auslösen und einen Dienst absichtlich stoppen. Ergebnis dokumentieren. [Q: Bildungsplan f5.4, PRTG-Handbuch]
 14. DNS-Eintrag (Name, Zone, IP, TTL) und Firewall-Regel (Quelle, Ziel, Protokoll, Port, Zweck, Befristung, Testverfahren). Beschreibung so, dass Dritte sie umsetzen können. [Q: Modul 188 6.1 und 6.2]
 15. Regelmässig sichern, externe Medien danach vom System trennen, Cloud nur mit geprüften Daten, Wiederherstellung testen, denn ein Backup ohne getesteten Restore ist nicht sicher. [Q: NCSC über Netzwoche]
+16. Rot bedeutet Fehler oder Down, gelb Warnung. Zuerst `SRV01` prüfen: welcher Sensor ist rot (Ping, Dienst, Speicher), seit wann, was steht im Ereignisprotokoll (zum Beispiel 7034). Dienst oder Gerät erreichbar? Dann beheben, Alarm quittieren, Ursache dokumentieren. `SRV02` beobachten und mit der Baseline vergleichen, ob der Wert dauerhaft steigt. [W, Q: PRTG-Handbuch zu Status und Schwellwerten]
+17. Reports zeigen Verfügbarkeit und Auslastung über die Zeit, belegen SLA und helfen bei Kapazitätsplanung. Hinein gehören Verfügbarkeit pro Dienst, CPU, Speicher, freier Platz, Ausfälle und Alarme im Zeitraum. Sie lassen sich nach Zeitplan als PDF erzeugen und per E-Mail versenden. [Q: PRTG-Handbuch, Reports; W]
+18. Workaround: Patch deinstallieren oder VM auf den Snapshot zurücksetzen, Dienst manuell starten und Ereignisprotokoll prüfen. Langfristig: Patch zuerst in der Testumgebung prüfen, Rollback-Plan und Wartungsfenster festlegen, Ursache mit dem Hersteller klären und das Vorgehen dokumentieren. [Q: Patch-Checkliste; W]
+19. Gruppen `GG_Buchhaltung` und `GG_Geschaeftsleitung` (global) kommen in `DL_Buchhaltung_RW` (Ändern) und `DL_Buchhaltung_R` (Lesen) und erhalten nur dort Rechte auf Freigabe und NTFS. Begründung: Rechte hängen an Gruppen statt an Personen, das ist übersichtlich, bei Wechseln einfach zu pflegen und nachvollziehbar. Zudem gilt Least Privilege. Die Rechte gehören in eine Matrix in der Betriebsdokumentation. [Q: Tenfold, ManageEngine, Microsoft Learn; W]
+20. Erst die Dokumentation lesen (Netzplan, Server, Dienste, Berechtigungen), dann am System prüfen, ob der Ist-Zustand zur Doku passt (Dienste, DHCP-Scope, DNS-Zone, Freigaben, Gruppen), Abweichungen notieren, dann die verlangten Anpassungen ausführen. Am Schluss die Doku nachführen: geänderte Konfiguration, neue Rechte, installierte Updates, Datum und Name. [Q: LBV und Modul 188 1.1 und 3; W]
 
 ---
 

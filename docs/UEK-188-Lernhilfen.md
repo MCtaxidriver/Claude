@@ -9,7 +9,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 **Inhalt**
 
 - 1. Cheatsheet: Befehle für die Lab-Umgebung
-- 2. Lernkarten (Frage, Antwort), 67 Stück
+- 2. Lernkarten (Frage, Antwort), 72 Stück
 - 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 - 2c. Konzepte in Kürze (für den schriftlichen Teil)
 - 2d. SNMP und WMI auf dem Server einrichten (Kenntnis 4.2)
@@ -143,7 +143,7 @@ WMIC nur noch als Feature on Demand, PowerShell 2.0 nicht mehr enthalten, WSUS n
 
 ---
 
-## 2. Lernkarten (Frage, Antwort), 67 Stück
+## 2. Lernkarten (Frage, Antwort), 72 Stück
 
 Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und sprich sie laut.
 
@@ -235,6 +235,13 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 67. **Was gehört zu einem Patch-Konzept?** Inventarliste der Hard- und Software, Netzpläne, Update-Plan mit Versionsständen, Zuständigkeiten, Regeln zur Priorisierung. [Q]
 
 ---
+
+### Zusatzkarten: Prüfung laut LBV, Reports, Maps (68 bis 72)
+68. **Welche Services werden laut LBV geprüft?** AD, DNS und DHCP. [Q: Modulbaukasten, LBV 188-1]
+69. **Welches Kriterium hat im Praxisteil das grösste Gewicht?** Zugriffs- und Berechtigungskonzept erfassen, ergänzen, dokumentieren, mit 20 bis 40 Prozent. [Q: LBV 188-1, Element 1]
+70. **Was bekommst du in der Prüfung vorgegeben?** Eine Betriebsdokumentation zum Prüfungssystem. Du analysierst damit das System und führst die Doku am Schluss nach. [Q: LBV 188-1]
+71. **Was kann PRTG automatisch erzeugen und in welchen Formaten?** Berichte nach Zeitplan oder auf Abruf als HTML, PDF, CSV oder XML, auch per E-Mail. Für PDF muss der Spooler-Dienst auf dem Core-Server laufen. [Q: PRTG-Handbuch, Reports]
+72. **Was zeigt eine Map im Monitoring?** Objekte aus dem Gerätebaum mit ihrem Status auf einer Karte oder einem Dashboard. [Q: PRTG-Handbuch, Map Designer]
 
 ## 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 
@@ -625,10 +632,10 @@ Voraussetzung: Ein Laptop mit Hyper-V oder VirtualBox und eine Windows-Server-Te
 | 7 | Rechte | Freigabe und NTFS: eine Freigabe, zwei Gruppen, Zugriff testen. AGDLP umsetzen. Lernkarten 33 bis 39 und 61 bis 63, Abschnitt 2i. |
 | 8 | Betriebsdoku | Kurze Doku zum Lab schreiben (Netzplan, Server, Dienste, Rechte). Lernkarten 1 bis 5. |
 | 9 | Bordmittel-Monitoring | `Get-Counter`, Ressourcenmonitor, Ereignisanzeige. Eine Baseline notieren. Lernkarten 6 bis 13, Abschnitte 2e und 2k. |
-| 10 | SNMP und PRTG | SNMP-Dienst installieren, PRTG (Gratisversion) einrichten, drei Sensoren, Grenzwerte, Benachrichtigung, Testalarm. Lernkarten 20 bis 30, Abschnitte 2d und 2m. |
+| 10 | SNMP und PRTG | SNMP-Dienst installieren, PRTG (Gratisversion) einrichten, drei Sensoren, Grenzwerte, Benachrichtigung, Testalarm, einen Report und eine Map anlegen. Lernkarten 20 bis 30 und 71 bis 72, Abschnitte 2d und 2m. |
 | 11 | Dienst-Ausfall | Einen Dienst stoppen, Alarm prüfen, Ereignis 7036 finden, Dienst wieder starten, alles dokumentieren. Optional das Script aus Abschnitt 2f einrichten. |
 | 12 | Patches | `Get-HotFix`, Patch-Prozess durchspielen (Snapshot, Update, Kontrolle, Doku). Lernkarten 14 bis 19 und 64 bis 67, Abschnitt 2l. |
 | 13 | Umsysteme und Backup | Firewall-Regel für SNMP nur von der PRTG-IP, Änderungsauftrag schreiben, Backup und Restore testen. Lernkarten 40 bis 43, 49, 50. |
-| 14 | Generalprobe | Alle Lernkarten durchgehen. Ein Mini-Szenario aus dem Kopf: Service aufsetzen, überwachen, patchen, Rechte vergeben, dokumentieren. 1 Stunde Zeit, so wie die Praxisprüfung (2 Stunden) plus schriftlich (1 Stunde). |
+| 14 | Generalprobe | Alle Lernkarten durchgehen, besonders die Berechtigungen (68 bis 70). Ein Mini-Szenario aus dem Kopf: Service aufsetzen, überwachen, patchen, Rechte vergeben, dokumentieren. 1 Stunde Zeit, so wie die Praxisprüfung (2 Stunden) plus schriftlich (1 Stunde). |
 
 Hinweis zur Prüfung: Laut Leistungsbeurteilung zählt der Praxisteil 60 Prozent und der schriftliche Teil 40 Prozent. Übe darum auch das Begründen (warum dieser Schwellwert, warum diese Rechtevergabe).
