@@ -417,6 +417,19 @@ Zur Abfrage dient `Get-WinEvent` mit `-FilterHashtable`, zum Beispiel für Anmel
 ```powershell
 Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date).AddHours(-1)}
 ```
+**Eigene Ansicht in der Ereignisanzeige** [Q: Microsoft Q&A und Server-Manager-Doku, Abfragetext aus meinem Wissen]
+- Unter «Benutzerdefinierte Ansichten» mit Rechtsklick «Benutzerdefinierte Ansicht erstellen», dann im Reiter «Filter» Ebene (zum Beispiel Fehler) und Ereignisquelle wählen, Namen und Beschreibung vergeben und speichern.
+- Im Reiter «XML» kannst du «Abfrage manuell bearbeiten» aktivieren. Danach ist der Reiter «Filter» nicht mehr nutzbar.
+- Beispiel für alle Dienstfehler im Systemlog [W]. Ebene 2 entspricht «Fehler»:
+```xml
+<QueryList>
+  <Query Id="0" Path="System">
+    <Select Path="System">*[System[Provider[@Name='Service Control Manager'] and (Level=2)]]</Select>
+  </Query>
+</QueryList>
+```
+- Der Bildungsplan verlangt Überwachung per Bordmittel oder Monitoring (f5.2). Eine solche Ansicht ist ein einfaches Bordmittel, um Dienstabstürze (7034) schnell zu sehen.
+
 **Dienst- und Neustart-Events im Systemlog:**
 - **7036:** Statusänderung eines Dienstes (läuft, gestoppt). Viele Einträge sind normal und unkritisch. [Q: Microsoft Q&A, Community]
 - **7034:** Dienst unerwartet beendet. Der Text nennt, wie oft das schon vorkam. Ursachenanalyse nötig (Berechtigungen, Systemdateien, Fehler des Dienstes), zum Beispiel `sfc /scannow` und `DISM /Online /Cleanup-Image /RestoreHealth`, Wiederherstellungsoptionen des Dienstes auf «Neu starten» setzen. [Q: Microsoft Learn, OpenSSH-Artikel, Microsoft Q&A]
