@@ -626,6 +626,20 @@ Quellen: https://www.paessler.com/manuals/prtg/system_requirements, https://www.
 | Ereignisse | Event Log (Windows API) Sensor, WMI Event Log Sensor |
 | Updates | Windows Updates Status (PowerShell) Sensor |
 | Eigene OIDs | SNMP Library Sensor |
+**Status in PRTG lesen (für «Monitoring interpretieren» und «Map deuten»)** [Q: https://www.paessler.com/manuals/prtg/sensor_states]
+| Status | Farbe | Bedeutung |
+| --- | --- | --- |
+| Up | grün | Letzter Scan erfolgreich, alles in Ordnung |
+| Warning | gelb | Fehler erkannt, PRTG versucht es erneut. Nach einem zweiten fehlgeschlagenen Versuch wird der Sensor Down. Auch Warnschwellen setzen Warning. |
+| Down | rot | Fehler, zum Beispiel Gerät nicht erreichbar oder Fehlergrenze überschritten |
+| Down (Acknowledged) | hellrot | Alarm wurde quittiert, es gehen keine weiteren Benachrichtigungen raus |
+| Unusual | orange | Werte weichen stark vom historischen Durchschnitt für diesen Wochentag und diese Uhrzeit ab (Unusual Detection) |
+| Paused | blau | Sensor pausiert, befristet, unbefristet oder wegen einer Abhängigkeit |
+| Unknown | grau | Für diesen Zeitraum liegen keine Daten vor, zum Beispiel nach einem Neustart des Core-Servers |
+| Down (Partial) | | nur im Cluster, wenn Knoten uneinig sind |
+In zusammengefassten Ansichten wie Gerätebaum oder Map gewinnt der Status mit der höchsten Priorität. Ist ein Sensor Down, zeigt auch das Gerät Down.
+Daraus für die Map-Frage: Rot beim Gerät heisst, mindestens ein Sensor ist Down. Im Gerätebaum nach dem roten Sensor suchen, Ursache beheben und dokumentieren. Gelb ist Vorwarnung. Orange ist ungewöhnlich gegenüber der Norm und kann auf eine schleichende Änderung hinweisen. Blau ist keine Störung, sondern Pause oder Wartungsfenster.
+
 Einzelheiten aus den Sensorseiten [Q: PRTG-Handbuch, DHCP Sensor, DNS v2 Sensor, SNMP Windows Service v2 Sensor]:
 - **DHCP Sensor:** sendet einen Broadcast und wartet auf die Antwort eines DHCP-Servers, zeigt dessen Adresse und die angebotene IP. Das Probe-Gerät muss eine statische IP haben, sonst droht Datenverlust. Der Sensor zeigt einen Timeout, wenn kein DHCP antwortet oder wenn mehr als zwei DHCP-Sensoren pro Gerät angelegt sind.
 - **DNS v2 Sensor:** fragt einen DNS-Server nach einem Namen ab und vergleicht das Ergebnis mit einem Filter. Er schlägt an, wenn der Server den Namen nicht korrekt auflöst. Der Abfragetyp ist wählbar.
