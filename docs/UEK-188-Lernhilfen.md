@@ -5,6 +5,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 - [W] aus allgemeinem Fachwissen, bitte mit den Kursunterlagen abgleichen
 
 
+
 <!-- toc -->
 **Inhalt**
 
@@ -24,6 +25,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 - 2m. PRTG für die eigene Übung
 - 2n. Lab zu Hause aufbauen (Tag 4 im Plan)
 - 2o. Fernverwaltung und Zeitsynchronisation
+- 2p. Muster: Berechtigungskonzept dokumentieren und begründen
 - 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 <!-- /toc -->
@@ -731,6 +733,43 @@ Das passt zum Patch-Prozess (Backup und Rollback-Plan) und lässt dich Fehler ge
 - Ab Windows Server 2016 ist eine Genauigkeit von 1 ms zur UTC möglich, unter geeigneten Bedingungen für Domänenmitglieder von Windows Server 2016 und Windows 10 Anniversary Update.
 - Kerberos toleriert nur eine begrenzte Zeitabweichung zwischen Client und Domänencontroller. Die Richtlinie «Maximale Toleranz für Computeruhrsynchronisierung» steht laut Microsoft standardmässig auf 5 Minuten (Registry SkewTime). Kerberos nutzt Zeitstempel gegen Replay-Angriffe, bei grösserer Abweichung scheitert die Authentifizierung (Fehler KRB_AP_ERR_SKEW). [Q: https://learn.microsoft.com/de-de/windows/security/threat-protection/security-policy-settings/maximum-tolerance-for-computer-clock-synchronization] Bei Anmeldeproblemen in einer frischen Lab-Domäne zuerst die Uhrzeit prüfen, besonders bei VMs, die aus einem Snapshot zurückkehren [W].
 - Neu synchronisieren: `w32tm /resync /computer:<Ziel> /rediscover` [Q: Microsoft, Kerberos-Fehlerbehebung]. Status prüfen mit `w32tm /query /status` [W].
+
+---
+
+## 2p. Muster: Berechtigungskonzept dokumentieren und begründen
+
+Das Zugriffs- und Berechtigungskonzept ist laut LBV der grösste Prüfungsposten (bis 40 % im Praxisteil, bis 30 % im schriftlichen Teil). Dieses Muster ist mein Entwurf [W], die Grundlagen (AGDLP, Freigabe gegen NTFS, Least Privilege, Matrix) sind in den Abschnitten 2c und 2i belegt.
+
+**1. Namensschema**
+- Globale Gruppen (Rollen): `GG_<Abteilung>`, zum Beispiel `GG_Buchhaltung`, `GG_Geschaeftsleitung`, `GG_Einkauf`
+- Domänenlokale Gruppen (Zugriff): `DL_<Ressource>_<Recht>`, zum Beispiel `DL_Buchhaltung_RW`, `DL_Buchhaltung_R`
+- Recht-Kürzel: `R` lesen, `RW` ändern, `FC` Vollzugriff (nur für Administratoren)
+
+**2. Matrix Gruppen gegen Freigaben** (Beispiel Muster AG)
+
+| Freigabe, Pfad | GG_Buchhaltung | GG_Geschaeftsleitung | GG_Einkauf | Administratoren |
+| --- | --- | --- | --- | --- |
+| `\\SRV01\Buchhaltung`, `D:\Daten\Buchhaltung` | Ändern (`DL_Buchhaltung_RW`) | Lesen (`DL_Buchhaltung_R`) | kein Zugriff | Vollzugriff |
+| `\\SRV01\Einkauf`, `D:\Daten\Einkauf` | kein Zugriff | Lesen (`DL_Einkauf_R`) | Ändern (`DL_Einkauf_RW`) | Vollzugriff |
+| `\\SRV01\Allgemein`, `D:\Daten\Allgemein` | Lesen | Lesen | Lesen | Vollzugriff |
+
+**3. Technische Umsetzung**
+- Freigabe: keine zu breiten Rechte wie «Jeder: Vollzugriff» vergeben. Das Freigaberecht für die DL-Gruppen grosszügig setzen (zum Beispiel «Ändern») und die Feinsteuerung über NTFS machen. Es gilt die restriktivere Ebene.
+- NTFS: Vererbung vom Ordner `D:\Daten` aufbauen, Rechte nur an `DL_*`-Gruppen, nie direkt an Personen. `Administratoren` und `SYSTEM` behalten Vollzugriff.
+- Schritte: Ordner anlegen, Freigabe mit `New-SmbShare`, NTFS mit `icacls` setzen, DL-Gruppen anlegen, GG in DL aufnehmen, Benutzer in GG, mit einem Testkonto prüfen.
+
+**4. Begründung (so schreibst du sie in der Prüfung)**
+- «Rechte hängen an Gruppen statt an Personen. Dadurch ändere ich bei Wechseln nur die Gruppenmitgliedschaft, die ACLs bleiben unverändert.» (AGDLP, Microsoft empfiehlt Gruppen)
+- «Die Geschäftsleitung bekommt nur Lesen, weil sie Daten einsehen, aber nicht ändern muss (Least Privilege).»
+- «Freigabe- und NTFS-Rechte sind getrennt, es gilt die restriktivere Ebene. Ich setze die Freigabe breit und steuere die Details über NTFS, damit die Verwaltung an einer Stelle liegt.»
+- «Admin-Konten werden nur für Verwaltungsaufgaben genutzt, nicht im Alltag.»
+
+**5. Test und Dokumentation**
+- Testkonto aus `GG_Buchhaltung`: Datei in Buchhaltung anlegen geht, in Einkauf kein Zugriff.
+- Testkonto aus `GG_Geschaeftsleitung`: Buchhaltung lesen geht, schreiben nicht.
+- In die Betriebsdokumentation: Matrix, Namensschema, Datum der Änderung, wer es umgesetzt hat, Testergebnis.
+
+**6. Ergänzen im Prüfungsfall** (LBV: «ergänzen und begründen»): Neue Abteilung oder neue Freigabe heisst: neue GG, neue DL-Gruppen, Matrix erweitern, NTFS und Freigabe setzen, testen, dokumentieren, begründen.
 
 ---
 
