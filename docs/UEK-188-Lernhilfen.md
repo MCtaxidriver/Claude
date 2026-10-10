@@ -591,6 +591,14 @@ Quelle: Bayerisches Landesamt für Datenschutzaufsicht, «Patch Management im Al
 
 **Hilfsmittel zur Bewertung** (in der Checkliste genannt): CERT-Bund (cert-bund.de), CVSS (nvd.nist.gov/vuln-metrics/cvss), CVE-Details (cvedetails.com). Der Bildungsplan nennt für Server ausdrücklich MELANI und CVE als Quellen zur Information über Sicherheitsentwicklungen (f6). [Q: Bildungsplan, Modulbaukasten Kompetenzbeschreibung f6]
 
+**Update zurückrollen und Workarounds** (Thema der schriftlichen Prüfung: «Updates und Workarounds», Quellen sind Microsoft-Foren und Support-Antworten, bitte in der Test-VM prüfen)
+- **Installierte Updates ansehen:** `Get-HotFix`. Pakete auf Betriebssystemebene: `Dism /Online /Get-Packages` oder `Get-WindowsPackage -Online -PackageName "*KB<Nummer>*"`.
+- **Update entfernen, Variante 1:** `wusa /uninstall /kb:<Nummer>` (Leerzeichen vor weiteren Schaltern nicht vergessen). Das scheitert bei neueren kumulativen Updates oft mit Fehler 87 («Parameter falsch»). Der stille Modus ist bei neueren Servern nicht mehr verfügbar.
+- **Variante 2:** `Remove-WindowsPackage -Online -PackageName <Name>` oder `Dism /Online /Remove-Package /PackageName:<Name>`. Wenn der Name fehlt, die `.msu` mit `expand -F:* <MSU-Pfad> <Ordner>` entpacken und die `.cab` mit `/PackagePath:<cab>` entfernen.
+- **Grenzen:** Ein kombiniertes Paket aus Servicing Stack Update (SSU) und kumulativem Update lässt sich nur teilweise entfernen, die SSU bleibt. Einzelne Updates sind überhaupt nicht deinstallierbar.
+- **Weitere Workarounds, wenn ein Patch Probleme macht** [W]: betroffene Funktion oder Dienst vorübergehend anders betreiben, Hersteller-Hinweis (zum Beispiel Registry-Einstellung) umsetzen, Update für diese Maschinen zurückstellen (in WSUS ablehnen oder Genehmigung verzögern), VM auf den Snapshot zurücksetzen, Problem beim Hersteller melden und dokumentieren.
+- **Vorgehen konzeptionell** [W]: Fehler eingrenzen (was hat sich geändert), Auswirkung abschätzen, Workaround festlegen, mit Stakeholdern abstimmen, ausführen, testen, Betriebsdokumentation nachführen, später sauber beheben.
+
 **Verweis:** BSI IT-Grundschutz-Kompendium, Baustein OPS.1.1.3 Patch- und Änderungsmanagement (den Baustein selbst habe ich nicht gelesen). Der IKT-Minimalstandard des Bundesamts für wirtschaftliche Landesversorgung (August 2018, Empfehlung) ist ein Schweizer Massnahmenkatalog [Q: PwC Schweiz]. Den Katalog habe ich nicht im Original gefunden.
 
 ---
