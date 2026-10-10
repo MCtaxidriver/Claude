@@ -48,10 +48,49 @@ Zugehörige Schulmodule laut Bildungsplan bei f5: 123, 182, 346. Bei f6: 141, 14
 
 Das heisst für die Praxis: Im Kurs geht es sehr wahrscheinlich um Monitoring (was, wie, Schwellwerte, Alarm, Test), um Automatisierung per Script und um ein Sicherheitskonzept für Server.
 
-## 2. Nicht gesichert
+## 2. Offizielle Modulidentifikation (Modulbaukasten, Version 1.0, 26.03.2021)
 
-- Der genaue Text der Modulidentifikation (Handlungsziele, Kenntnisse im Modulbaukasten) liegt nur in der Web-App modulbaukasten.ch und nicht als öffentliche PDF vor. Ich konnte ihn nicht lesen. Die Leistungsziele oben stammen aus dem Bildungsplan, nicht aus der Modulidentifikation.
-- Welche Tools die ICT-Learnfactory einsetzt (Windows Server oder Linux, PRTG, Zabbix, Nagios, Prometheus), ist nicht bestätigt. Die ÜK-Unterlagen kommen meist erst am Kurs oder über die Lernplattform.
+PDF: https://modulbaukasten.ch/Module/188_1_Services%20betreiben%2C%20warten%20und%20%C3%BCberwachen.pdf
+Webseite: https://www.modulbaukasten.ch/module/188/1/de-DE?title=Services-betreiben,-warten-und-%C3%BCberwachen
+
+**Kompetenz:** Betreibt und aktualisiert Services in einer bestehenden Umgebung. Überwacht Performance, Verfügbarkeit sowie Systemsicherheit gemäss den Betriebs- und Sicherheitsvorgaben eines Unternehmens.
+
+**Objekt:** Server mit File-, Print-, DHCP-, DNS- und Verzeichnis-Services, betriebsbereites LAN mit Arbeitsstationen (Clients). Kompetenzfeld: System Management.
+
+**Handlungsziele und handlungsnotwendige Kenntnisse**
+
+1. Mit der Betriebsdokumentation die bestehenden Systeme und ihre Umgebung analysieren
+   - 1.1 Inhalt, Aufbau und Anwendung einer Betriebsdokumentation
+   - 1.2 Bedeutung einer vollständigen, nachgeführten Doku für die Wartbarkeit
+   - 1.3 Eigenschaften verbreiteter Services (Verzeichnisdienst, File, Print, DHCP, DNS) und ihr Beitrag im Netzwerk
+2. Services überwachen und betreiben mit den verfügbaren Hilfsmitteln
+   - 2.1 Im Betriebssystem integrierte Hilfsmittel zur Systemüberwachung
+   - 2.2 Wichtigste Performancemesswerte kennen und interpretieren
+3. Updates und Patches manuell und mit Softwareverteilungssystemen installieren und testen, Betriebsdoku nachführen
+   - 3.1 Vorgehen bei der Installation von Updates und Patches
+   - 3.2 Vertrauenswürdige Quellen und Sicherheitsmassnahmen (Hashwerte, Schlüssel)
+   - 3.3 Mögliche Auswirkungen und Gefahren von Patches für ein Unternehmen
+   - 3.4 Szenarien zum Testen von Patches und Updates
+4. Systeme in bestehende Monitoring-Tools einbinden und Messwerte verifizieren
+   - 4.1 Techniken zur zentralen Erfassung von Performance-Daten (SNMP, WMI) und deren Sicherheitsmechanismen
+   - 4.2 Konfigurationsschritte auf dem Server, um Messungen zu aktivieren
+   - 4.3 Schritte, um Server in ein Monitoring-Tool einzubinden
+   - 4.4 Sinnvolle Schwellwerte setzen, Alarmierung einrichten
+5. Berechtigungen nach bestehendem Berechtigungskonzept administrieren und dokumentieren
+   - 5.1 Inhalt, Aufbau, Anwendung eines Berechtigungskonzepts
+   - 5.2 Möglichkeiten der Services, Zugriffsrechte auf Ressourcen festzulegen
+   - 5.3 Vorgehen bei Berechtigungsanpassungen gemäss Konzept
+   - 5.4 Methoden, um Anpassungen zu dokumentieren
+6. Erforderliche Anpassungen auf Umsystemen definieren
+   - 6.1 Anforderungen an Umsysteme (z.B. DNS-Einträge, Firewall-Regeln)
+   - 6.2 Anforderungen so beschreiben, dass Dritte sie umsetzen können
+   - 6.3 Anpassungen an Umsystemen testen
+
+Die Kenntnisse sind laut Dokument nicht abschliessend. Die genauen Lernziele und den Lernweg legt der Bildungsanbieter fest (also die ICT-Learnfactory).
+
+## 2b. Noch offen
+
+- Welche Tools die ICT-Learnfactory einsetzt (Windows Server oder Linux, PRTG, Zabbix, Nagios). Das Objekt «File-, Print-, DHCP-, DNS-, Verzeichnis-Services» und der Vergleichskurs sprechen für Windows Server und Active Directory, bestätigt ist es nicht.
 
 ## 3. Was ich vor dem Kurs klären würde
 
@@ -60,9 +99,9 @@ Das heisst für die Praxis: Im Kurs geht es sehr wahrscheinlich um Monitoring (w
 3. Modulbeschreibung selbst im Browser öffnen: https://www.modulbaukasten.ch, Modul 188 suchen, PDF herunterladen.
 4. Eigene gibb-Unterlagen zu 117 und 123 durchgehen.
 
-## 4. Vorbereitung nach Themen (aus meinem Fachwissen, mit Vorbehalt)
+## 4. Vorbereitung nach Themen (aus meinem Fachwissen, entlang der Handlungsziele)
 
-Der Titel deckt typischerweise vier Bereiche ab. Welche davon im Kurs wirklich vorkommen, hängt vom Anbieter ab.
+Die Gliederung folgt den offiziellen Handlungszielen. Die konkreten Beispiele und Tools sind meine Ergänzung.
 
 ### Betreiben
 - Dienste: DNS, DHCP, Fileserver, Verzeichnisdienst (AD oder LDAP), Webserver
