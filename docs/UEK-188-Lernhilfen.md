@@ -152,6 +152,8 @@ wbadmin start backup -backupTarget:\\backupshare\backup1 -noinheritacl -nonrecur
 :: Wiederherstellung einer Datei oder eines Ordners [Q: wbadmin start recovery]
 wbadmin start recovery -version:03/31/2020-09:00 -itemType:File -items:d:\folder -recursive
 ```
+Vorhandene Sicherungen anzeigen [Q: Microsoft Learn, wbadmin get versions]: `wbadmin get versions -backupTarget:H:` oder für eine Netzfreigabe `wbadmin get versions -backupTarget:\\servername\share -machine:server01`. Die Ausgabe nennt Zeit, Speicherort, Versionskennung und die möglichen Wiederherstellungsarten. Die Versionskennung brauchst du für `wbadmin start recovery -version:...`.
+
 Täglichen Zeitplan anlegen [Q: Microsoft Learn, wbadmin enable backup]:
 ```cmd
 wbadmin enable backup -addtarget:H: -include:T:,D:\documents -exclude:D:\documents\~tmp -vssfull -schedule:01:00
