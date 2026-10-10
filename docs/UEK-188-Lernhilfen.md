@@ -62,6 +62,39 @@ Add-DnsServerResourceRecordA -Name "host23" -ZoneName "contoso.com" -IPv4Address
 ```
 Testen [W]: `nslookup host23.contoso.com`, `Resolve-DnsName host23.contoso.com`.
 
+### Druckdienst
+```powershell
+# Reihenfolge: Treiber, Port, Drucker [Q: Microsoft Learn, PrintManagement]
+Add-PrinterDriver -Name "Driver Name"
+Add-PrinterPort -Name "TCPPort:" -PrinterHostAddress "192.168.100.100"
+Add-Printer -Name "mxdw 2" -DriverName "Microsoft XPS Document Writer v4" -PortName "portprompt:"
+# Client verbindet sich mit dem Druckserver [Q]
+Add-Printer -ConnectionName \\printServer\printerName
+# Warteschlange ansehen [Q]
+Get-PrintJob -PrinterName "PrinterName"
+```
+Bei Problemen [W]: Dienst «Druckwarteschlange» (Spooler) neu starten mit `Restart-Service Spooler`.
+
+### Gruppenrichtlinien (GPO)
+```powershell
+New-GPO -Name TestGPO -Comment "This is a test GPO."                                   # [Q: New-GPO]
+New-GPO -Name "MyGPO" | New-GPLink -Target "ou=MyOU,dc=contoso,dc=com" -LinkEnabled Yes  # [Q: New-GPLink]
+```
+```cmd
+gpupdate /force          :: Richtlinien sofort neu anwenden [Q]
+gpresult /r              :: angewendete Richtlinien anzeigen [Q: gpresult mit /r und /z]
+```
+
+### Backup und Restore (Windows Server Backup)
+```cmd
+:: Sicherung von Volumes oder Ordnern auf ein Ziel [Q: Microsoft Learn, wbadmin start backup]
+wbadmin start backup -backupTarget:d: -include:g:\folder1,h:\folder2 -systemstate -vsscopy
+wbadmin start backup -backupTarget:\\backupshare\backup1 -noinheritacl -nonrecurseinclude:d:\folder1
+:: Wiederherstellung einer Datei oder eines Ordners [Q: wbadmin start recovery]
+wbadmin start recovery -version:03/31/2020-09:00 -itemType:File -items:d:\folder -recursive
+```
+Das Feature «Windows Server Backup» muss dafür installiert sein [W]. Danach immer einen Restore-Test machen, damit du weisst, dass es funktioniert (NCSC-Empfehlung).
+
 ### Dienste, Updates, Logs, Performance
 ```powershell
 Get-Service "wmi*"                               # [Q: Get-Service]
@@ -86,7 +119,7 @@ WMIC nur noch als Feature on Demand, PowerShell 2.0 nicht mehr enthalten, WSUS n
 
 ---
 
-## 2. Lernkarten (Frage, Antwort)
+## 2. Lernkarten (Frage, Antwort), 56 Stück
 
 Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und sprich sie laut.
 
@@ -155,6 +188,14 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 50. **Was rät das NCSC beim Backup?** Regelmässig sichern, externe Medien danach trennen, Wiederherstellung testen. [Q: Netzwoche]
 
 ---
+
+### Zusatzkarten: Print, GPO, Backup
+51. **In welcher Reihenfolge richtest du einen Netzwerkdrucker auf dem Druckserver ein?** Treiber (`Add-PrinterDriver`), Port (`Add-PrinterPort`), Drucker (`Add-Printer`). [Q: Microsoft Learn]
+52. **Wie verbindet sich ein Client mit dem freigegebenen Drucker?** `Add-Printer -ConnectionName \\printServer\printerName`. [Q]
+53. **Der Drucker druckt nicht mehr, Warteschlange hängt. Erste Schritte?** `Get-PrintJob` ansehen, hängenden Auftrag entfernen, Dienst Druckwarteschlange neu starten. [W]
+54. **Wie wendest du eine Gruppenrichtlinie sofort an und wie prüfst du, was gilt?** `gpupdate /force` und `gpresult /r`. [Q]
+55. **Wie verknüpfst du ein GPO mit einer OU?** `New-GPO -Name "MyGPO" | New-GPLink -Target "ou=MyOU,dc=contoso,dc=com" -LinkEnabled Yes`. [Q]
+56. **Wie sicherst und stellst du Dateien mit Windows Server Backup wieder her?** `wbadmin start backup ...` und `wbadmin start recovery -itemType:File ...`. Danach den Restore testen. [Q: wbadmin-Doku, NCSC]
 
 ## 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 
