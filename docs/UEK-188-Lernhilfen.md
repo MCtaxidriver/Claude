@@ -209,9 +209,7 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 49. **Welche Backup-Arten gibt es?** Voll, differentiell (alles seit dem letzten Voll-Backup), inkrementell (seit dem letzten Backup). [W]
 50. **Was rät das NCSC beim Backup?** Regelmässig sichern, externe Medien danach trennen, Wiederherstellung testen. [Q: Netzwoche]
 
----
-
-### Zusatzkarten: Print, GPO, Backup
+### Zusatzkarten: Print, GPO, Backup (51 bis 56)
 51. **In welcher Reihenfolge richtest du einen Netzwerkdrucker auf dem Druckserver ein?** Treiber (`Add-PrinterDriver`), Port (`Add-PrinterPort`), Drucker (`Add-Printer`). [Q: Microsoft Learn]
 52. **Wie verbindet sich ein Client mit dem freigegebenen Drucker?** `Add-Printer -ConnectionName \\printServer\printerName`. [Q]
 53. **Der Drucker druckt nicht mehr, Warteschlange hängt. Erste Schritte?** `Get-PrintJob` ansehen, hängenden Auftrag entfernen, Dienst Druckwarteschlange neu starten. [W]
@@ -219,6 +217,7 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 55. **Wie verknüpfst du ein GPO mit einer OU?** `New-GPO -Name "MyGPO" | New-GPLink -Target "ou=MyOU,dc=contoso,dc=com" -LinkEnabled Yes`. [Q]
 56. **Wie sicherst und stellst du Dateien mit Windows Server Backup wieder her?** `wbadmin start backup ...` und `wbadmin start recovery -itemType:File ...`. Danach den Restore testen. [Q: wbadmin-Doku, NCSC]
 
+### Zusatzkarten: Active Directory, Gruppenrichtlinien, Delegation (57 bis 63)
 57. **Welche Gruppenbereiche kennt Active Directory und wer darf Mitglied sein?** Global: Konten und globale Gruppen der eigenen Domäne. Domänenlokal: Konten und Gruppen aus beliebigen (auch vertrauten) Domänen. Universell: Konten und globale/universelle Gruppen aus der ganzen Gesamtstruktur. [Q: Microsoft Learn, Sicherheitsgruppen]
 58. **Wo kann eine domänenlokale Gruppe Berechtigungen erteilen?** Nur innerhalb derselben Domäne. Globale Gruppen können in jeder Domäne der Gesamtstruktur Rechte erhalten. [Q]
 59. **In welcher Reihenfolge werden Gruppenrichtlinien angewendet und was gewinnt?** Lokal, dann Standort, Domäne, OU. Die tiefste OU wird zuletzt angewendet und gewinnt bei Konflikten. Erzwungene Links setzen sich durch und gehen vor «Vererbung blockieren». [Q: Microsoft Learn, Gruppenrichtlinienverarbeitung (Details via Suchergebnis)]
@@ -227,10 +226,13 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 62. **Welche Gruppe darf Leistungszähler, Protokolle und Warnungen verwalten, ohne Administrator zu sein?** Leistungsprotokollbenutzer. Systemmonitorbenutzer dürfen die Leistungsindikatoren nur ansehen. [Q]
 63. **Was dürfen DHCP-Administratoren und was DHCP-Benutzer?** Administratoren erstellen, löschen und verwalten Bereiche und können die DHCP-Datenbank sichern und wiederherstellen. Benutzer haben nur lesenden Zugriff. [Q]
 
+### Zusatzkarten: Patch-Management (64 bis 67)
 64. **Aus welchen Schritten besteht der Patch-Zyklus?** Planen, Beschaffen, Testen, Installieren, Dokumentieren. [Q: Checkliste Patch Management, Bayerisches Landesamt für Datenschutzaufsicht]
 65. **Worauf achtest du bei der Quelle eines Patches?** Nur seriöse Quellen, nicht auf Fake-Patches auf fremden Websites hereinfallen. Integrität und Authentizität per Prüfsumme oder digitaler Signatur sicherstellen. [Q: gleiche Checkliste]
 66. **Wie priorisierst du Patches?** Nach dem Risiko bei Nichteinspielung, zum Beispiel nach der Einstufung des Herstellers oder von CERT-Bund. Hilfsmittel sind CVE und CVSS. [Q: gleiche Checkliste]
 67. **Was gehört zu einem Patch-Konzept?** Inventarliste der Hard- und Software, Netzpläne, Update-Plan mit Versionsständen, Zuständigkeiten, Regeln zur Priorisierung. [Q]
+
+---
 
 ## 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 
