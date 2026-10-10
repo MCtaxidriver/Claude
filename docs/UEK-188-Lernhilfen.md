@@ -635,6 +635,14 @@ Quelle: Bayerisches Landesamt für Datenschutzaufsicht, «Patch Management im Al
 - Änderungen an Gruppenrichtlinien erreichen die Clients etwa alle 90 Minuten, mit `gpupdate /force` sofort. Die Quellen sind teils älter, die Menüs können in neueren Windows-Versionen abweichen.
 - Für die Prüfung heisst das: Updates zentral genehmigen, Testgruppe zuerst, Zeitplan im Wartungsfenster, danach Kontrolle (siehe Patch-Zyklus in 2l).
 
+**WSUS: Updates genehmigen und zurücknehmen** [Q: https://learn.microsoft.com/de-de/windows-server/administration/windows-server-update-services/manage/updates-operations]
+- Bei einem neuen Update wählst du «Installieren» oder «Ablehnen». Genehmigen kannst du für «Alle Computer» oder für Untergruppen. Ohne Genehmigung bleibt das Update «Nicht genehmigt», die Clients können aber bewerten, ob sie es brauchen.
+- Nach der Genehmigung kannst du sie auf untergeordnete Gruppen anwenden, einen **Stichtag** für die automatische Installation festlegen (überschreibt die Clienteinstellungen, ein Datum in der Vergangenheit heisst sofort bei der nächsten Verbindung) und ein bereits installiertes Update **entfernen lassen**, wenn es die Entfernung zulässt.
+- Kein Stichtag ist möglich, wenn für das Update Benutzereingaben nötig sind. Das steht in den Updateeigenschaften im Feld «Benutzereingabe möglicherweise erforderlich».
+- Im Replikatmodus kannst du auf dem WSUS-Server keine Updates genehmigen.
+- Weitere Funktionen laut Seitenstruktur: automatisches Genehmigen, automatisches Ablehnen abgelöster Updates, Bereinigen abgelehnter Updates, Ändern eines genehmigten Updates auf «Nicht genehmigt», Genehmigen zum Entfernen.
+- Für das Testen vor dem Rollout bietet sich eine Testgruppe an, der du Updates zuerst genehmigst [W].
+
 **Update zurückrollen und Workarounds** (Thema der schriftlichen Prüfung: «Updates und Workarounds», Quellen sind Microsoft-Foren und Support-Antworten, bitte in der Test-VM prüfen)
 - **Installierte Updates ansehen:** `Get-HotFix`. Pakete auf Betriebssystemebene: `Dism /Online /Get-Packages` oder `Get-WindowsPackage -Online -PackageName "*KB<Nummer>*"`.
 - **Update entfernen, Variante 1:** `wusa /uninstall /kb:<Nummer>` (Leerzeichen vor weiteren Schaltern nicht vergessen). Das scheitert bei neueren kumulativen Updates oft mit Fehler 87 («Parameter falsch»). Der stille Modus ist bei neueren Servern nicht mehr verfügbar.
