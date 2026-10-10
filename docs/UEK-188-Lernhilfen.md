@@ -77,12 +77,28 @@ Add-DhcpServerv4Reservation -ScopeId 10.10.10.0 -IPAddress 10.10.10.8 -ClientId 
 # Aus Lease eine Reservation machen [Q]
 Get-DhcpServerv4Lease -IPAddress 10.10.10.11 | Add-DhcpServerv4Reservation
 ```
+**DHCP-Server im Active Directory autorisieren** [Q: Microsoft Learn, Add-DhcpServerInDC]: Ein DHCP-Dienst auf einem domänenverbundenen Computer muss im AD autorisiert sein, bevor er Adressen vergeben darf.
+```powershell
+Add-DhcpServerInDC -DnsName "dhcpserver.contoso.com" -IPAddress 10.10.10.2   # autorisieren
+Add-DhcpServerInDC                                                           # lokalen Server autorisieren
+Get-DhcpServerInDC                                                           # autorisierte Server anzeigen
+```
+Ohne Parameter wird der lokale Server eingetragen, und der Befehl löst auch eine Autorisierungsprüfung im DHCP-Dienst aus. Wenn dein Scope aktiv ist und Clients trotzdem keine Adresse bekommen, ist die fehlende Autorisierung ein typischer Grund [W].
+
 Client testen [Q: Microsoft Learn, ipconfig]: `ipconfig /release` gibt die DHCP-Adresse frei (bei Adaptern mit automatischer Adresse, TCP/IP wird für diesen Adapter vorübergehend deaktiviert), `ipconfig /renew` holt eine neue. Beides wirkt nur bei Adaptern mit automatischer IP-Konfiguration und leert den DNS-Cache nicht. Dafür gibt es `ipconfig /flushdns`, anzeigen mit `ipconfig /displaydns`. Mit `ipconfig /all` kontrollierst du die Konfiguration.
 
 ### DNS
 ```powershell
 # A-Record mit PTR [Q: Add-DnsServerResourceRecordA]
 Add-DnsServerResourceRecordA -Name "host23" -ZoneName "contoso.com" -IPv4Address "172.18.99.23" -TimeToLive 01:00:00 -CreatePtr
+```
+Weitere DNS-Befehle [Q: Microsoft Learn, DnsServer-Modul]:
+```powershell
+Add-DnsServerPrimaryZone -Name "west01.contoso.com" -ReplicationScope "Forest" -PassThru   # AD-integrierte Zone
+Add-DnsServerPrimaryZone -Name "west02.contoso.com" -ZoneFile "west02.contoso.com.dns"      # Zone mit Datei
+Add-DnsServerForwarder -IPAddress 172.23.90.124 -PassThru                                    # Weiterleitung
+Get-DnsServerResourceRecord -ZoneName "contoso.com"                                          # alle Einträge einer Zone
+Get-DnsServerResourceRecord -ZoneName "contoso.com" -Name "Admin01"                          # ein Eintrag
 ```
 Testen [W]: `nslookup host23.contoso.com`, `Resolve-DnsName host23.contoso.com`.
 
