@@ -4,6 +4,15 @@ Das ist keine offizielle Prüfung. Ich habe sie aus den Handlungszielen und der 
 
 Markierung: [Q] belegt in einer Quelle (siehe `UEK-188-Vorbereitung.md` und `UEK-188-Lernhilfen.md`), [W] aus allgemeinem Fachwissen.
 
+<!-- toc -->
+**Inhalt**
+
+- Teil A: Praxis (2 Stunden)
+- Teil B: Schriftlich (1 Stunde)
+- Hilfreiche Zusatzinfos für die Praxis
+
+<!-- /toc -->
+
 ---
 
 ## Teil A: Praxis (2 Stunden)

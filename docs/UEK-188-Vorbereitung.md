@@ -4,6 +4,27 @@ Stand: 10.10.2026. Für Informatiker/in EFZ Plattformentwicklung (BiVo 2021), IC
 
 Lernhilfen mit Cheatsheet, 67 Lernkarten und 14-Tage-Plan: siehe `UEK-188-Lernhilfen.md`. Probeprüfung mit Praxisszenario, 15 schriftlichen Fragen und Musterlösung: siehe `UEK-188-Probepruefung.md`.
 
+<!-- toc -->
+**Inhalt**
+
+- 1. Gesichert (aus Quellen)
+- 2. Offizielle Modulidentifikation (Modulbaukasten, Version 1.0, 26.03.2021)
+- 2a. Leistungsbeurteilung (LBV 188-1, Modulbaukasten, publiziert 10.06.2022)
+- 2b. Noch offen
+- 2c. Infos der ICT-Learnfactory (https://www.ict-learnfactory.ch/informatiker)
+- 2d. Was andere Lernende im üK 188 behandelt haben
+- 3. Was ich vor dem Kurs klären würde
+- 4. Vorbereitung nach Themen (aus meinem Fachwissen, entlang der Handlungsziele)
+- 4b. Selbsttest zum Vorwissen (aus den Kompetenzmatrizen ZH, Stufe Beginner)
+- 4c. Vorwissen offiziell: Module 123 und 117 (Modulbaukasten)
+- 4d. Zusätzliche Lernquellen (nicht offiziell, bitte kritisch lesen)
+- 5. Konkrete Übungen für die zwei Wochen
+- 6. Freie Unterlagen zu Nachbarmodulen
+- 7. Quellen
+- 8. Was ich geprüft habe und was nichts brachte (Stand 10.10.2026, 21:25)
+
+<!-- /toc -->
+
 ## 1. Gesichert (aus Quellen)
 
 - Titel: Services betreiben, warten und überwachen

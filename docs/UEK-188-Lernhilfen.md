@@ -4,6 +4,28 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 - [Q] belegt in einer genannten Quelle
 - [W] aus allgemeinem Fachwissen, bitte mit den Kursunterlagen abgleichen
 
+<!-- toc -->
+**Inhalt**
+
+- 1. Cheatsheet: Befehle für die Lab-Umgebung
+- 2. Lernkarten (Frage, Antwort), 67 Stück
+- 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
+- 2c. Konzepte in Kürze (für den schriftlichen Teil)
+- 2d. SNMP und WMI auf dem Server einrichten (Kenntnis 4.2)
+- 2e. Sicherheits-Events für Berechtigungen und Anmeldungen (offiziell)
+- 2f. Überwachung per Script (Bildungsplan f5.2 und d1.3)
+- 2g. Passwortregeln und Agent-Monitoring (Ergänzungen)
+- 2h. Glossar und Fehlersuche-Ablauf
+- 2i. Active Directory: Gruppenbereiche und Standardgruppen (offiziell)
+- 2j. Gruppenrichtlinien: Verarbeitung
+- 2k. Leistungsüberwachung: Alarm mit Aktion (offiziell)
+- 2l. Patch-Management Checkliste (Best Practice, nicht Schweizer Vorgabe)
+- 2m. PRTG für die eigene Übung
+- 2n. Lab zu Hause aufbauen (Tag 4 im Plan)
+- 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
+
+<!-- /toc -->
+
 ---
 
 ## 1. Cheatsheet: Befehle für die Lab-Umgebung
