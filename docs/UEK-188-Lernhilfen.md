@@ -7,6 +7,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 
 
 
+
 <!-- toc -->
 **Inhalt**
 
@@ -28,6 +29,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 - 2o. Fernverwaltung und Zeitsynchronisation
 - 2p. Muster: Berechtigungskonzept dokumentieren und begründen
 - 2q. Muster: IP-Adress- und Namenskonzept (für AD, DNS, DHCP)
+- 2r. Muster: Betriebsdokumentation der Muster AG (zum Üben des Nachführens)
 - 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 <!-- /toc -->
@@ -810,6 +812,50 @@ DHCP-Scope: Pool .100 bis .200, Optionen Router .1, DNS .10, DNS-Domäne `muster
 - Namen: `nslookup srv01.muster.local`, `Resolve-DnsName`, Gegenprobe über die IP (Reverse).
 - Domäne: Client in die Domäne aufnehmen, Anmeldung mit einem Domänenkonto.
 - Betriebsdokumentation: IP-Plan, Scope-Einstellungen, Namenskonzept, Datum und Test.
+
+---
+
+## 2r. Muster: Betriebsdokumentation der Muster AG (zum Üben des Nachführens)
+
+In der Prüfung bekommst du eine Betriebsdokumentation vorgegeben, analysierst damit das System und ergänzt sie am Schluss (LBV, Element 1). Dieses Muster ist mein Entwurf [W], die Gliederung folgt der Schweizer Vorlage von Datenschutz.ch (Abschnitt 2e der Vorbereitungsdatei). Übe, es mit dem Lab zu vergleichen und die Änderungen nachzuführen.
+
+**1. Allgemeines.** Zweck: Betriebsdokumentation der IT der Muster AG. Verantwortlich: Systemadministration. Version 1.0.
+
+**2. Systemübersicht**
+
+| System | Typ | Betriebssystem | IP | Aufgabe |
+| --- | --- | --- | --- | --- |
+| SRV01 | Server (VM) | Windows Server | 192.168.10.10 | AD, DNS, DHCP, Dateiserver |
+| MON01 | Server (VM) | Windows Server | 192.168.10.20 | Monitoring (zum Beispiel PRTG) |
+| CL001 bis CL003 | Clients | Windows 11 | DHCP | Arbeitsplätze |
+| PRN01 | Drucker | | 192.168.10.50 (Reservation) | Netzwerkdrucker |
+
+**3. Netzwerk.** Netz 192.168.10.0/24, Gateway 192.168.10.1, DNS 192.168.10.10, Domäne `muster.local`. Netzplan als Bild beilegen.
+
+**4. Dienste auf SRV01**
+- DNS: Zone `muster.local`, Weiterleitung auf den Router
+- DHCP: Scope .100 bis .200, Optionen Router und DNS, Reservation für den Drucker, im AD autorisiert
+- AD DS: Domäne `muster.local`, OUs pro Abteilung
+- Dateiserver: Freigaben `Buchhaltung`, `Einkauf`, `Allgemein` unter `D:\Daten`
+
+**5. Berechtigungen.** Matrix und Namensschema wie in Abschnitt 2p. Passwörter stehen nicht in dieser Doku, sondern im Notfallkonzept.
+
+**6. Monitoring.** `MON01` überwacht `SRV01` mit Ping, CPU, Speicher auf D:, Dienst DHCP-Server. Grenzwerte: CPU Warnung ab 80 Prozent, Speicher Warnung unter 20 Prozent frei. Benachrichtigung per E-Mail an die Systemadministration. Wochenreport als PDF.
+
+**7. Updates und Wartung.** Patchen im Wartungsfenster (zum Beispiel dienstags ab 18 Uhr), vorher Snapshot, danach Kontrolle der Dienste und der Monitoring-Sensoren.
+
+**8. Umsysteme.** Firewall: UDP 161 von `MON01` zu `SRV01` erlaubt (SNMP). Änderungen beim Netzwerkpartner beantragen.
+
+**9. Änderungsprotokoll** (hier trägst du in der Prüfung nach)
+
+| Datum | Änderung | Durch | Test |
+| --- | --- | --- | --- |
+| | SNMP auf SRV01 installiert, nur MON01 erlaubt | | Sensor grün |
+| | Benutzerin S. Keller in GG_Buchhaltung aufgenommen | | Zugriff geprüft |
+| | Update KB... installiert | | Dienste laufen, Hotfix-Liste kontrolliert |
+| | Firewallregel UDP 161 für MON01 beantragt | | Abfrage von MON01 erfolgreich |
+
+Übung: Mach eine Änderung im Lab und trage sie vollständig ein (Datum, Änderung, wer, Test). So trainierst du das «Nachführen» aus Handlungsziel 3.
 
 ---
 
