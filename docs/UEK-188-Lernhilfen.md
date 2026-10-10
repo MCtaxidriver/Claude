@@ -4,6 +4,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 - [Q] belegt in einer genannten Quelle
 - [W] aus allgemeinem Fachwissen, bitte mit den Kursunterlagen abgleichen
 
+
 <!-- toc -->
 **Inhalt**
 
@@ -22,6 +23,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 - 2l. Patch-Management Checkliste (Best Practice, nicht Schweizer Vorgabe)
 - 2m. PRTG für die eigene Übung
 - 2n. Lab zu Hause aufbauen (Tag 4 im Plan)
+- 2o. Fernverwaltung und Zeitsynchronisation
 - 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 <!-- /toc -->
@@ -582,6 +584,24 @@ Checkpoint-VM -Name SRV01 -SnapshotName BeforeInstallingUpdates
 Das passt zum Patch-Prozess (Backup und Rollback-Plan) und lässt dich Fehler gefahrlos ausprobieren.
 
 **Empfohlene Mindestgrösse** [W]: Host mit 16 GB RAM, damit Server (2 bis 4 GB), Client (4 GB) und Monitoring-VM (2 bis 4 GB) parallel laufen. Mit 8 GB geht es, wenn du die VMs nacheinander startest.
+
+---
+
+## 2o. Fernverwaltung und Zeitsynchronisation
+
+**PowerShell-Remoting** [Q: Microsoft Learn, Enable-PSRemoting, Invoke-Command, Enter-PSSession]
+- Remoting nutzt WS-Management. Auf Windows-Server-Plattformen ist es standardmässig aktiviert. Auf Clients aktivierst du es einmalig auf dem Computer, der Befehle empfangen soll, mit `Enable-PSRemoting`. Der Befehl startet Listener, darum nur bei Bedarf ausführen. Auf Computern, die nur Befehle senden, ist das nicht nötig.
+- Auf Clients ist die Aktivierung in einem öffentlichen Netzwerk normalerweise nicht erlaubt. `-SkipNetworkProfileCheck` umgeht das, ist aber ein Sicherheitsrisiko [W].
+- Interaktive Sitzung: `Enter-PSSession -ComputerName Server01 -Credential Domain01\User01`. Danach steht im Prompt `[Server01]: PS>`.
+- Einzelner Befehl auf einem oder mehreren Servern: `Invoke-Command -ComputerName Server01 -ScriptBlock { Get-Service DHCPServer }`.
+- Sitzung wiederverwenden: `$s = New-PSSession -ComputerName Server02`, dann `Invoke-Command -Session $s -ScriptBlock { ... }`.
+- Für Monitoring ist das praktisch: ein Script prüft mehrere Server hintereinander [W].
+
+**Zeitsynchronisation** [Q: https://learn.microsoft.com/de-de/windows-server/networking/windows-time-service/windows-time-service-top]
+- Der Windows-Zeitdienst (W32Time) synchronisiert Datum und Uhrzeit für alle Computer in AD DS per Netzwerkzeitprotokoll (NTP). Genaue Zeit ist für viele Windows-Dienste kritisch.
+- Ab Windows Server 2016 ist eine Genauigkeit von 1 ms zur UTC möglich, unter geeigneten Bedingungen für Domänenmitglieder von Windows Server 2016 und Windows 10 Anniversary Update.
+- Kerberos-Anmeldungen schlagen bei zu grosser Zeitabweichung fehl (Standard sind 5 Minuten) [W]. Bei Anmeldeproblemen in einer frischen Lab-Domäne zuerst die Uhrzeit prüfen, besonders bei VMs, die aus einem Snapshot zurückkehren.
+- Status prüfen: `w32tm /query /status`, Synchronisation anstossen: `w32tm /resync` [W, die Microsoft-Seite zu w32tm war für mich nicht abrufbar].
 
 ---
 
