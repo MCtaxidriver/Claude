@@ -119,7 +119,7 @@ WMIC nur noch als Feature on Demand, PowerShell 2.0 nicht mehr enthalten, WSUS n
 
 ---
 
-## 2. Lernkarten (Frage, Antwort), 63 Stück
+## 2. Lernkarten (Frage, Antwort), 67 Stück
 
 Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und sprich sie laut.
 
@@ -204,6 +204,11 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 61. **Welche Standardgruppe gibt Lesezugriff auf Ereignisprotokolle ohne Adminrechte?** Ereignisprotokollleser (Event Log Readers). [Q]
 62. **Welche Gruppe darf Leistungszähler, Protokolle und Warnungen verwalten, ohne Administrator zu sein?** Leistungsprotokollbenutzer. Systemmonitorbenutzer dürfen die Leistungsindikatoren nur ansehen. [Q]
 63. **Was dürfen DHCP-Administratoren und was DHCP-Benutzer?** Administratoren erstellen, löschen und verwalten Bereiche und können die DHCP-Datenbank sichern und wiederherstellen. Benutzer haben nur lesenden Zugriff. [Q]
+
+64. **Aus welchen Schritten besteht der Patch-Zyklus?** Planen, Beschaffen, Testen, Installieren, Dokumentieren. [Q: Checkliste Patch Management, Bayerisches Landesamt für Datenschutzaufsicht]
+65. **Worauf achtest du bei der Quelle eines Patches?** Nur seriöse Quellen, nicht auf Fake-Patches auf fremden Websites hereinfallen. Integrität und Authentizität per Prüfsumme oder digitaler Signatur sicherstellen. [Q: gleiche Checkliste]
+66. **Wie priorisierst du Patches?** Nach dem Risiko bei Nichteinspielung, zum Beispiel nach der Einstufung des Herstellers oder von CERT-Bund. Hilfsmittel sind CVE und CVSS. [Q: gleiche Checkliste]
+67. **Was gehört zu einem Patch-Konzept?** Inventarliste der Hard- und Software, Netzpläne, Update-Plan mit Versionsständen, Zuständigkeiten, Regeln zur Priorisierung. [Q]
 
 ## 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 
@@ -482,6 +487,29 @@ Quelle: https://learn.microsoft.com/de-de/troubleshoot/windows-server/performanc
 5. Aufgabe im Aufgabenplaner anlegen, «Mit höchsten Berechtigungen ausführen» setzen.
 
 Korrektur zu meiner früheren Notiz: Ausgelöste Warnungen stehen laut Microsoft im Protokoll `Microsoft-Windows-Diagnostics-PLA/Operational`. Die Angabe «Anwendungsprotokoll» stammte aus einer Drittquelle. Die Aktion «E-Mail senden» im Aufgabenplaner ist in neueren Windows-Versionen eingeschränkt oder veraltet [W], prüfe das in deiner VM. Als Alternative eignet sich ein PowerShell-Script (Abschnitt 2f) oder PRTG.
+
+---
+
+## 2l. Patch-Management Checkliste (Best Practice, nicht Schweizer Vorgabe)
+
+Quelle: Bayerisches Landesamt für Datenschutzaufsicht, «Patch Management im Alltag», Checkliste, Stand 22.07.2020, https://lda.bayern.de/checkliste_patch_mgmt (PDF, 3 Seiten). Sie bezieht sich auf die EU-DSGVO und ist für KMU gedacht. In der Schweiz gilt das Datenschutzgesetz der Schweiz, der fachliche Ablauf ist aber derselbe [W].
+
+**Zyklus:** Planen, Beschaffen, Testen, Installieren, Dokumentieren.
+- **Planen:** Ein Plan ist vorhanden (welche Hard- und Software, wer ist zuständig, welche Prozesse).
+- **Beschaffen:** Informationen zu Updates gezielt suchen, Sicherheitshinweise ernst nehmen, nur seriöse Quellen nutzen.
+- **Testen:** Patches für kritische Anwendungen nicht ungetestet produktiv einspielen. Zuerst Testumgebung, nach dem Patch den Betrieb auf Funktionalität prüfen.
+- **Installieren:** kontrolliert, um unnötige Ausfallzeiten zu vermeiden.
+- **Dokumentieren:** Änderungen bleiben nachvollziehbar und können bei Bedarf nachjustiert werden.
+
+**Organisation:** Zuständigkeiten definieren (wer patcht was, wer recherchiert Schwachstellen), Zeitaufwand und Ressourcen einplanen, auch für Notfall-Patches.
+
+**Voraussetzungen:** Systemlandschaft dokumentiert (Netzpläne), Inventarliste aller Hard- und Software, Konzept mit Update-Plan und Versionsständen, Regeln zur Priorisierung nach Risiko (zum Beispiel Einstufung durch Hersteller oder CERT-Bund), Strukturen für fehlerhafte Updates (Ausfallsicherheit, Redundanz).
+
+**Bezugsquellen:** Nicht auf Fake-Patches hereinfallen. Integrität und Authentizität von Paketen mit Prüfsumme oder digitaler Signatur prüfen. Verträge mit Anbietern ansehen (Zyklus der Updates, auslaufende Supportverträge).
+
+**Hilfsmittel zur Bewertung** (in der Checkliste genannt): CERT-Bund (cert-bund.de), CVSS (nvd.nist.gov/vuln-metrics/cvss), CVE-Details (cvedetails.com). Der Bildungsplan nennt für Server ausdrücklich MELANI und CVE als Quellen zur Information über Sicherheitsentwicklungen (f6). [Q: Bildungsplan, Modulbaukasten Kompetenzbeschreibung f6]
+
+**Verweis:** BSI IT-Grundschutz-Kompendium, Baustein OPS.1.1.3 Patch- und Änderungsmanagement (den Baustein selbst habe ich nicht gelesen). Der IKT-Minimalstandard des Bundesamts für wirtschaftliche Landesversorgung (August 2018, Empfehlung) ist ein Schweizer Massnahmenkatalog [Q: PwC Schweiz]. Den Katalog habe ich nicht im Original gefunden.
 
 ---
 
