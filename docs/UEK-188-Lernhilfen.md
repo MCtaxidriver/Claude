@@ -626,6 +626,14 @@ Quellen: https://www.paessler.com/manuals/prtg/system_requirements, https://www.
 | Ereignisse | Event Log (Windows API) Sensor, WMI Event Log Sensor |
 | Updates | Windows Updates Status (PowerShell) Sensor |
 | Eigene OIDs | SNMP Library Sensor |
+**Abhängigkeiten und Benachrichtigungs-Trigger in PRTG** [Q: https://www.paessler.com/manuals/prtg/dependencies und https://www.paessler.com/manuals/prtg/notification_triggers_settings]
+- **Abhängigkeiten (Dependencies):** Ein Master-Sensor kann abhängige Sensoren pausieren, solange er Down ist. So vermeidest du Alarmfluten und falsche Ausfallzeiten, wenn zum Beispiel das ganze Gerät nicht erreichbar ist. Bei Auto-Discovery ist der Ping-Sensor eines Geräts standardmässig der Master.
+- **Falle bei Wartung:** Pausierst du nur den Master-Sensor, pausieren die abhängigen Sensoren nicht mit und können weiter alarmieren. Pausiere stattdessen das übergeordnete Gerät. Ein pausiertes Objekt erfasst keine Daten, ändert den Status nicht und löst keine Benachrichtigungen aus. Das passt zum Wartungsfenster beim Patchen.
+- **Trigger-Typen:** State, Speed, Volume, Threshold und Change. Welche möglich sind, hängt vom Objekttyp ab.
+- **State Trigger:** löst bei Statuswechsel aus. Die Latenz (Sekunden) verhindert Fehlalarme bei kurzen Ausfällen und sollte nicht kürzer als das Scanintervall sein. Die Eskalation sendet nach einer Eskalationslatenz eine weitere Benachrichtigung, das Wiederholungsintervall 0 bedeutet keine Wiederholung. Standardwerte laut Helpdesk: 60 Sekunden Latenz, 300 Sekunden Eskalationslatenz (versionsabhängig).
+- **Empfehlung des Handbuchs:** mindestens zwei Benachrichtigungen mit unterschiedlichen Methoden pro Trigger, zum Beispiel E-Mail und SMS.
+- **Schwellwerte:** Die Warn- und Fehlergrenzen setzt du in den Kanaleinstellungen, ein Threshold Trigger ändert den Sensorstatus nicht (Hinweis aus einem älteren Paessler-KB-Beitrag).
+
 **Status in PRTG lesen (für «Monitoring interpretieren» und «Map deuten»)** [Q: https://www.paessler.com/manuals/prtg/sensor_states]
 | Status | Farbe | Bedeutung |
 | --- | --- | --- |

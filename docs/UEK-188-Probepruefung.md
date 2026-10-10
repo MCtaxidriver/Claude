@@ -136,6 +136,7 @@ Auf `SRV01` selbst: `New-NetFirewallRule -DisplayName "SNMP von MON01" -Directio
 18. Nach einem Patch läuft der DHCP-Dienst nicht mehr. Nenne einen Workaround und einen langfristigen Schritt.
 19. Begründe das Berechtigungskonzept: Die Buchhaltung darf ändern, die Geschäftsleitung nur lesen. Wie setzt du es um und warum so?
 20. Du erhältst eine Betriebsdokumentation. Wie gehst du vor, um das System zu analysieren, und was ergänzt du am Schluss?
+21. Du patchst `SRV01` im Wartungsfenster und willst keine Alarme. Wie gehst du in PRTG vor und welche Falle gibt es?
 
 ### Musterlösung Teil B
 
@@ -159,6 +160,7 @@ Auf `SRV01` selbst: `New-NetFirewallRule -DisplayName "SNMP von MON01" -Directio
 18. Workaround: Patch deinstallieren oder VM auf den Snapshot zurücksetzen, Dienst manuell starten und Ereignisprotokoll prüfen. Langfristig: Patch zuerst in der Testumgebung prüfen, Rollback-Plan und Wartungsfenster festlegen, Ursache mit dem Hersteller klären und das Vorgehen dokumentieren. [Q: Patch-Checkliste; W]
 19. Gruppen `GG_Buchhaltung` und `GG_Geschaeftsleitung` (global) kommen in `DL_Buchhaltung_RW` (Ändern) und `DL_Buchhaltung_R` (Lesen) und erhalten nur dort Rechte auf Freigabe und NTFS. Begründung: Rechte hängen an Gruppen statt an Personen, das ist übersichtlich, bei Wechseln einfach zu pflegen und nachvollziehbar. Zudem gilt Least Privilege. Die Rechte gehören in eine Matrix in der Betriebsdokumentation. [Q: Tenfold, ManageEngine, Microsoft Learn; W]
 20. Erst die Dokumentation lesen (Netzplan, Server, Dienste, Berechtigungen), dann am System prüfen, ob der Ist-Zustand zur Doku passt (Dienste, DHCP-Scope, DNS-Zone, Freigaben, Gruppen), Abweichungen notieren, dann die verlangten Anpassungen ausführen. Am Schluss die Doku nachführen: geänderte Konfiguration, neue Rechte, installierte Updates, Datum und Name. [Q: LBV und Modul 188 1.1 und 3; W]
+21. Das übergeordnete Gerät `SRV01` pausieren (nicht nur den Ping-Master-Sensor), denn abhängige Sensoren pausieren sonst nicht mit und alarmieren weiter. Ein pausiertes Objekt erfasst keine Daten und löst keine Benachrichtigungen aus. Nach dem Patch fortsetzen, Sensoren kontrollieren und Ergebnis dokumentieren. Alternativ ein Wartungsfenster im Zeitplan hinterlegen [W]. [Q: PRTG-Handbuch, Dependencies]
 
 ---
 
