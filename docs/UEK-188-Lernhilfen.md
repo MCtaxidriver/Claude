@@ -308,6 +308,8 @@ In meinen Worten, nach den Übersichtsseiten von Microsoft Learn.
 - Berechtigungen legen die Art des Zugriffs auf ein Objekt fest, zum Beispiel Lesen, Ändern, Besitzer ändern, Löschen.
 - Microsoft empfiehlt, Berechtigungen Gruppen zuzuweisen und nicht einzelnen Benutzern. Das verbessert auch die Leistung beim Prüfen des Zugriffs.
 - Authentifizierung kommt zuerst (wer bist du), danach die Autorisierung (was darfst du).
+- «Berechtigungen ändern» und «Besitz übernehmen» sind eigene erweiterte NTFS-Rechte. Der Besitzer einer Datei oder eines Ordners kann die Berechtigungen unabhängig von den bestehenden Rechten ändern. Administratoren können den Besitz übernehmen, auch ohne ausdrückliche Berechtigung. Verweigern hat immer Vorrang vor Zulassen. [Q: Microsoft Support und Sicherheitshandbuch]
+- Ob «Vollzugriff» diese beiden erweiterten Rechte einschliesst, ist in den Quellen nicht ausdrücklich belegt. Nach meinem Wissen ja, prüfe es in den erweiterten Sicherheitseinstellungen deiner VM. [W]
 
 **Backup-Begriffe** [Q: Sekundärquellen, keine Behördenquelle gefunden]
 - **3-2-1-Regel:** drei Kopien der Daten, auf zwei verschiedenen Medientypen, eine davon extern. Eine moderne Erweiterung ist 3-2-1-1-0 mit einer zusätzlichen unveränderlichen oder vom Netz getrennten Kopie und null Fehlern beim Wiederherstellungstest (Veeam, ComputerWeekly, SentinelOne). Die CISA soll die Regel in einem Leitfaden nennen, den Originaltext habe ich nicht gelesen.
