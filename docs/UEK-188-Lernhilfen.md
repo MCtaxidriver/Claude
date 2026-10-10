@@ -513,6 +513,20 @@ Quelle: Bayerisches Landesamt für Datenschutzaufsicht, «Patch Management im Al
 
 ---
 
+## 2m. PRTG für die eigene Übung
+
+Quellen: https://www.paessler.com/manuals/prtg/system_requirements, https://www.paessler.com/de/pricing, https://www.paessler.com/monitoring/network/how-to-free-network-monitoring (Herstellerangaben, vor dem Download die aktuellen Bedingungen prüfen).
+- **Lizenz:** Die Freeware-Edition gilt für bis zu 100 Sensoren kostenlos. Die Testversion ist 30 Tage voll nutzbar und wechselt danach in die Freeware-Edition.
+- **Betriebssystem:** unterstützt sind Windows Server 2016 bis 2025 sowie Windows 10 und 11. Server Core und Minimal Server Interface werden nicht offiziell unterstützt.
+- **Voraussetzungen:** .NET Framework 4.7.2 oder neuer (für neue Installationen 4.8 empfohlen), FIPS-Modus muss deaktiviert sein.
+- **Hardware:** richtet sich nach der Sensoranzahl. Bis 500 Sensoren nennt das Handbuch 4 CPU-Kerne, 4 GB RAM und 100 GB Speicher. Für die Übung in einer VM reicht deutlich weniger.
+- **SNMP:** Zielgeräte müssen SNMP v1, v2c oder v3 unterstützen, SNMP muss auf dem Gerät aktiviert sein und der PRTG-Server braucht Zugriff. SNMP v3 ist wegen der Verschlüsselung langsamer, bei sehr vielen Sensoren empfiehlt Paessler v1 oder v2c.
+- **WMI:** siehe https://www.paessler.com/manuals/prtg/monitoring_via_wmi (Windows-Zugangsdaten und Firewall müssen stimmen).
+
+Hinweis für die Praxis [W]: Installiere PRTG nicht auf dem Server, den du überwachst, sondern auf einer eigenen VM (`MON01` in der Probeprüfung). So testest du auch den Netzwerkzugriff und die Firewall-Regel.
+
+---
+
 ## 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 Voraussetzung: Ein Laptop mit Hyper-V oder VirtualBox und eine Windows-Server-Testversion (Evaluation). Falls das nicht geht, nur die Theorie-Teile und Befehle lesen.
