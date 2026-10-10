@@ -359,6 +359,28 @@ Erklärung für den schriftlichen Teil:
 
 ---
 
+## 2g. Passwortregeln und Agent-Monitoring (Ergänzungen)
+
+**Passwortregeln** (Modul 123, Kenntnis 4.2 «Regeln für Passwörter, die das Hacken erschweren») [Q: NCSC über Netzwoche, https://www.netzwoche.ch/news/2021-05-06/tipps-vom-ncsc-worauf-es-bei-einem-starken-passwort-ankommt und https://www.netzwoche.ch/news/2023-05-02/behoerden-starten-nationale-sensibilisierungskampagne-zu-passwortsicherheit]
+- Mindestens 12 Zeichen, mit Gross- und Kleinbuchstaben, Zahlen und Sonderzeichen.
+- Das Passwort darf in keinem Wörterbuch vorkommen.
+- Pro Dienst und Gerät ein eigenes Passwort, damit bei einem Leak der Schaden klein bleibt.
+- Ein Passwortmanager hilft, dann musst du dir nur ein starkes Passwort merken.
+- Bildschirm sperren, wenn du das Gerät nicht aktiv nutzt.
+Ob Passphrasen und das Ende erzwungener Passwortwechsel auch vom Schweizer NCSC empfohlen werden, habe ich nicht belegt gefunden (die Quellen dazu stammen vom britischen NCSC). In Windows setzt du Passwortrichtlinien per GPO oder in den lokalen Sicherheitsrichtlinien (`secpol.msc`). [Q: Lab-Mitschrift BBRZ]
+
+**Agent statt SNMP: Zabbix-Agent unter Windows** [Q: https://www.zabbix.com/documentation/8.0/en/manual/installation/install/win_msi]
+- Installation per 32- oder 64-Bit-MSI, über den Assistenten oder die Kommandozeile.
+- Standardpfad `C:\Program Files\Zabbix Agent`. Der Dienst startet verzögert automatisch.
+- Im Setup gibst du Hostnamen, Zabbix-Server-IP oder -DNS und den Listen-Port des Agenten an. Standardport 10050.
+- Prometheus und Nagios habe ich nicht belegt gefunden, sie sind für diesen Kurs vermutlich nicht nötig. Gemini nennt sie, das Modul tut es nicht.
+
+**Agentenlos (SNMP/WMI) gegen mit Agent** [W]
+- Agentenlos: kein Zusatzprogramm, Standardmittel des Systems. Dafür weniger Details und mehr Last auf dem Monitoring-Server.
+- Mit Agent: mehr Details, eigener Dienst und eigene Pflege (Updates, Port, Rechte).
+
+---
+
 ## 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 Voraussetzung: Ein Laptop mit Hyper-V oder VirtualBox und eine Windows-Server-Testversion (Evaluation). Falls das nicht geht, nur die Theorie-Teile und Befehle lesen.
