@@ -605,6 +605,21 @@ Quellen: https://www.paessler.com/manuals/prtg/system_requirements, https://www.
 - **SNMP:** Zielgeräte müssen SNMP v1, v2c oder v3 unterstützen, SNMP muss auf dem Gerät aktiviert sein und der PRTG-Server braucht Zugriff. SNMP v3 ist wegen der Verschlüsselung langsamer, bei sehr vielen Sensoren empfiehlt Paessler v1 oder v2c.
 - **WMI:** siehe https://www.paessler.com/manuals/prtg/monitoring_via_wmi (Windows-Zugangsdaten und Firewall müssen stimmen).
 
+**Passende PRTG-Sensoren** [Q: Sensorverzeichnis im PRTG-Handbuch, https://www.paessler.com/manuals/prtg/]
+| Was du überwachst | Sensor (Name laut Handbuch) |
+| --- | --- |
+| Erreichbarkeit | Ping Sensor, Ping v2 Sensor, Port Sensor |
+| DHCP, DNS, AD | DHCP Sensor, DNS v2 Sensor, Active Directory Replication Errors Sensor |
+| CPU per SNMP / WMI | SNMP CPU Load Sensor, SNMP CPU Usage Sensor / WMI CPU Load v2 Sensor |
+| Speicher (RAM) | SNMP Memory v2 Sensor / WMI Memory v2 Sensor |
+| Festplatte | SNMP Disk Free v2 Sensor / WMI Free Disk Space (Multi Disk) Sensor |
+| Dienste | SNMP Windows Service v2 Sensor / WMI Service Sensor |
+| Laufzeit | SNMP System Uptime Sensor |
+| Ereignisse | Event Log (Windows API) Sensor, WMI Event Log Sensor |
+| Updates | Windows Updates Status (PowerShell) Sensor |
+| Eigene OIDs | SNMP Library Sensor |
+Das deckt sich mit den geprüften Themen der LBV: AD, DNS, DHCP und Updates haben jeweils einen eigenen Sensor. Welche davon die Learnfactory verwendet, weiss ich nicht.
+
 Hinweis für die Praxis [W]: Installiere PRTG nicht auf dem Server, den du überwachst, sondern auf einer eigenen VM (`MON01` in der Probeprüfung). So testest du auch den Netzwerkzugriff und die Firewall-Regel.
 
 ---
