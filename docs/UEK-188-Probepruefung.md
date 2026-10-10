@@ -92,7 +92,7 @@ Quelle des Patches: Hersteller, bei manuellen Paketen Hashwert prüfen. [Q: Modu
 ```powershell
 Install-WindowsFeature SNMP-Service,SNMP-WMI-Provider -IncludeManagementTools
 ```
-In den Eigenschaften des SNMP-Dienstes eine Community eintragen (nur lesen) und als erlaubten Host `192.168.10.20` setzen, nicht «alle Hosts». [Q: Paessler] Besser wäre SNMPv3, aber der Windows-Agent bietet v1 und v2c, deshalb Zugriff auf eine IP und Firewall begrenzen. [W]
+In den Eigenschaften des SNMP-Dienstes eine Community eintragen (nur lesen) und als erlaubten Host `192.168.10.20` setzen, nicht «alle Hosts». [Q: Paessler] Besser wäre SNMPv3, aber der Windows-Agent bietet nur v1 und v2c [Q: Microsoft Learn, Supported Versions], deshalb Zugriff auf eine IP und die Firewall begrenzen.
 In PRTG Gerät `SRV01` anlegen, SNMP-Zugangsdaten hinterlegen, Sensoren hinzufügen: Ping, CPU-Last, Speicherplatz D:, Dienststatus DHCP-Server. Beispiel für begründete Grenzwerte [W]:
 - CPU: Warnung ab 80 Prozent über 5 Minuten, Fehler ab 95 Prozent. Begründung: kurze Spitzen sind normal, dauerhaft hohe Last zeigt echten Engpass.
 - Speicherplatz D:: Warnung bei weniger als 20 Prozent frei, Fehler bei weniger als 10 Prozent. Begründung: Reserve für Wachstum und Backup.

@@ -320,6 +320,11 @@ In meinen Worten, nach den Übersichtsseiten von Microsoft Learn.
 - Zuerst Berechtigung und Verbindungskonfiguration klären, danach ist der Aufruf selbst einfach.
 - Konkrete Ports (zum Beispiel 135 und dynamische RPC-Ports bei DCOM) habe ich nicht aus einer Quelle belegt [W]. In der Praxis lieber CIM über WSMan (PowerShell-Remoting, Port 5985) nutzen, wenn das Monitoring-Tool es kann [W].
 
+**SNMP-Versionen unter Windows** [Q: https://learn.microsoft.com/en-us/windows/win32/snmp/supported-versions]
+- Der Windows-SNMP-Dienst unterstützt SNMPv1 und SNMPv2c, nicht SNMPv3 (laut Microsoft für Vista und Server 2008 dokumentiert, Hersteller wie Genesys und anynode bestätigen es für neuere Windows-Versionen). Microsoft weist ausserdem darauf hin, dass SNMP in späteren Versionen verändert oder nicht mehr verfügbar sein kann, und empfiehlt Windows-Remoteverwaltung (WS-Management).
+- Für SNMPv3 unter Windows braucht es Zusatzsoftware wie Net-SNMP. [Q: Drittquelle]
+- Folge für die Sicherheit: Community-String im Klartext. Darum Zugriff auf die IP des Monitoring-Servers beschränken, Firewall nutzen und nur lesen zulassen.
+
 **Wahl SNMP gegen WMI** [W, zusammengefasst aus den Quellen]
 - SNMP: schlank, plattformübergreifend (auch Switches, Drucker), v1 und v2c unsicher, v3 sicherer.
 - WMI: Windows-spezifisch, sehr detailliert (Dienste, Event-Logs), braucht Domänen- oder lokales Konto mit Rechten, belastet bei vielen Sensoren stärker (Paessler: höchstens etwa 200 WMI-Sensoren pro Probe).
