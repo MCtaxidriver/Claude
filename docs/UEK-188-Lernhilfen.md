@@ -381,6 +381,52 @@ Ob Passphrasen und das Ende erzwungener Passwortwechsel auch vom Schweizer NCSC 
 
 ---
 
+## 2h. Glossar und Fehlersuche-Ablauf
+
+Alles [W], aus Fachwissen und den Quellen oben, zum schnellen Nachschlagen.
+
+| Begriff | Kurz erklärt |
+| --- | --- |
+| ACL / ACE | Access Control List, Liste von Zugriffsregeln. Ein Eintrag darin heisst ACE. |
+| AD DS | Active Directory Domain Services, Verzeichnisdienst von Microsoft |
+| AGDLP | Accounts, Global groups, Domain local groups, Permissions |
+| Baseline | Normalwerte eines Systems im regulären Betrieb |
+| Betriebsdokumentation | Beschreibung von System, Konfiguration, Verantwortlichen und Abläufen |
+| CIM / WMI | Standard und Windows-Schnittstelle, um Systeminformationen abzufragen |
+| DCOM | Verteiltes COM, Grundlage der klassischen WMI-Fernverbindung |
+| DHCP-Lease | Zeitlich begrenzte Adresszuteilung |
+| DHCP-Reservation | Feste Adresse für einen bestimmten Client (über die MAC-Adresse) |
+| DNS-Zone | Verwaltungsbereich eines DNS-Servers mit den Einträgen einer Domäne |
+| DSRM | Directory Services Restore Mode, Wiederherstellungsmodus eines Domänencontrollers |
+| GPO | Group Policy Object, Gruppenrichtlinie |
+| Hotfix | Schnelle Korrektur für einen bestimmten Fehler oder eine Lücke |
+| Least Privilege | Nur so viele Rechte wie nötig |
+| MIB / OID | Struktur und Bezeichner der SNMP-Werte |
+| NTFS | Dateisystem von Windows mit feinen Zugriffsrechten |
+| OU | Organisationseinheit in Active Directory zum Gliedern und Delegieren |
+| Patch | Software-Korrektur, oft Sicherheitslücken |
+| RPO / RTO | Verkraftbarer Datenverlust / verkraftbare Ausfallzeit |
+| Rollback | Rückkehr zum Zustand vor einer Änderung |
+| SLA | Service Level Agreement, vereinbarte Dienstgüte |
+| SNMP | Simple Network Management Protocol zur Überwachung von Geräten |
+| Schwellwert | Grenzwert, ab dem Warnung oder Fehler gemeldet wird |
+| SID | Eindeutige Sicherheitskennung eines Benutzers oder einer Gruppe |
+| Snapshot | Zustand einer VM zu einem Zeitpunkt, für schnellen Rückgang |
+| Wartungsfenster | Vereinbarte Zeit für Änderungen, die Dienste stören können |
+| WSUS | Windows Server Update Services |
+
+**Fehlersuche bei «Dienst nicht erreichbar»** (vom Einfachen zum Aufwendigen) [W]
+1. Läuft der Dienst auf dem Server? `Get-Service`, bei Bedarf starten.
+2. Gibt es Fehler im Ereignisprotokoll? Event 7034 oder 7036 und das Anwendungsprotokoll prüfen.
+3. Löst der Name auf? `nslookup` oder `Resolve-DnsName`.
+4. Ist der Server im Netz erreichbar? `ping`, dann `Test-NetConnection -ComputerName <Server> -Port <Port>`.
+5. Blockiert eine Firewall? Regeln auf Server und dazwischen prüfen.
+6. Stimmen Rechte? Anmeldung des Benutzers, Gruppenzugehörigkeit, Freigabe- und NTFS-Rechte.
+7. Was wurde zuletzt geändert? Patch, Konfiguration, Rechte. Betriebsdokumentation und Change-Verlauf ansehen.
+8. Lösung dokumentieren und, wenn möglich, ein Monitoring oder einen Alarm dafür einrichten.
+
+---
+
 ## 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 Voraussetzung: Ein Laptop mit Hyper-V oder VirtualBox und eine Windows-Server-Testversion (Evaluation). Falls das nicht geht, nur die Theorie-Teile und Befehle lesen.
