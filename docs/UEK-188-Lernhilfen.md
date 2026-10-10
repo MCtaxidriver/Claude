@@ -307,6 +307,58 @@ Hinweis: Diese Auditing-Events müssen aktiviert sein (Richtlinie «Überwachung
 
 ---
 
+## 2f. Überwachung per Script (Bildungsplan f5.2 und d1.3)
+
+Der Bildungsplan nennt bei der Überwachung ausdrücklich «Script, Software, Benachrichtigungen». Ein kleines Script zeigt dir, wie das praktisch aussieht. Alle verwendeten Cmdlets sind bei Microsoft Learn dokumentiert (Get-Service, Get-Volume, New-EventLog, Write-EventLog, Register-ScheduledTask, New-ScheduledTaskAction, New-ScheduledTaskTrigger). Das Script selbst ist mein Entwurf und nicht aus einer Kursquelle [W]. Teste es in deiner VM.
+
+```powershell
+# C:\Scripts\Check-Server.ps1
+$logName   = 'Application'
+$source    = 'ServerCheck'
+$services  = 'DHCPServer','DNS','LanmanServer','Spooler'
+$minFreePc = 20      # Warnung unter 20 Prozent frei
+
+# Ereignisquelle einmalig anlegen (als Administrator)
+if (-not [System.Diagnostics.EventLog]::SourceExists($source)) {
+    New-EventLog -LogName $logName -Source $source
+}
+
+# 1. Dienste prüfen
+foreach ($name in $services) {
+    $svc = Get-Service -Name $name -ErrorAction SilentlyContinue
+    if (-not $svc -or $svc.Status -ne 'Running') {
+        Write-EventLog -LogName $logName -Source $source -EventId 2001 -EntryType Error `
+            -Message "Dienst $name läuft nicht (Status: $($svc.Status))."
+    }
+}
+
+# 2. Freien Speicherplatz prüfen
+Get-Volume | Where-Object { $_.DriveLetter -and $_.Size -gt 0 } | ForEach-Object {
+    $freePc = [math]::Round(($_.SizeRemaining / $_.Size) * 100, 1)
+    if ($freePc -lt $minFreePc) {
+        Write-EventLog -LogName $logName -Source $source -EventId 2002 -EntryType Warning `
+            -Message "Laufwerk $($_.DriveLetter): nur $freePc Prozent frei."
+    }
+}
+```
+
+Als Aufgabe alle 15 Minuten ausführen:
+```powershell
+$action  = New-ScheduledTaskAction -Execute "PowerShell.exe" -Argument "-NoProfile -File C:\Scripts\Check-Server.ps1"
+$trigger = New-ScheduledTaskTrigger -Once -At (Get-Date).AddMinutes(1) -RepetitionInterval (New-TimeSpan -Minutes 15)
+Register-ScheduledTask -TaskName "ServerCheck" -Action $action -Trigger $trigger -User "SYSTEM" -RunLevel Highest
+```
+Hinweis: Die Parameter `-Execute`, `-Once`, `-At` und `-Daily` sind in der Microsoft-Doku belegt. Das Wiederholungsintervall mit `-RepetitionInterval` und `-RunLevel` ist aus meinem Wissen und in dieser Form nicht in den abgerufenen Beispielen. Prüfe es mit `Get-Help New-ScheduledTaskTrigger -Full`.
+
+Wie das Monitoring davon profitiert [W]: Ein Monitoring-Tool wie PRTG kann das Ereignisprotokoll überwachen und bei Event 2001 oder 2002 alarmieren. Das Script ist also eine einfache zweite Methode neben SNMP.
+
+Erklärung für den schriftlichen Teil:
+- Das Script prüft Dienste und freien Platz, schreibt Fehler und Warnungen mit eigener Event-ID ins Anwendungsprotokoll und läuft zeitgesteuert.
+- Schwellwert für Speicherplatz sind 20 Prozent frei, damit Reserve für Wachstum und Backup bleibt.
+- Das Script ersetzt keine Baseline und kein getestetes Alarmsystem.
+
+---
+
 ## 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 Voraussetzung: Ein Laptop mit Hyper-V oder VirtualBox und eine Windows-Server-Testversion (Evaluation). Falls das nicht geht, nur die Theorie-Teile und Befehle lesen.
