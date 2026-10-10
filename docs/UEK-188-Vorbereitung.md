@@ -347,6 +347,34 @@ Quellen: https://graylog.org/?p=18855 und https://manageengine.com/products/acti
 - Die 3-2-1-Regel (3 Kopien, 2 Medien, 1 extern) habe ich in den Quellen nicht gefunden, sie ist aus meinem Wissen.
 Quelle: https://www.netzwoche.ch/news/2021-05-03/tipps-vom-ncsc-woran-man-bei-einem-back-up-immer-denken-sollte
 
+## 4c. Vorwissen offiziell: Module 123 und 117 (Modulbaukasten)
+
+PDFs: https://www.modulbaukasten.ch/Module/123_2_Serverdienste%20in%20Betrieb%20nehmen.pdf und https://www.modulbaukasten.ch/Module/117_3_Informatik-%20und%20Netzinfrastruktur%20f%C3%BCr%20ein%20kleines%20Unternehmen%20realisieren.pdf
+
+**M123 Serverdienste in Betrieb nehmen (Version 2.0).** Du installierst und konfigurierst Serverdienste (Verzeichnisdienst, DHCP, DNS, File, Print) für ein lokales Netz nach Vorgaben und prüfst deren Funktion. Objekt: ein Server in einem einfachen Netz mit einer Domäne und identischen Clients. Handlungsziele in Kurzform:
+1. Konfiguration der Dienste nach betrieblichen Vorgaben definieren
+2. Installieren und konfigurieren, nicht benötigte Dienste deaktivieren
+3. Clients anpassen, damit die Benutzer die Dienste nutzen können
+4. Grundlegenden Zugriffsschutz des Server-Betriebssystems umsetzen
+5. Verfügbarkeit und Funktion prüfen und protokollieren
+6. Dokumentation und Abnahme/Betriebsfreigabe
+Wichtige Kenntnisse: Vorteile zentraler Benutzerverwaltung, Konfiguration von File-, DHCP-, DNS- und Print-Server, dynamische gegen statische IP-Zuweisung, dedizierte gegen nicht dedizierte und Cloud-Dienste, Inbetriebnahme-Ablauf (installieren, konfigurieren, starten, auf Client verfügbar machen, testen), Authentifizierung und Autorisierung, Passwortregeln, Log-Dateien lesen, Testen und Protokollieren, Abnahmeprotokoll, Struktur einer Betriebsdokumentation.
+
+**M117 Informatik- und Netzinfrastruktur realisieren (Version 3.0).** Lokales Netzwerk ohne zentrale Benutzerverwaltung (bis 10 Anschlüsse, Internetanschluss). Handlungsziele: Anforderungen aufnehmen, Netzwerkschema und Verkabelungsplan erstellen, Installation planen, aufbauen und konfigurieren, Ressourcenverwaltung (Gruppen, Shares) definieren, testen und dokumentieren. Wichtige Kenntnisse: IP-Format, Subnetmaske, private Adressen, Gateway, DNS, Aufgaben von Switch, Access Point und Router, Internetzugang, Kabel- und Steckertypen, Rechte dokumentieren (Matrix Benutzergruppen gegen Shares), typische Netzwerkfehler, OSI- und TCP/IP-Modell mit Zuordnung von Protokollen und Komponenten.
+
+Zusammenhang zu 188: In 123 richtest du die Dienste ein, in 188 betreibst, patchst und überwachst du sie in einer bestehenden Umgebung. Wenn du die Inbetriebnahme von DHCP, DNS und File-Server aus 123 nicht mehr sicher kannst, hilft die Repetition am meisten.
+
+## 4d. Zusätzliche Lernquellen (nicht offiziell, bitte kritisch lesen)
+
+- Quizlet-Karten zu Modul 123 (54 Karten, Grundlagen, AD-Installation, DHCP-Reservationen): https://quizlet.com/5789099/it-modul-123-flash-cards/ (liess sich für mich nicht öffnen, 403)
+- Schulseite zu Modul 123 mit Kapiteln zu DHCP, DNS, Dateiserver, Berechtigungen und Übungen mit vmMachine und Filius: https://edu.juergarnold.ch/modul123.html (für mich nicht erreichbar, Angabe aus der Suche)
+- Blog zu Modul 123 mit den Handlungszielen: https://itbaer.ch/2016/11/17/modul-123-serverdienste-betrieb-nehmen/
+- Aktuelle Anleitung DHCP und DNS auf Windows Server 2022/2025: https://s-edv.com/anleitungen/dhcp-dns-rolle-windows-server-konfigurieren
+- Musterdokumentation eines Lernenden zu Fileserver, DHCP, DNS, Druckdienst (Windows Server 2012, alt): https://silo.tips/download/dokumentation-modul-123-serverdienste-in-betrieb-nehmen
+- Zusammenfassung zum alten Modul M127 «Server betreiben» (2008, CC BY-NC-SA, Vorgänger mit ähnlichem Thema, aber veraltet. Dort geht es auch um RAID, USV, Dateisysteme, nslookup, DFS): https://emanuelduss.ch/downloads/Berufsschule/2_Lehrjahr/M127_Server_betreiben_Zusammenfassung.pdf
+  - Das erklärt, warum Lerndokumentationen zum üK 188 oft Hardware und RAID enthalten. Im heutigen Modul 188 stehen diese Themen nicht in den Handlungszielen.
+- Subnetting üben mit Lösungen: https://administrator.de/forum/subnetting-net-id-berechnen-1611811666.html und https://coddy.tech/learn/de/courses/ip_addressing_and_subnetting/recap__subnetting_drills
+
 ## 5. Konkrete Übungen für die zwei Wochen
 
 - Zwei VMs aufsetzen (VirtualBox oder Hyper-V), eine als Server, eine als Client
