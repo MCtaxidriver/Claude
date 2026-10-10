@@ -57,3 +57,9 @@ ipconfig /release  &  ipconfig /renew
 
 ## Offene Fragen ans Sekretariat
 Windows oder Linux? Welche Monitoring-Tools? Dürfen die Kursunterlagen (laut AGB am ersten Tag verteilt) vorab eingesehen werden? Zugang zur Lernplattform vor dem Kurs? Eigenes Notebook? Genaue Leistungsbeurteilung? Ist eine handschriftliche A4-Seite als Hilfsmittel erlaubt? sekretariat@ict-learnfactory.ch, +41 31 521 00 90.
+
+## Muster zum Üben (in `UEK-188-Lernhilfen.md`)
+- 2p Berechtigungskonzept mit Matrix und Begründungen (grösster Prüfungsposten)
+- 2q IP-Adress- und Namenskonzept für AD, DNS, DHCP
+- 2r Betriebsdokumentation mit Änderungsprotokoll zum Nachführen
+- 2k, 2m Alarme, Reports und Maps in der Leistungsüberwachung und in PRTG
