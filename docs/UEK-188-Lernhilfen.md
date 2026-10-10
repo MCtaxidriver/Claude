@@ -6,6 +6,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 
 
 
+
 <!-- toc -->
 **Inhalt**
 
@@ -26,6 +27,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 - 2n. Lab zu Hause aufbauen (Tag 4 im Plan)
 - 2o. Fernverwaltung und Zeitsynchronisation
 - 2p. Muster: Berechtigungskonzept dokumentieren und begründen
+- 2q. Muster: IP-Adress- und Namenskonzept (für AD, DNS, DHCP)
 - 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 <!-- /toc -->
@@ -770,6 +772,44 @@ Das Zugriffs- und Berechtigungskonzept ist laut LBV der grösste Prüfungsposten
 - In die Betriebsdokumentation: Matrix, Namensschema, Datum der Änderung, wer es umgesetzt hat, Testergebnis.
 
 **6. Ergänzen im Prüfungsfall** (LBV: «ergänzen und begründen»): Neue Abteilung oder neue Freigabe heisst: neue GG, neue DL-Gruppen, Matrix erweitern, NTFS und Freigabe setzen, testen, dokumentieren, begründen.
+
+---
+
+## 2q. Muster: IP-Adress- und Namenskonzept (für AD, DNS, DHCP)
+
+Die LBV prüft AD, DNS und DHCP (Praxis 15 bis 25 %). Bei Modul 123 verlangt die Prüfung dafür ein IP-Adresskonzept und ein Namenskonzept, die du planst und umsetzt. Dieses Muster ist mein Entwurf [W], die Befehle stehen im Cheatsheet (Abschnitt 1).
+
+**IP-Adresskonzept** (Netz 192.168.10.0/24, Maske 255.255.255.0, Gateway 192.168.10.1)
+
+| Bereich | Adressen | Verwendung |
+| --- | --- | --- |
+| Netzwerkgeräte | .1 bis .9 | Router, Switch, Access Point (statisch) |
+| Server | .10 bis .29 | `SRV01` (.10), `MON01` (.20), statisch |
+| Drucker und Geräte | .30 bis .99 | Reservationen im DHCP (zum Beispiel Drucker .50) |
+| DHCP-Pool Clients | .100 bis .200 | dynamisch vergeben |
+| Reserve | .201 bis .254 | Erweiterung, nicht verteilt |
+
+DHCP-Scope: Pool .100 bis .200, Optionen Router .1, DNS .10, DNS-Domäne `muster.local`, Lease-Dauer zum Beispiel 8 Tage (Standard) oder kürzer für Gäste-WLAN [W]. Der DHCP-Server wird im Active Directory autorisiert (Abschnitt 1, DHCP).
+
+**Namenskonzept**
+- Rechner: `<Typ><Nummer>`, zum Beispiel `SRV01`, `MON01`, `CL001`, `PRN01`
+- Domäne: `muster.local` (Active Directory), DNS-Zone gleich benannt
+- Benutzer: `<Vorname-Initial><Nachname>`, zum Beispiel `skeller`
+- Gruppen: siehe Abschnitt 2p
+- OUs: pro Abteilung eine OU unter `muster.local`, darunter Benutzer, Computer, Gruppen
+- DNS-Einträge: A-Records für Server und Drucker mit `-CreatePtr`, Alias (CNAME) für Dienste wie `files.muster.local` [W]
+
+**Begründung für die Prüfung**
+- Feste Bereiche pro Gerätetyp machen die Adresse lesbar und die Fehlersuche einfach.
+- Server, Netzgeräte und Drucker brauchen stabile Adressen, Clients sind dynamisch (Modul 123 Kenntnis 1.5).
+- Eine Reserve verhindert, dass der Pool bei Wachstum knapp wird.
+- Einheitliche Namen erleichtern Dokumentation, Monitoring und Berechtigungen.
+
+**Testen und dokumentieren**
+- Client: `ipconfig /release`, `ipconfig /renew`, `ipconfig /all` (Adresse aus dem Pool, Gateway und DNS stimmen).
+- Namen: `nslookup srv01.muster.local`, `Resolve-DnsName`, Gegenprobe über die IP (Reverse).
+- Domäne: Client in die Domäne aufnehmen, Anmeldung mit einem Domänenkonto.
+- Betriebsdokumentation: IP-Plan, Scope-Einstellungen, Namenskonzept, Datum und Test.
 
 ---
 
