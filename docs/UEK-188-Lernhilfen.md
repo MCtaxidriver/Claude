@@ -93,6 +93,10 @@ Add-DhcpServerv4Scope -Name "Lab" -StartRange 10.10.10.1 -EndRange 10.10.10.254 
 Set-DhcpServerv4OptionValue -ScopeId 10.10.10.0 -DnsServer 192.168.1.2 -DnsDomain "contoso.com" -Router 192.168.1.1
 # Reservation [Q: Add-DhcpServerv4Reservation]
 Add-DhcpServerv4Reservation -ScopeId 10.10.10.0 -IPAddress 10.10.10.8 -ClientId "F0-DE-F1-7A-00-5E" -Description "Reservation for Printer"
+# Ausschlussbereich: Adressen, die nie vergeben werden [Q: Add-DhcpServerv4ExclusionRange]
+Add-DhcpServerv4ExclusionRange -ScopeId 10.1.1.0 -StartRange 10.1.1.1 -EndRange 10.1.1.10
+# Aktuelle Leases eines Scopes ansehen [Q: Get-DhcpServerv4Lease]
+Get-DhcpServerv4Lease -ScopeId 10.10.10.0
 # Aus Lease eine Reservation machen [Q]
 Get-DhcpServerv4Lease -IPAddress 10.10.10.11 | Add-DhcpServerv4Reservation
 ```
