@@ -337,6 +337,18 @@ In meinen Worten, nach den Übersichtsseiten von Microsoft Learn.
 - Ordnet Namen IP-Adressen zu und ist in Windows-Netzen der Standard-Namensauflösungsdienst.
 - Bei einer neuen AD-Gesamtstruktur wird DNS automatisch mit installiert. AD DS braucht DNS, damit Clients Domänencontroller finden und die Domänencontroller sich untereinander finden.
 
+**DNS-Eintragstypen** [Q: https://learn.microsoft.com/de-de/windows-server/networking/dns/resource-record-types und https://learn.microsoft.com/de-de/windows-server/networking/dns/manage-resource-records]
+| Typ | Bedeutung |
+| --- | --- |
+| A, AAAA | Hostname zu IPv4- bzw. IPv6-Adresse |
+| CNAME | Alias auf einen anderen kanonischen Namen |
+| MX | Mailserver einer Domain, kleinere Priorität wird bevorzugt |
+| NS | autoritative Nameserver einer Zone, ermöglicht Delegation |
+| PTR | Reverse-Lookup von der IP-Adresse zum Namen, braucht eine passende Reverse-Lookupzone |
+| SOA | steht am Anfang jeder Zone, wird beim Anlegen der Zone automatisch erstellt, enthält primären Server, Kontakt und Refresh-Angaben |
+| SRV | Host, Port und Protokoll eines Dienstes, nötig damit Clients Active-Directory-Domänencontroller per DNS finden |
+Das passt zu Kenntnis 6.1 (DNS-Einträge als Umsystem-Anforderung): Für die Änderung beschreibst du Typ, Name, Wert und TTL.
+
 **Active Directory Domain Services** [Q: https://learn.microsoft.com/de-de/windows-server/identity/ad-ds/get-started/virtual-dc/active-directory-domain-services-overview]
 - Ein Verzeichnisdienst speichert Objekte (Benutzer, Computer, Drucker, Volumes) hierarchisch. Sicherheit ist über Anmeldung und Zugriffssteuerung eingebaut. Mit einer einzigen Anmeldung im Netz erreichst du berechtigte Ressourcen.
 
