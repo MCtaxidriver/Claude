@@ -194,6 +194,11 @@ Zählernamen sind lokalisiert (auf deutschem System deutsch). `Get-Counter -List
 # [Q: New-NetFirewallRule]
 New-NetFirewallRule -DisplayName "Allow App" -Direction Inbound -Program "C:\Pfad\app.exe" -RemoteAddress LocalSubnet -Action Allow
 New-NetFirewallRule -DisplayName "Block Outbound Port 80" -Direction Outbound -LocalPort 80 -Protocol TCP -Action Block
+# Regeln ansehen und ändern [Q: Get-NetFirewallRule und Set-NetFirewallRule]
+Get-NetFirewallRule -PolicyStore ActiveStore                                    # wirksame Regeln
+Get-NetFirewallProfile -Name Public | Get-NetFirewallRule                       # Regeln eines Profils
+Set-NetFirewallRule -DisplayName "AllowWeb80" -RemoteAddress "192.168.0.2"      # Quelle einer Regel ändern
+Enable-NetFirewallRule -DisplayGroup "Windows Firewall Remote Management"       # vordefinierte Gruppe aktivieren
 ```
 
 ### Windows Server 2025 beachten [Q: Microsoft Learn, entfernte Features]
