@@ -66,6 +66,14 @@ Add-Computer -DomainName Domain01 -Restart                                      
 ```
 Das Passwort im Beispiel ist ein Platzhalter der Microsoft-Doku, in der Praxis nie im Klartext in Scripts schreiben, sondern `Read-Host -AsSecureString` verwenden [W]. Mit `-ProtectedFromAccidentalDeletion` schützt du ein Objekt vor dem Löschen. Ist der Schutz gesetzt, kannst du das Objekt erst nach Ändern der Eigenschaft löschen [Q: Microsoft Learn]. Dass neue OUs standardmässig geschützt sind, steht nicht auf der Doku-Seite, ich kenne es aus der Praxis [W]. Das erklärt Fehler beim Löschen einer OU.
 
+Gruppenmitgliedschaften prüfen und ändern [Q: ActiveDirectory-Modul]:
+```powershell
+Get-ADGroupMember -Identity GG_Buchhaltung                                   # Mitglieder einer Gruppe
+Get-ADPrincipalGroupMembership -Identity skeller                             # Gruppen eines Benutzers
+Remove-ADGroupMember -Identity "DocumentReaders" -Members administrator,DavidChew   # Mitglieder entfernen
+```
+Die ersten zwei Befehle brauchst du für den Nachweis in der Betriebsdokumentation und für den Test eines Berechtigungskonzepts: Ist `skeller` wirklich in `GG_Buchhaltung`? Hinweis: Die Microsoft-Seite zu `Get-ADGroupMember` zeigte in meinem Abruf keine Beispiele, der Aufruf mit `-Identity` ist aus meinem Wissen [W].
+
 Hinweise [Q]: DNS wird beim Anlegen einer neuen Gesamtstruktur standardmässig mitinstalliert. Der Befehl fragt das DSRM-Passwort ab und startet den Server danach neu, wenn du das nicht abstellst.
 
 ### Freigaben und NTFS-Rechte
