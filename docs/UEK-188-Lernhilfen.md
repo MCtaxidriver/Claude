@@ -117,7 +117,7 @@ wbadmin start backup -backupTarget:\\backupshare\backup1 -noinheritacl -nonrecur
 :: Wiederherstellung einer Datei oder eines Ordners [Q: wbadmin start recovery]
 wbadmin start recovery -version:03/31/2020-09:00 -itemType:File -items:d:\folder -recursive
 ```
-Das Feature «Windows Server Backup» muss dafür installiert sein [W]. Danach immer einen Restore-Test machen, damit du weisst, dass es funktioniert (NCSC-Empfehlung).
+Das Feature «Windows Server Backup» muss dafür installiert sein: `Install-WindowsFeature -Name Windows-Server-Backup -IncludeManagementTools`, Status mit `Get-WindowsFeature Windows-Server-Backup`. Das Feature stellt auch `wbadmin` bereit. Fehlen Quelldateien (Fehler 0x800f081f), hilft der Parameter `-Source` oder `DISM /Online /Enable-Feature /FeatureName:WindowsServerBackup` [Q: Microsoft Learn und Microsoft Q&A]. Danach immer einen Restore-Test machen, damit du weisst, dass es funktioniert (NCSC-Empfehlung).
 
 ### Dienste, Updates, Logs, Performance
 ```powershell
@@ -178,7 +178,7 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 22. **Wie heissen die Sicherheitsstufen bei SNMPv3?** noAuthNoPriv, authNoPriv, authPriv. [Q]
 23. **Wie installierst du den SNMP-Dienst auf Windows Server?** `Install-WindowsFeature SNMP-Service,SNMP-WMI-Provider -IncludeManagementTools`. [Q: theitbros]
 24. **Welche Einstellung ist beim SNMP-Dienst Pflicht?** Community bzw. Zugriff und erlaubte Hosts, mindestens die IP des Monitoring-Servers. [Q: Paessler]
-25. **Auf welchem Port läuft SNMP?** UDP 161 (Abfragen). [W]
+25. **Auf welchen Ports läuft SNMP?** UDP 161 für Abfragen (Manager an Agent), UDP 162 für Traps (Meldungen vom Agenten). Mit TLS: 10161 und 10162. [Q: Fortinet, Zenarmor, RFC 1157 über Drittquellen]
 26. **Wie setzt du in PRTG einen Schwellwert?** Grenzwerte am Kanal des Sensors setzen, zum Beispiel Warnung ab 60 und Fehler ab 80. [Q: PRTG-Handbuch]
 27. **Wie löst PRTG eine Mail aus?** Mit einem Benachrichtigungs-Trigger auf Warning oder Down und einer Benachrichtigungsvorlage. [Q]
 28. **Warum Alarme regelmässig testen?** Damit du weisst, dass das Überwachungssystem zuverlässig funktioniert (Leistungsziel f5.4). [Q: Bildungsplan]
@@ -329,7 +329,7 @@ In meinen Worten, nach den Übersichtsseiten von Microsoft Learn.
 - Fernverbindungen mit WMI hängen von der Windows-Firewall und den DCOM-Einstellungen ab. Auch die Benutzerkontensteuerung (UAC) kann Anpassungen erfordern.
 - Die DCOM-Einstellungen müssen für eine Fernverbindung korrekt sein. Wer DCOM ändert, kann Benutzern mit tiefen Rechten Zugriff geben. Darum Rechte sparsam vergeben.
 - Zuerst Berechtigung und Verbindungskonfiguration klären, danach ist der Aufruf selbst einfach.
-- Konkrete Ports (zum Beispiel 135 und dynamische RPC-Ports bei DCOM) habe ich nicht aus einer Quelle belegt [W]. In der Praxis lieber CIM über WSMan (PowerShell-Remoting, Port 5985) nutzen, wenn das Monitoring-Tool es kann [W].
+- Konkrete Ports (zum Beispiel 135 und dynamische RPC-Ports bei DCOM) habe ich nicht aus einer Quelle belegt [W]. In der Praxis lieber CIM über WSMan (PowerShell-Remoting) nutzen, wenn das Monitoring-Tool es kann [W]. WinRM lauscht ab Windows 7 standardmässig auf TCP 5985 (HTTP) und 5986 (HTTPS), ältere Systeme nutzten 80 und 443 [Q: Microsoft Learn, https://learn.microsoft.com/en-us/powershell/scripting/security/remoting/winrm-security].
 
 **SNMP-Versionen unter Windows** [Q: https://learn.microsoft.com/en-us/windows/win32/snmp/supported-versions]
 - Der Windows-SNMP-Dienst unterstützt SNMPv1 und SNMPv2c, nicht SNMPv3 (laut Microsoft für Vista und Server 2008 dokumentiert, Hersteller wie Genesys und anynode bestätigen es für neuere Windows-Versionen). Microsoft weist ausserdem darauf hin, dass SNMP in späteren Versionen verändert oder nicht mehr verfügbar sein kann, und empfiehlt Windows-Remoteverwaltung (WS-Management).
@@ -611,13 +611,14 @@ Das passt zum Patch-Prozess (Backup und Rollback-Plan) und lässt dich Fehler ge
 - Interaktive Sitzung: `Enter-PSSession -ComputerName Server01 -Credential Domain01\User01`. Danach steht im Prompt `[Server01]: PS>`.
 - Einzelner Befehl auf einem oder mehreren Servern: `Invoke-Command -ComputerName Server01 -ScriptBlock { Get-Service DHCPServer }`.
 - Sitzung wiederverwenden: `$s = New-PSSession -ComputerName Server02`, dann `Invoke-Command -Session $s -ScriptBlock { ... }`.
+- Ports und Firewall [Q: Microsoft Learn]: TCP 5985 (HTTP) und 5986 (HTTPS). In privaten Netzen akzeptiert die Standard-Firewallregel für PowerShell-Remoting alle Verbindungen, in öffentlichen Netzen nur aus demselben Subnetz. WinRM verschlüsselt die Remoting-Kommunikation nach der Authentifizierung immer, auch über HTTP. HTTPS braucht ein Serverzertifikat, dessen CN zum Hostnamen passt.
 - Für Monitoring ist das praktisch: ein Script prüft mehrere Server hintereinander [W].
 
 **Zeitsynchronisation** [Q: https://learn.microsoft.com/de-de/windows-server/networking/windows-time-service/windows-time-service-top]
 - Der Windows-Zeitdienst (W32Time) synchronisiert Datum und Uhrzeit für alle Computer in AD DS per Netzwerkzeitprotokoll (NTP). Genaue Zeit ist für viele Windows-Dienste kritisch.
 - Ab Windows Server 2016 ist eine Genauigkeit von 1 ms zur UTC möglich, unter geeigneten Bedingungen für Domänenmitglieder von Windows Server 2016 und Windows 10 Anniversary Update.
-- Kerberos-Anmeldungen schlagen bei zu grosser Zeitabweichung fehl (Standard sind 5 Minuten) [W]. Bei Anmeldeproblemen in einer frischen Lab-Domäne zuerst die Uhrzeit prüfen, besonders bei VMs, die aus einem Snapshot zurückkehren.
-- Status prüfen: `w32tm /query /status`, Synchronisation anstossen: `w32tm /resync` [W, die Microsoft-Seite zu w32tm war für mich nicht abrufbar].
+- Kerberos toleriert nur eine begrenzte Zeitabweichung zwischen Client und Domänencontroller. Die Richtlinie «Maximale Toleranz für Computeruhrsynchronisierung» steht laut Microsoft standardmässig auf 5 Minuten (Registry SkewTime). Kerberos nutzt Zeitstempel gegen Replay-Angriffe, bei grösserer Abweichung scheitert die Authentifizierung (Fehler KRB_AP_ERR_SKEW). [Q: https://learn.microsoft.com/de-de/windows/security/threat-protection/security-policy-settings/maximum-tolerance-for-computer-clock-synchronization] Bei Anmeldeproblemen in einer frischen Lab-Domäne zuerst die Uhrzeit prüfen, besonders bei VMs, die aus einem Snapshot zurückkehren [W].
+- Neu synchronisieren: `w32tm /resync /computer:<Ziel> /rediscover` [Q: Microsoft, Kerberos-Fehlerbehebung]. Status prüfen mit `w32tm /query /status` [W].
 
 ---
 
