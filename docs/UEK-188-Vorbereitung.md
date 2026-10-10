@@ -90,7 +90,36 @@ Die Kenntnisse sind laut Dokument nicht abschliessend. Die genauen Lernziele und
 
 ## 2b. Noch offen
 
+- Die Kompetenzmatrizen ZH (https://kompetenzmatrix.ch/cluster-platform/m188/) führen M188 als «ÜK-Modul, keine Matrix vorhanden». Dort gibt es keine Lernziele dazu.
 - Welche Tools die ICT-Learnfactory einsetzt (Windows Server oder Linux, PRTG, Zabbix, Nagios). Das Objekt «File-, Print-, DHCP-, DNS-, Verzeichnis-Services» und der Vergleichskurs sprechen für Windows Server und Active Directory, bestätigt ist es nicht.
+
+## 2c. Infos der ICT-Learnfactory (https://www.ict-learnfactory.ch/informatiker)
+
+- Ort: ICT-LearnFactory AG, Bernapark 28, Eingang West, 2. Stock, 3066 Stettlen (Deisswil)
+- Aufbau: 7 üK-Module zu je 5 Kurstagen. Modul 188 ist im 2. Bildungsjahr (zusammen mit 190 und 109)
+- Kosten pro Tag: CHF 160 (Mitglieder) bzw. CHF 240 (Nicht-Mitglieder)
+- Lernkonzept: begleitetes, selbstorganisiertes Lernen (BGSOL), handlungskompetenzorientiert. Du arbeitest also viel selbständig mit Aufträgen und nicht nur im Frontalunterricht.
+- Tools, Lernplattform und Unterlagen stehen auf der Website nicht. Das Kursprogramm ist im Kursverwaltungstool OdAOrg sichtbar.
+- Jeder üK schliesst mit einer Leistungsbeurteilung ab (Prüfung und/oder Projektbewertung nach Vorgaben des Modulbaukastens), laut üK-Broschüre Bern.
+
+## 2d. Was andere Lernende im üK 188 behandelt haben
+
+Quelle: öffentliche Lerndokumentation eines Lernenden (Robin Rüegg, 2023, anderer Kursanbieter): https://robinrueegg.ch/my-it-skills/1-year-2/uek-188/ mit PDFs unter http://robinrueegg.ch/wp-content/uploads/2023/03/Dokumentation_Robin.pdf und http://robinrueegg.ch/wp-content/uploads/2023/03/UeK-188.pdf. Das zeigt, wie ein 188er in der Praxis aussehen kann, ist aber kein Beleg für den Ablauf bei der ICT-Learnfactory. Seine Doku ist 28 Seiten lang. Die Themen in meinen Worten:
+
+- Einstieg: IPv4-Subnetting (z.B. Netz-ID, Broadcast, erste und letzte nutzbare Adresse bei einem /29), MAC-Adresse, IPv6-Aufbau, OSI-Modell
+- Vorgehensmodelle: IPERKA und ITIL
+- Server-Grundlagen: Definition, Serverraum (Kühlung, USV, Zutrittskontrolle, getrennte Stromkreise), Baseline, Dauerbetrieb, Bauformen (Tower, Rack, Blade), Höheneinheiten
+- Redundanz und RAID: Level 0, 1, 5, 10, JBOD, Hardware- gegen Software-RAID, Hot Spare, nutzbare Kapazität pro Level
+- Dateisystem NTFS
+- Fernwartung: iLO, iDRAC, iRMC, SSH, RDP einrichten (Windows Server und Ubuntu)
+- Netzdienste: DNS, DHCP (Scope, Reservation, Scope-Optionen, ipconfig /release und /renew), Active Directory, Domäne, OU
+- Monitoring: Durchschnittswerte deuten (z.B. CPU oder RAM um 80 Prozent, was prüfen und was tun), Windows-Bordmittel (Leistungsüberwachung, Ressourcenmonitor, Ereignisanzeige), SNMP
+- Berechtigungen: Authentisierung, Authentifizierung, Autorisierung. Freigabe- gegen NTFS-Rechte, Vererbung, Vollzugriff gegen Ändern, Verhalten beim Kopieren und Verschieben
+- Updates: Hotfix, Upgrade, Fehlerstufen
+- Backup: Wert von Daten, Aufbewahrungsfristen, Voll, differentiell, inkrementell, Medien (Cloud, Disk, Tape, NAS)
+- Hardware: SSD gegen HDD, SATA gegen SAS, RAM-Erweiterung (Typ, Slot, Kompatibilität, Erdung)
+
+Daraus leite ich ab, dass Subnetting, RAID, DHCP-Scope, NTFS-Rechte und Backup-Arten gute Kandidaten für Prüfungsfragen sind. Bei der Learnfactory kann es anders sein.
 
 ## 3. Was ich vor dem Kurs klären würde
 
@@ -136,6 +165,8 @@ Die Gliederung folgt den offiziellen Handlungszielen. Die konkreten Beispiele un
 - Backup erstellen, Datei löschen, wiederherstellen
 
 ## 6. Freie Unterlagen zu Nachbarmodulen
+
+Zu den Nachbarmodulen 123, 117 und 143 gibt es Kompetenzmatrizen mit Lernzielen: https://kompetenzmatrix.ch/cluster-platform/m123/ (Pfad für M117, M143 analog).
 
 - tbz-it auf GitHub, M122 (Abläufe mit Scriptsprache automatisieren): https://github.com/tbz-it/M122
 - tbz-it auf GitHub, M169 (Dienste mit Containern bereitstellen): https://github.com/tbz-it/M169
