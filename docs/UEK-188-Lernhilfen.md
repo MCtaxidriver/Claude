@@ -9,7 +9,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 **Inhalt**
 
 - 1. Cheatsheet: Befehle für die Lab-Umgebung
-- 2. Lernkarten (Frage, Antwort), 74 Stück
+- 2. Lernkarten (Frage, Antwort), 78 Stück
 - 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 - 2c. Konzepte in Kürze (für den schriftlichen Teil)
 - 2d. SNMP und WMI auf dem Server einrichten (Kenntnis 4.2)
@@ -172,7 +172,7 @@ WMIC nur noch als Feature on Demand, PowerShell 2.0 nicht mehr enthalten, WSUS n
 
 ---
 
-## 2. Lernkarten (Frage, Antwort), 74 Stück
+## 2. Lernkarten (Frage, Antwort), 78 Stück
 
 Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und sprich sie laut.
 
@@ -275,6 +275,12 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 ### Zusatzkarten: Wartung (73 bis 74)
 73. **Welche Wartungszyklen nennt der Bildungsplan?** Täglich, wöchentlich, monatlich, bei bestimmten Ereignissen und gemäss SLA. [Q: Bildungsplan f4]
 74. **Was gehört zur Schweigepflicht bei der Wartung?** Mit Daten vertrauensvoll und sorgfältig umgehen und Eingriffe nachvollziehbar dokumentieren. [Q: Bildungsplan f4]
+
+### Zusatzkarten: üK-Reglement (75 bis 78)
+75. **Wann musst du einen üK wiederholen, und wie meldest du eine Absenz?** Bei mehr als 20 Prozent Absenz, bei 5 Tagen also mehr als einem Tag, ist der üK oder sind die Tage ab dem Fehlen unter Kostenfolge nachzuholen. Unverschuldete Gründe (ärztlich bescheinigte Krankheit oder Unfall, Militärdienst) sofort schriftlich dem Bildungsanbieter melden. Kostenlos nachholen geht nur bei nachgewiesenem Nichtverschulden. [Q: üK-Reglement Art. 7]
+76. **Was zählt als Unredlichkeit und was droht?** Fälschen, nicht deklarierte Hilfe Dritter, Übernehmen fremder Texte, Konfigurationen oder Codes ohne Quelle, Selbstplagiat, andere Täuschung. Du hast 5 Arbeitstage für eine schriftliche Stellungnahme, bei Unredlichkeit gilt Note 1 für den betroffenen Teil. [Q: üK-Reglement Art. 12]
+77. **Welche Gründe gelten bei Fernbleiben von einer Leistungsbeurteilung?** Ärztlich attestierte Krankheit oder Unfall, Todesfall in der Familie mit Bestätigung, Verspätung im öffentlichen Verkehr mit Bestätigung des Transportanbieters, rechtlich gültige Verfügung (Militär, Zivilschutz, Gericht, Polizei). Ohne schriftlichen Nachweis gilt die LB als nicht besucht. [Q: üK-Reglement Art. 13]
+78. **Wie wird die Kompetenz eines Moduls ausgewiesen?** Mit einer halben oder ganzen Note (Kompetenznachweis), geprüft anhand einer Leistungsbeurteilung nach LBV. [Q: üK-Reglement Art. 9 und 10]
 
 ## 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 

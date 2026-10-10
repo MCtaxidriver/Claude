@@ -2,7 +2,8 @@
 
 Stand: 10.10.2026. Für Informatiker/in EFZ Plattformentwicklung (BiVo 2021), ICT-Learnfactory.
 
-Lernhilfen mit Cheatsheet, 74 Lernkarten und 14-Tage-Plan: siehe `UEK-188-Lernhilfen.md`. Probeprüfung mit Praxisszenario, 21 schriftlichen Fragen und Musterlösung: siehe `UEK-188-Probepruefung.md`. Einseitiger Spickzettel: `UEK-188-Spickzettel.md`. Vorlage für das Lernjournal: `UEK-188-Lernjournal-Vorlage.md`. Lernkarten als CSV zum Import in Anki oder Quizlet (Tab-getrennt: Frage, Antwort, Kategorie): `UEK-188-Lernkarten.csv`.
+Lernhilfen mit Cheatsheet, 78 Lernkarten und 14-Tage-Plan: siehe `UEK-188-Lernhilfen.md`. Probeprüfung mit Praxisszenario, 21 schriftlichen Fragen und Musterlösung: siehe `UEK-188-Probepruefung.md`. Einseitiger Spickzettel: `UEK-188-Spickzettel.md`. Vorlage für das Lernjournal: `UEK-188-Lernjournal-Vorlage.md`. Lernkarten als CSV zum Import in Anki oder Quizlet (Tab-getrennt: Frage, Antwort, Kategorie): `UEK-188-Lernkarten.csv`.
+
 
 <!-- toc -->
 **Inhalt**
@@ -12,6 +13,7 @@ Lernhilfen mit Cheatsheet, 74 Lernkarten und 14-Tage-Plan: siehe `UEK-188-Lernhi
 - 2a. Leistungsbeurteilung (LBV 188-1, Modulbaukasten, publiziert 10.06.2022)
 - 2b. Noch offen
 - 2c. Infos der ICT-Learnfactory (https://www.ict-learnfactory.ch/informatiker)
+- 2e. üK-Reglement der ICT-Berufsbildung Bern (gültig ab 01.08.2025)
 - 2d. Was andere Lernende im üK 188 behandelt haben
 - 3. Was ich vor dem Kurs klären würde
 - 4. Vorbereitung nach Themen (aus meinem Fachwissen, entlang der Handlungsziele)
@@ -21,7 +23,7 @@ Lernhilfen mit Cheatsheet, 74 Lernkarten und 14-Tage-Plan: siehe `UEK-188-Lernhi
 - 5. Konkrete Übungen für die zwei Wochen
 - 6. Freie Unterlagen zu Nachbarmodulen
 - 7. Quellen
-- 8. Was ich geprüft habe und was nichts brachte (Stand 10.10.2026, 21:25)
+- 8. Was ich geprüft habe und was nichts brachte (Stand 10.10.2026, 21:47)
 
 <!-- /toc -->
 
@@ -190,12 +192,35 @@ Für 188 gilt im schriftlichen Teil «nach Vorgabe des üK-Anbieters». Beim Fol
   - Die Module sind schweizweit standardisiert (Modulbaukasten). Lerncoaches kommen oft direkt aus laufenden Betriebsprojekten.
   - Räume mit Input-Bereichen und Lernnischen, du kannst dich frei zusammensetzen.
   - Insgesamt meist 35 Kurstage in der Lehre, jeweils 5 bis 6 Tage am Stück.
-- Regeln laut Suchergebnis zu einem Berner-Zeitung-Artikel (den Artikel selbst konnte ich nicht öffnen, in den AGB steht davon nichts, bitte beim Sekretariat bestätigen lassen): Wer mehr als einen Tag des fünftägigen Kurses verpasst, muss ihn wiederholen. Die Aufgaben, die du im Kurs löst, zählen für den Abschluss des Moduls. Passt zur Modul-LBV (siehe 2a).
+- Regeln laut Suchergebnis zu einem Berner-Zeitung-Artikel: Wer mehr als einen Tag des fünftägigen Kurses verpasst, muss ihn wiederholen. Das ist jetzt durch das üK-Reglement bestätigt (Abschnitt 2e, mehr als 20 Prozent Absenz). Dass die Aufgaben im Kurs für den Modulabschluss zählen, passt zur Modul-LBV (siehe 2a).
 - AGB der ICT-Learnfactory (Stand März 2025, https://www.ict-learnfactory.ch/agb), gelten für alle Aus- und Weiterbildungsangebote:
   - Die für den Bildungsgang relevanten Unterlagen werden **am ersten Unterrichtstag verteilt** und können auf Wunsch angefordert oder eingesehen werden. Frag also das Sekretariat, ob du sie vorab einsehen darfst.
   - Bildungsgänge können jederzeit ohne Vorankündigung angepasst werden, auch Unterrichtstage und -zeiten, Lerninhalte und Prüfungen, solange der Gesamtcharakter nicht massgeblich ändert. Plane also mit Abweichungen von dem, was ich hier aus öffentlichen Quellen zusammengetragen habe.
-  - Zur Absenzenregel (Wiederholung bei mehr als einem verpassten Tag) steht in den AGB nichts. Sie bleibt deshalb unbestätigt.
+  - Zur Absenzenregel stehen die Details im üK-Reglement der ICT-Berufsbildung Bern (Abschnitt 2e).
 - Zum Vergleich ICT-BZ (anderer Anbieter): Kurs 08:00 bis 16:45, eigenes Notebook mitbringen, Unterlagen früherer Kurse mitnehmen, mindestens 80 Prozent Anwesenheit. Bei der Learnfactory würde ich das beim Sekretariat bestätigen lassen.
+
+## 2e. üK-Reglement der ICT-Berufsbildung Bern (gültig ab 01.08.2025)
+
+Quelle: https://www.ict-berufsbildung-bern.ch/resources/ueK-Reglement-20250801.pdf (6 Seiten, als Scan, ich habe die Seiten 1, 2, 4 und 5 gelesen, Seite 3 mit Zweck und Organen und Seite 6 mit den Kosten nicht). Es gilt für die ICT-Berufe im deutschsprachigen Kanton Bern, also auch für Informatiker/in EFZ bei der Learnfactory. Die Zusammenfassung ist in meinen Worten.
+
+**Besuchspflicht (Art. 5):** Der üK-Besuch ist für alle Lernenden obligatorisch. Alle vorgegebenen üK-Module müssen absolviert und mit dem Kompetenznachweis abgeschlossen werden. Bei Lehrfortsetzung oder Lehrjahrwiederholung werden vorhandene Kompetenznachweise übernommen und zählen zum Qualifikationsverfahren (Art. 6).
+
+**Absenzen (Art. 7):**
+- Unverschuldete Gründe sind ärztlich bescheinigte Krankheit oder Unfall und Militärdienst. Die Abwesenheit musst du **sofort schriftlich dem Bildungsanbieter mitteilen**.
+- Verschiebungsgesuche und Absenzen während des üK werden nur in unausweichlichen Fällen bewilligt.
+- Bei **Absenzen von mehr als 20 Prozent** des üK ist der gesamte üK oder die Tage ab dem Fehlen unter Kostenfolge zu wiederholen oder nachzuholen. Bei einem Kurs mit 5 Tagen sind 20 Prozent genau ein Tag, mehr als ein verpasster Tag löst die Wiederholung aus. Das deckt sich mit der Aussage im Zeitungsartikel. Die Details regeln Bildungsanbieter und Lehrbetrieb. Wird die Leistungsbeurteilung absolviert, zählt diese Note.
+- Nachholen ist kostenlos, wenn du das Nichtverschulden nachweisen kannst. Sonst musst du den Kurs nochmals bezahlen.
+
+**Leistungsbeurteilung (Art. 9 und 10):**
+- In jedem Modul wird die Kompetenz mit einer Leistungsbeurteilung geprüft, die auf einer freigegebenen LBV (Leistungsbeurteilungsvorgabe) oder einer Kompetenzmatrix beruht. Jede LB wird vor dem Einsatz von einem zweiten Bildungsanbieter überprüft.
+- Die Kompetenz eines Moduls wird mit einer **halben oder ganzen Note** (Kompetenznachweis) ausgewiesen.
+- Wiederholung bei ungenügenden Leistungen und Anfechtung richten sich nach den nationalen Ausführungsbestimmungen für die ICT-Berufe (Art. 10 und 11).
+
+**Unredlichkeit (Art. 12):** Dazu zählen das Fälschen von Daten, nicht deklarierte Unterstützung durch Dritte, das Übernehmen fremder Texte, **Konfigurationen und Programmcodes ohne Quellenangabe** (Plagiat), das mehrfache Einreichen einer selbst verfassten Arbeit (Selbstplagiat) und andere Täuschungen. Du hast 5 Arbeitstage Zeit für eine schriftliche Stellungnahme mit Unterschrift des Lehrbetriebs. Bei Unredlichkeit gilt für den betroffenen Teil die **Note 1**. Für dich heisst das: Wenn du in der Doku oder im Lernjournal Konfigurationen oder Texte aus Quellen übernimmst, gib die Quelle an.
+
+**Fernbleiben bei einer Leistungsbeurteilung (Art. 13):** Ohne schriftlichen Nachweis eines gültigen Grundes gilt die LB als ungültig (nicht besucht). Gültige Gründe sind eine ärztlich attestierte Krankheit oder ein ärztlich attestierter Unfall, ein Todesfall in der Familie mit Bestätigung, Verspätungen im öffentlichen Verkehr mit Bestätigung des Transportanbieters und eine rechtlich gültige Verfügung (Militär, Zivilschutz, Gerichtsvorladung, polizeiliche Untersuchung).
+
+**Qualifikationsverfahren Informatiker/in EFZ (BiVo 2021)** [Quelle: https://www.ict-berufsbildung-bern.ch/grundbildung/informatiker-in-efz/qualifikationsverfahren--695]: Vier Noten, nämlich praktische Arbeit (40 %), Allgemeinbildung (20 %), erweiterte Grundkompetenzen (10 %) und Informatikkompetenzen (30 %). Bestanden ist das Verfahren, wenn die Erfahrungsnote der Informatikkompetenzen, die praktische Arbeit und die Gesamtnote mindestens 4.0 betragen. Die individuelle praktische Arbeit (IPA) dauert 10 Tage mit Richtzeit 70 bis 90 Stunden. Wie genau die üK-Kompetenznachweise in die Erfahrungsnote einfliessen, steht auf dieser Seite nicht. Laut Reglement zählen sie zum Qualifikationsverfahren.
 
 ## 2d. Was andere Lernende im üK 188 behandelt haben
 
