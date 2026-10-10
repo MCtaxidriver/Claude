@@ -628,6 +628,13 @@ Quelle: Bayerisches Landesamt für Datenschutzaufsicht, «Patch Management im Al
 
 **Hilfsmittel zur Bewertung** (in der Checkliste genannt): CERT-Bund (cert-bund.de), CVSS (nvd.nist.gov/vuln-metrics/cvss), CVE-Details (cvedetails.com). Der Bildungsplan nennt für Server ausdrücklich MELANI und CVE als Quellen zur Information über Sicherheitsentwicklungen (f6). [Q: Bildungsplan, Modulbaukasten Kompetenzbeschreibung f6]
 
+**Updates per Gruppenrichtlinie und WSUS steuern** (zum Verteilen mit Softwareverteilungssystemen, Handlungsziel 3) [Q: https://learn.microsoft.com/de-de/windows-server/administration/windows-server-update-services/deploy/4-configure-group-policy-settings-for-automatic-updates und https://learn.microsoft.com/de-de/windows/deployment/update/waas-wu-settings]
+- Die Richtlinie «Automatische Updates konfigurieren» liegt unter Computerkonfiguration, Administrative Vorlagen, Windows-Komponenten, Windows Update. Für WSUS empfiehlt Microsoft die Option «Automatisch herunterladen und laut Zeitplan installieren», damit genehmigte Updates ohne Eingriff des Benutzers zeitnah installiert werden.
+- Damit die Clients den WSUS-Server nutzen, braucht es die Richtlinie «Internen Pfad für den Microsoft Updatedienst angeben». Die Clients müssen dem WSUS-Server zugeordnet werden, sei es per lokalem oder domänenbasiertem Gruppenrichtlinienobjekt.
+- Der Installationszeitplan (Tag und Uhrzeit) wird mit Option 4 festgelegt. Ohne Angabe gilt täglich 03:00 Uhr. In der Registry stehen die Werte `ScheduledInstallDay` und `ScheduledInstallTime` unter `HKLM\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\AU`.
+- Änderungen an Gruppenrichtlinien erreichen die Clients etwa alle 90 Minuten, mit `gpupdate /force` sofort. Die Quellen sind teils älter, die Menüs können in neueren Windows-Versionen abweichen.
+- Für die Prüfung heisst das: Updates zentral genehmigen, Testgruppe zuerst, Zeitplan im Wartungsfenster, danach Kontrolle (siehe Patch-Zyklus in 2l).
+
 **Update zurückrollen und Workarounds** (Thema der schriftlichen Prüfung: «Updates und Workarounds», Quellen sind Microsoft-Foren und Support-Antworten, bitte in der Test-VM prüfen)
 - **Installierte Updates ansehen:** `Get-HotFix`. Pakete auf Betriebssystemebene: `Dism /Online /Get-Packages` oder `Get-WindowsPackage -Online -PackageName "*KB<Nummer>*"`.
 - **Update entfernen, Variante 1:** `wusa /uninstall /kb:<Nummer>` (Leerzeichen vor weiteren Schaltern nicht vergessen). Das scheitert bei neueren kumulativen Updates oft mit Fehler 87 («Parameter falsch»). Der stille Modus ist bei neueren Servern nicht mehr verfügbar.
