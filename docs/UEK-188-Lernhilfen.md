@@ -47,6 +47,19 @@ Add-ADGroupMember -Identity SvcAccPSOGroup -Members SQL01, SQL02
 # Benutzer anlegen [Q: New-ADUser, Parameter Name]
 New-ADUser -Name 'ChewDavid'
 ```
+Weitere AD-Verwaltung, alles aus der Microsoft-Doku belegt [Q: ActiveDirectory-Modul und Add-Computer]:
+```powershell
+New-ADOrganizationalUnit -Name "UserAccounts" -Path "DC=FABRIKAM,DC=COM"                       # OU anlegen
+New-ADOrganizationalUnit -Name "UserAccounts" -Path "DC=FABRIKAM,DC=COM" -ProtectedFromAccidentalDeletion $False
+Get-ADUser -Filter * -SearchBase "OU=Finance,OU=UserAccounts,DC=FABRIKAM,DC=COM"                # Benutzer einer OU
+Move-ADObject -Identity "OU=ManagedGroups,DC=Fabrikam,DC=Com" -TargetPath "OU=Managed,DC=Fabrikam,DC=Com"   # Objekt verschieben
+Unlock-ADAccount -Identity PattiFu                                                             # gesperrtes Konto entsperren
+Disable-ADAccount -Identity PattiFul                                                           # Konto deaktivieren
+Set-ADAccountPassword -Identity 'CN=Elisa Daugherty,OU=Accounts,DC=Fabrikam,DC=com' -Reset -NewPassword (ConvertTo-SecureString -AsPlainText "p@ssw0rd" -Force)   # Passwort zurücksetzen
+Add-Computer -DomainName Domain01 -Restart                                                     # Client in die Domäne aufnehmen
+```
+Das Passwort im Beispiel ist ein Platzhalter der Microsoft-Doku, in der Praxis nie im Klartext in Scripts schreiben, sondern `Read-Host -AsSecureString` verwenden [W]. Organisationseinheiten sind standardmässig vor versehentlichem Löschen geschützt (`-ProtectedFromAccidentalDeletion`), das erklärt Fehler beim Löschen [Q].
+
 Hinweise [Q]: DNS wird beim Anlegen einer neuen Gesamtstruktur standardmässig mitinstalliert. Der Befehl fragt das DSRM-Passwort ab und startet den Server danach neu, wenn du das nicht abstellst.
 
 ### Freigaben und NTFS-Rechte
