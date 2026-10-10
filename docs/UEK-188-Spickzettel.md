@@ -3,7 +3,7 @@
 Kurzfassung aus `UEK-188-Vorbereitung.md` und `UEK-188-Lernhilfen.md`. Alle Details und Quellen stehen dort.
 
 ## Modul
-Services betreiben, warten und überwachen. Objekt: Server mit File-, Print-, DHCP-, DNS- und Verzeichnis-Services im LAN. 5 Tage. Prüfung: 60 % Praxis (2 h), 40 % schriftlich (1 h).
+Services betreiben, warten und überwachen. Objekt: Server mit File-, Print-, DHCP-, DNS- und Verzeichnis-Services im LAN. 5 Tage. Prüfung: 60 % Praxis (2 h), 40 % schriftlich (1 h). Geprüft werden AD, DNS, DHCP, Monitoring (auch Reports und Maps), Updates und vor allem Berechtigungen (bis 40 % Praxis, bis 30 % schriftlich). Du bekommst eine Betriebsdokumentation vorgegeben und ergänzt sie.
 
 ## Die 6 Handlungsziele
 1. Mit der Betriebsdoku Systeme analysieren

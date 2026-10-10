@@ -113,22 +113,48 @@ Die Kenntnisse sind laut Dokument nicht abschliessend. Die genauen Lernziele und
 
 ## 2a. Leistungsbeurteilung (LBV 188-1, Modulbaukasten, publiziert 10.06.2022)
 
-Quelle: https://www.modulbaukasten.ch/module/188/1/de-DE?title=Services-betreiben,-warten-und-%C3%BCberwachen (Reiter LBV)
+Quelle: https://www.modulbaukasten.ch/module/188/1/de-DE?title=Services-betreiben,-warten-und-%C3%BCberwachen (Reiter LBV, beide Elemente aufgeklappt). Das sind die Vorgaben des Verbands. Die genauen Aufgaben legt die Learnfactory fest.
 
-- Die Beurteilung deckt alle Handlungskompetenzen des Moduls ab.
-- Du baust über das Modul hinweg die Systemumgebung eines kleinen KMU mit mehreren Services auf. Mit Aufträgen im Kursverlauf wird sie erweitert.
-- Zwei Teile:
-  - Element 1, praktischer Umsetzungsteil: Services in einem KMU-Netz erfassen, verwalten und aktualisieren. Gewichtung 60 Prozent, Richtzeit 2 Stunden.
-  - Element 2, schriftlicher Teil: praxisnahe und auch konzeptionelle Fragen. Gewichtung 40 Prozent, Richtzeit 1 Stunde.
-- Richtzeit total 3 Stunden.
-- Hinweis: Die Seite trägt im Titel fälschlich «Dienste in der Public Cloud betreiben und überwachen» (das ist Modul 109). Die Beschreibung passt aber zu 188. Der Kurs der Learnfactory kann davon abweichen, die genauen Aufgaben sind nicht öffentlich.
+**Gesamt:** Die Beurteilung deckt alle Handlungskompetenzen ab. Du baust im Modul die Systemumgebung eines kleinen KMU mit mehreren Services auf, die mit Aufträgen erweitert wird. Zwei Elemente, Richtzeit total 3 Stunden. (Die Seite trägt im Titel fälschlich «Dienste in der Public Cloud», das ist Modul 109. Der Inhalt passt aber zu 188.)
 
-Das heisst: Üben, wie du einen Service aufsetzt, überwachst, patchst und Rechte vergibst, wiegt mehr als reines Auswendiglernen. Für den schriftlichen Teil sollten die Begründungen sitzen (warum Schwellwert, warum Testumgebung).
+### Element 1: Praxis, 60 Prozent, 2 Stunden
+- Form: praktisch am Objekt, Einzelarbeit.
+- Aufgabe: Mit einer **vorgegebenen Betriebsdokumentation** wird eine **physische Systemumgebung** analysiert. Mit gezielten Aufgaben passt du die Umgebung an und führst die Betriebsdokumentation nach. Hilfsmittel ist die Betriebsdokumentation zum Prüfungssystem.
+- Praxisbezug: Eine bestehende Kundenumgebung wird nach Kundenauftrag analysiert, konfiguriert und in der Dokumentation ergänzt.
+
+| Kriterium | Gewicht | Handlungsziel |
+| --- | --- | --- |
+| Praktische Konfigurationsanpassungen zu **AD, DNS und DHCP** gemäss Vorgabe | 15 bis 25 % | 1 |
+| System- und Ressourcenüberwachung mit **Bordmitteln oder zentralem Monitoring** ausführen und ergänzen | 15 bis 25 % | 2 |
+| System auf Updates prüfen und gegebenenfalls einspielen | 5 bis 10 % | 3 |
+| **Zugriffs- und Berechtigungskonzept** erfassen, ergänzen, dokumentieren | 20 bis 40 % | 5 |
+| Anpassungen an **Umsystemen** erfassen und umsetzen | 15 bis 25 % | 6 |
+
+### Element 2: Schriftlich, 40 Prozent, 1 Stunde
+- Form: schriftlich, Einzelarbeit, praxisorientierte Fragen. Hilfsmittel nach Vorgabe des üK-Anbieters (zum Beispiel die Betriebsdokumentation zum Prüfungssystem).
+- Praxisbezug laut LBV: AD, DNS und DHCP nach Kundenauftrag konfigurieren. Das Zugriffs- und Berechtigungskonzept umsetzen, ergänzen, dokumentieren und **begründen**. Klares konzeptionelles Vorgehen bei Updates und **Workarounds**. Services überwachen und **automatische Reports** generieren. **Monitoring interpretieren** und gegebenenfalls eine **Map** deuten. Benötigte Änderungen an Umsystemen an Dritte weiterleiten.
+
+| Kriterium | Gewicht | Handlungsziel |
+| --- | --- | --- |
+| Praxisorientierte Fragen zur Konfiguration von AD, DNS, DHCP | 15 bis 25 % | 1 |
+| Konzeptionelle Fragen zu Updates und Workarounds, Möglichkeiten bei Problemfällen aufzeigen | 5 bis 20 % | 3 |
+| Fragen zum Umgang mit System- und Ressourcenüberwachung | 15 bis 25 % | 4 |
+| Fragen zu Implementierung und **Schwellwerten** beim Monitoring | 10 bis 20 % | 4 |
+| Zugriffs- und Berechtigungskonzept **ergänzen und begründen** | 20 bis 30 % | 5 |
+| Fragen zur Analyse von Umsystemen | 5 bis 10 % | (6) |
+
+### Was daraus folgt
+- **Berechtigungen sind der grösste Brocken** (bis 40 Prozent im Praxisteil, bis 30 Prozent im schriftlichen Teil). Übe AGDLP, Freigabe- und NTFS-Rechte und vor allem das Begründen.
+- **AD, DNS und DHCP** sind die geprüften Services, also sehr wahrscheinlich ein Windows Server. Print, File und Linux-Dienste werden in der LBV nicht genannt.
+- **Monitoring:** Bordmittel oder ein zentrales Tool, dazu Reports und Maps lesen und deuten. PRTG hat beides, ob die Learnfactory PRTG nutzt, ist nicht bestätigt.
+- **Betriebsdokumentation:** Du bekommst sie vorgegeben, analysierst damit das System und ergänzt sie am Schluss. Übe das Lesen und Nachführen.
+- **Updates:** Im Praxisteil nur prüfen und einspielen (kleines Gewicht), im schriftlichen Teil geht es um Konzept und Workarounds.
 
 ## 2b. Noch offen
 
 - Die Kompetenzmatrizen ZH (https://kompetenzmatrix.ch/cluster-platform/m188/) führen M188 als «ÜK-Modul, keine Matrix vorhanden». Dort gibt es keine Lernziele dazu.
-- Welche Tools die ICT-Learnfactory einsetzt (Windows Server oder Linux, PRTG, Zabbix, Nagios). Das Objekt «File-, Print-, DHCP-, DNS-, Verzeichnis-Services» und der Vergleichskurs sprechen für Windows Server und Active Directory, bestätigt ist es nicht.
+- Welches Monitoring-Tool die ICT-Learnfactory einsetzt (PRTG, Zabbix, Nagios, nur Bordmittel). Die LBV nennt Reports und Maps, was zu einem Tool wie PRTG passt, bestätigt ist das nicht.
+- Windows Server ist wahrscheinlich: Die LBV prüft AD, DNS und DHCP, das Modulobjekt nennt File-, Print-, DHCP-, DNS- und Verzeichnis-Services. Eine Bestätigung der Learnfactory fehlt.
 
 ## 2c. Infos der ICT-Learnfactory (https://www.ict-learnfactory.ch/informatiker)
 
@@ -263,7 +289,7 @@ Passt zu den offiziellen Quellen:
 Nicht belegt, bitte nicht als Fakt nehmen:
 - Webserver (Apache, Nginx, IIS) und Datenbanken (MariaDB, PostgreSQL) als Kursinhalt. Das Modul nennt File-, Print-, DHCP-, DNS- und Verzeichnis-Services.
 - Zabbix, Nagios und Prometheus als Kurs-Tools. Das Modul sagt nur «bestehende Monitoring-Tools». Die Learnfactory nennt kein Tool.
-- Linux oder Windows. Das Modul legt sich nicht fest, die genannten Services sprechen eher für Windows Server.
+- Linux oder Windows. Das Modul legt sich nicht fest. Die LBV prüft aber AD, DNS und DHCP, das spricht klar für Windows Server.
 - Die Quellenangaben bei Gemini (ict-sh.ch, bit.admin.ch, wiss.ch, YouTube) enthalten zu Modul 188 nichts, was ich dort finden konnte.
 
 ### Fachgrundlagen zu den Handlungszielen (aus Quellen, mit Vorbehalt)
