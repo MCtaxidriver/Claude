@@ -77,7 +77,7 @@ Add-DhcpServerv4Reservation -ScopeId 10.10.10.0 -IPAddress 10.10.10.8 -ClientId 
 # Aus Lease eine Reservation machen [Q]
 Get-DhcpServerv4Lease -IPAddress 10.10.10.11 | Add-DhcpServerv4Reservation
 ```
-Client testen [W]: `ipconfig /release`, dann `ipconfig /renew`, dann `ipconfig /all`.
+Client testen [Q: Microsoft Learn, ipconfig]: `ipconfig /release` gibt die DHCP-Adresse frei (bei Adaptern mit automatischer Adresse, TCP/IP wird für diesen Adapter vorübergehend deaktiviert), `ipconfig /renew` holt eine neue. Beides wirkt nur bei Adaptern mit automatischer IP-Konfiguration und leert den DNS-Cache nicht. Dafür gibt es `ipconfig /flushdns`, anzeigen mit `ipconfig /displaydns`. Mit `ipconfig /all` kontrollierst du die Konfiguration.
 
 ### DNS
 ```powershell
@@ -194,12 +194,12 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 36. **Was kopiert `icacls /inheritancelevel:d`?** Es schaltet die Vererbung ab und kopiert die geerbten Einträge als explizite ACEs. [Q]
 37. **Authentisierung, Authentifizierung, Autorisierung?** Identität behaupten, Identität prüfen, Zugriff gewähren. [Q: Lerndokumentation]
 38. **Wie dokumentierst du Rechte?** Zum Beispiel mit einer Matrix Benutzergruppen gegen Shares. [Q: Modul 117, 5.2]
-39. **Was ist das Least-Privilege-Prinzip?** Jeder bekommt nur die Rechte, die er für die Aufgabe braucht. [W]
+39. **Was ist das Least-Privilege-Prinzip?** Jeder bekommt nur die Rechte, die er für die Aufgabe braucht. Microsoft begründet das so: Läuft Schadsoftware unter einem privilegierten Konto, kann sie die ganze Domäne erreichen, unter einem normalen Konto nur den lokalen Rechner. Admin-Konten nicht für den Alltag nutzen, Rechte über Delegation und Rollen vergeben. [Q: Microsoft Learn, Verwaltungsmodelle der geringsten Berechtigungen]
 
 ### Handlungsziel 6: Umsysteme
 40. **Nenne zwei typische Anpassungen auf Umsystemen.** DNS-Einträge und Firewall-Regeln. [Q: Modulbeschreibung 6.1]
 41. **Was muss ein Änderungsauftrag an Dritte enthalten?** Quelle, Ziel, Protokoll und Port, Zweck, Befristung, Testverfahren. [W, siehe Beispiel in der Vorbereitungsdatei]
-42. **Wie testest du eine Firewall-Anpassung?** Von der Quelle aus verbinden, zum Beispiel `Test-NetConnection -ComputerName SRV01 -Port 443`. [W]
+42. **Wie testest du eine Firewall-Anpassung?** Von der Quelle aus verbinden, zum Beispiel `Test-NetConnection -ComputerName SRV01 -Port 443`. Entscheidend ist `TcpTestSucceeded`: True heisst Verbindung steht, False deutet auf ein Verbindungsproblem hin. Das Cmdlet testet TCP, für UDP-Ports wie SNMP (161) taugt es nicht, dort hilft `snmpwalk` oder das Monitoring-Tool. [Q: Microsoft Learn, Test-NetConnection, UDP-Hinweis aus meinem Wissen]
 43. **Wozu `-CreatePtr` beim DNS-A-Record?** Es legt automatisch den Reverse-Eintrag an. [Q]
 
 ### Vorwissen aus 117 und 123
@@ -589,7 +589,7 @@ Quellen: https://learn.microsoft.com/de-de/virtualization/hyper-v-on-windows/qui
 - Auf einem Windows Server installierst du die Rolle mit dem Server-Manager oder `Install-WindowsFeature`.
 
 **Windows Server zum Testen** [Q]
-- Microsoft verweist in der Hyper-V-Doku für Windows Server 2025 auf das Evaluation Center: https://www.microsoft.com/evalcenter/evaluate-windows-server-2025 (die Seite war für mich gerade nicht abrufbar, wegen hoher Last). Eine Evaluierungskopie ist zeitlich begrenzt gültig [W].
+- Microsoft verweist in der Hyper-V-Doku für Windows Server 2025 auf das Evaluation Center: https://www.microsoft.com/evalcenter/evaluate-windows-server-2025 (die Seite war für mich gerade nicht abrufbar, wegen hoher Last). Evaluierungskopien laufen laut Evaluation-Center-Seiten 180 Tage und müssen innerhalb von 10 Tagen online aktiviert werden, sonst fährt das System automatisch herunter. Die ISO enthält die Editionen Standard und Datacenter. Eine Verlängerung per `slmgr /rearm` wird in der Community genannt, ist aber keine verbindliche Microsoft-Angabe [Q: Evaluation Center und Microsoft Q&A].
 
 **VM per PowerShell** [Q: New-VM-Doku]
 ```powershell
