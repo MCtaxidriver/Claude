@@ -119,7 +119,7 @@ WMIC nur noch als Feature on Demand, PowerShell 2.0 nicht mehr enthalten, WSUS n
 
 ---
 
-## 2. Lernkarten (Frage, Antwort), 56 Stück
+## 2. Lernkarten (Frage, Antwort), 63 Stück
 
 Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und sprich sie laut.
 
@@ -196,6 +196,14 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 54. **Wie wendest du eine Gruppenrichtlinie sofort an und wie prüfst du, was gilt?** `gpupdate /force` und `gpresult /r`. [Q]
 55. **Wie verknüpfst du ein GPO mit einer OU?** `New-GPO -Name "MyGPO" | New-GPLink -Target "ou=MyOU,dc=contoso,dc=com" -LinkEnabled Yes`. [Q]
 56. **Wie sicherst und stellst du Dateien mit Windows Server Backup wieder her?** `wbadmin start backup ...` und `wbadmin start recovery -itemType:File ...`. Danach den Restore testen. [Q: wbadmin-Doku, NCSC]
+
+57. **Welche Gruppenbereiche kennt Active Directory und wer darf Mitglied sein?** Global: Konten und globale Gruppen der eigenen Domäne. Domänenlokal: Konten und Gruppen aus beliebigen (auch vertrauten) Domänen. Universell: Konten und globale/universelle Gruppen aus der ganzen Gesamtstruktur. [Q: Microsoft Learn, Sicherheitsgruppen]
+58. **Wo kann eine domänenlokale Gruppe Berechtigungen erteilen?** Nur innerhalb derselben Domäne. Globale Gruppen können in jeder Domäne der Gesamtstruktur Rechte erhalten. [Q]
+59. **In welcher Reihenfolge werden Gruppenrichtlinien angewendet und was gewinnt?** Lokal, dann Standort, Domäne, OU. Die tiefste OU wird zuletzt angewendet und gewinnt bei Konflikten. Erzwungene Links setzen sich durch und gehen vor «Vererbung blockieren». [Q: Microsoft Learn, Gruppenrichtlinienverarbeitung (Details via Suchergebnis)]
+60. **Wie oft aktualisiert ein Client die Gruppenrichtlinien im Hintergrund?** Standard alle 90 Minuten plus zufällig bis zu 30 Minuten. Sofort geht es mit `gpupdate /force`. [Q]
+61. **Welche Standardgruppe gibt Lesezugriff auf Ereignisprotokolle ohne Adminrechte?** Ereignisprotokollleser (Event Log Readers). [Q]
+62. **Welche Gruppe darf Leistungszähler, Protokolle und Warnungen verwalten, ohne Administrator zu sein?** Leistungsprotokollbenutzer. Systemmonitorbenutzer dürfen die Leistungsindikatoren nur ansehen. [Q]
+63. **Was dürfen DHCP-Administratoren und was DHCP-Benutzer?** Administratoren erstellen, löschen und verwalten Bereiche und können die DHCP-Datenbank sichern und wiederherstellen. Benutzer haben nur lesenden Zugriff. [Q]
 
 ## 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 
@@ -424,6 +432,56 @@ Alles [W], aus Fachwissen und den Quellen oben, zum schnellen Nachschlagen.
 6. Stimmen Rechte? Anmeldung des Benutzers, Gruppenzugehörigkeit, Freigabe- und NTFS-Rechte.
 7. Was wurde zuletzt geändert? Patch, Konfiguration, Rechte. Betriebsdokumentation und Change-Verlauf ansehen.
 8. Lösung dokumentieren und, wenn möglich, ein Monitoring oder einen Alarm dafür einrichten.
+
+---
+
+## 2i. Active Directory: Gruppenbereiche und Standardgruppen (offiziell)
+
+Quelle: https://learn.microsoft.com/de-de/windows-server/identity/ad-ds/manage/understand-security-groups
+
+| Bereich | Mögliche Mitglieder | Kann Berechtigungen erteilen | Typische Rolle in AGDLP |
+| --- | --- | --- | --- |
+| Global | Konten und globale Gruppen der eigenen Domäne | In jeder Domäne der Gesamtstruktur und in vertrauten Domänen | Rollengruppe (z.B. Abteilung) |
+| Domänenlokal | Konten, globale Gruppen und universelle Gruppen aus beliebigen oder vertrauten Domänen, andere domänenlokale Gruppen derselben Domäne | Nur innerhalb derselben Domäne | Zugriffsgruppe auf Ressourcen |
+| Universell | Konten und globale/universelle Gruppen aus der Gesamtstruktur | In der ganzen Gesamtstruktur und in vertrauten | Nur bei mehreren Domänen (AGUDLP) |
+
+Hilfreiche Standardgruppen für den Betrieb, damit nicht jeder Domänen-Admin sein muss [Q: gleiche Seite]:
+- **DHCP-Administratoren:** Bereiche erstellen, löschen, verwalten, DHCP-Datenbank sichern und wiederherstellen. **DHCP-Benutzer:** nur lesen.
+- **DnsAdmins:** Zugriff auf DNS-Informationen mit Lesen, Schreiben, Erstellen und Löschen untergeordneter Objekte.
+- **Ereignisprotokollleser:** Ereignisprotokolle lesen.
+- **Leistungsprotokollbenutzer:** Leistungszähler, Protokolle und Warnungen verwalten (lokal und remote), ohne Administrator zu sein. **Systemmonitorbenutzer:** Leistungsindikatoren ansehen.
+- **Sicherungsoperatoren:** alle Dateien sichern und wiederherstellen, unabhängig von den Dateirechten.
+- **Druckoperatoren:** Drucker auf Domänencontrollern verwalten.
+- **Remoteverwaltungsbenutzer:** über WS-Management auf WMI zugreifen.
+- **Gruppenrichtlinienersteller-Besitzer:** GPOs in der Domäne erstellen, bearbeiten, löschen.
+
+Für das Monitoring [W]: Ein Dienstkonto für das Monitoring sollte nur die nötigen Rechte bekommen, zum Beispiel Mitglied in Ereignisprotokollleser und Leistungsprotokollbenutzer, statt Domänen-Admin (Least Privilege). Das passt zu Handlungsziel 5.
+
+---
+
+## 2j. Gruppenrichtlinien: Verarbeitung
+
+Quelle: https://learn.microsoft.com/de-de/windows-server/identity/ad-ds/manage/group-policy/group-policy-processing und .../group-policy-scope
+
+- Computerrichtlinien werden beim Start angewendet, Benutzerrichtlinien bei der Anmeldung (Vordergrundverarbeitung, synchron oder asynchron). Alle Verarbeitungen müssen innerhalb von 60 Minuten abgeschlossen sein.
+- Danach Hintergrundaktualisierung: Standard alle 90 Minuten, plus zufällig bis zu 30 Minuten. Einstellbar per Gruppenrichtlinie. Manches wird nur bei Anmeldung oder Start verarbeitet (zum Beispiel Ordnerumleitung und Softwareinstallation).
+- Reihenfolge laut Dokumentation und Suchergebnis: lokales GPO, Standort, Domäne, OU (tiefste zuletzt, gewinnt bei Konflikten). Bei mehreren Links in einem Container hat die niedrigste Zahl die höchste Priorität.
+- **Erzwungen** ist eine Eigenschaft des Links. Erzwungene GPOs setzen sich gegen widersprüchliche nicht erzwungene durch. **Vererbung blockieren** ist eine Eigenschaft des Containers und wirkt nicht gegen erzwungene Links. Das lokale GPO wird immer verarbeitet.
+- Sofort anwenden: `gpupdate /force`. Prüfen: `gpresult /r`. Modellierung und Ergebnisse gibt es auch in der Gruppenrichtlinien-Verwaltungskonsole.
+
+---
+
+## 2k. Leistungsüberwachung: Alarm mit Aktion (offiziell)
+
+Quelle: https://learn.microsoft.com/de-de/troubleshoot/windows-server/performance/create-performance-counter-alert-send-email
+
+1. Leistungsüberwachung öffnen, Datensammlersätze, Benutzerdefiniert, den Satz mit den Leistungsindikatorwarnungen wählen.
+2. Rechtsklick auf den Datensammler vom Typ «Warnung», Eigenschaften, Reiter «Warnungen» (Indikator und Grenzwert).
+3. Reiter «Warnungsaktion»: Eintrag ins Ereignisprotokoll schreiben (Anwendungs- und Dienstprotokolle, Microsoft, Windows, Diagnostics-PLA, Operational) und/oder einen Datensammlersatz starten.
+4. Reiter «Warnungsaufgabe»: Name einer Aufgabe im Aufgabenplaner angeben, die bei Auslösung läuft (laut Anleitung zum Beispiel mit der Aktion «E-Mail senden»).
+5. Aufgabe im Aufgabenplaner anlegen, «Mit höchsten Berechtigungen ausführen» setzen.
+
+Korrektur zu meiner früheren Notiz: Ausgelöste Warnungen stehen laut Microsoft im Protokoll `Microsoft-Windows-Diagnostics-PLA/Operational`. Die Angabe «Anwendungsprotokoll» stammte aus einer Drittquelle. Die Aktion «E-Mail senden» im Aufgabenplaner ist in neueren Windows-Versionen eingeschränkt oder veraltet [W], prüfe das in deiner VM. Als Alternative eignet sich ein PowerShell-Script (Abschnitt 2f) oder PRTG.
 
 ---
 

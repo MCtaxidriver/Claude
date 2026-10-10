@@ -396,7 +396,7 @@ Quelle: https://learn.microsoft.com/de-de/windows-server/get-started/removed-dep
 
 Nur aus Drittquellen, bitte in der eigenen VM nachvollziehen:
 - `perfmon` als Administrator starten, unter Datensammlungssätze, Benutzerdefiniert, Neu, Datensammlungssatz, «Manuell erstellen (erweitert)», Typ Leistungsindikator-Warnung.
-- Indikator und Grenzwert («über» oder «unter») festlegen, Satz starten. Ausgelöste Warnungen erscheinen in der Ereignisanzeige (Anwendungsprotokoll).
+- Indikator und Grenzwert («über» oder «unter») festlegen, Satz starten. Ausgelöste Warnungen erscheinen laut Microsoft im Protokoll Microsoft-Windows-Diagnostics-PLA/Operational (Details siehe `UEK-188-Lernhilfen.md`, Abschnitt 2k). Die Drittquelle nannte fälschlich das Anwendungsprotokoll.
 - Schwellenwerte auf Basis einer Baseline setzen. Eine Quelle nennt 4 bis 6 Wochen Beobachtung, im Kurs reicht eine kurze Messung.
 - Quellen: https://www.computerperformance.co.uk/?p=5868 und https://help.tableau.com/current/server/de-de/perf_collect_perfmon.htm
 
