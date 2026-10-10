@@ -122,6 +122,9 @@ Add-DnsServerPrimaryZone -Name "west02.contoso.com" -ZoneFile "west02.contoso.co
 Add-DnsServerForwarder -IPAddress 172.23.90.124 -PassThru                                    # Weiterleitung
 Get-DnsServerResourceRecord -ZoneName "contoso.com"                                          # alle Einträge einer Zone
 Get-DnsServerResourceRecord -ZoneName "contoso.com" -Name "Admin01"                          # ein Eintrag
+Get-DnsServerZone                                                                            # alle Zonen des Servers
+Remove-DnsServerResourceRecord -ZoneName "contoso.com" -RRType "A" -Name "Host01"            # Eintrag löschen, fragt nach
+Clear-DnsServerCache -Force                                                                  # Cache des DNS-Servers leeren
 ```
 Testen [W]: `nslookup host23.contoso.com`, `Resolve-DnsName host23.contoso.com`.
 
