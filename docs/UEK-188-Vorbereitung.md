@@ -428,3 +428,13 @@ Zu den Nachbarmodulen 123, 117 und 143 gibt es Kompetenzmatrizen mit Lernzielen:
 - Klubschule Pro, Parallelkurs: https://www.klubschule-pro.ch/kurs/it-services-betreiben-warten-und-uberwachen--D_101476_1016_313
 - Modulbaukasten: https://www.modulbaukasten.ch
 - ICT-Learnfactory: https://www.ict-learnfactory.ch
+
+## 8. Was ich geprüft habe und was nichts brachte (Stand 10.10.2026, 21:25)
+
+Damit du nichts doppelt suchst:
+- Nicht öffentlich oder nur mit Login: Kursseiten und Moodle von ICT-BZ (Zentralschweiz), Kursunterlagen und Lernplattform der ICT-Learnfactory, das Kursprogramm 2026/27 (kommt zu Lehrjahresbeginn per Mail).
+- Keine Treffer zu Modul 188: Kompetenzmatrizen ZH («ÜK-Modul, keine Matrix vorhanden»), tbz-it auf GitHub und GitLab (nur M122 und M169 gefunden), Quizlet (nur Modul 123), ict-sh.ch und ict-berufsbildung-ost.ch (nur Modulübersichten), Lernjournale und Portfolios (ausser der einen Lerndokumentation von 2023).
+- Zeitweise nicht erreichbar oder blockiert (403/503, Weiterleitungsschleifen): Quizlet, Berner Zeitung, Tages-Anzeiger, edu.juergarnold.ch.
+- Aus Sicherheitsgründen nicht genutzt: Ein Endpunkt des Modulbaukastens liefert öffentlich ein Zugriffstoken für das CRM des Verbands. Das habe ich weder verwendet noch gespeichert. Dem Verband zu melden wäre sinnvoll.
+- Nicht belegt, weil keine Quelle: Welche Tools und welche Plattform (Windows oder Linux) die Learnfactory im 188er einsetzt. Das kann nur das Sekretariat beantworten.
+
