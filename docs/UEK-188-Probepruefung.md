@@ -1,0 +1,148 @@
+# ÜK 188: Probeprüfung (Eigenbau) mit Musterlösung
+
+Das ist keine offizielle Prüfung. Ich habe sie aus den Handlungszielen und der Leistungsbeurteilung des Modulbaukastens abgeleitet: ein praktischer Teil (60 Prozent, Richtzeit 2 Stunden) und ein schriftlicher Teil (40 Prozent, Richtzeit 1 Stunde). Die Aufgaben der Learnfactory können anders aussehen.
+
+Markierung: [Q] belegt in einer Quelle (siehe `UEK-188-Vorbereitung.md` und `UEK-188-Lernhilfen.md`), [W] aus allgemeinem Fachwissen.
+
+---
+
+## Teil A: Praxis (2 Stunden)
+
+### Ausgangslage
+Die Muster AG ist ein kleines Büro mit 12 Mitarbeitenden. Es gibt einen Server `SRV01` (Windows Server, Domäne `muster.local`, IP 192.168.10.10) und drei Test-Clients. Die Rollen AD DS, DNS, DHCP und Dateiserver laufen bereits. Du übernimmst den Betrieb. Ein Monitoring-Server `MON01` (192.168.10.20) mit PRTG ist vorhanden, `SRV01` ist aber noch nicht eingebunden.
+
+Auszug aus der Betriebsdokumentation:
+
+| Punkt | Wert |
+| --- | --- |
+| DHCP-Scope | 192.168.10.100 bis .200, Maske 255.255.255.0, Gateway 192.168.10.1, DNS 192.168.10.10 |
+| Reservation | Drucker 192.168.10.50 |
+| Freigabe | `\\SRV01\Buchhaltung` auf `D:\Daten\Buchhaltung` |
+| Gruppen | `GG_Buchhaltung` (global), `DL_Buchhaltung_RW` (domänenlokal) |
+| Berechtigungskonzept | Zugriff nur über domänenlokale Gruppen. Buchhaltung darf ändern, Geschäftsleitung darf lesen. |
+
+### Aufgaben
+
+**1. Analyse (10 Minuten, Handlungsziel 1)**
+Prüfe mit der Dokumentation und dem System, ob der Ist-Zustand stimmt. Ermittle den DHCP-Scope, die DNS-Zone, die Freigabe und die Gruppen. Halte Abweichungen schriftlich fest.
+
+**2. Dienste prüfen (10 Minuten, Handlungsziel 2)**
+Stelle fest, welche der Dienste DNS, DHCP, Server und Druckwarteschlange laufen. Starte einen gestoppten Dienst und finde den passenden Eintrag in der Ereignisanzeige.
+
+**3. Performance-Baseline (10 Minuten, Handlungsziel 2)**
+Miss CPU, freien Speicherplatz und die Netzwerkauslastung von `SRV01` und notiere die Werte.
+
+**4. Patches (20 Minuten, Handlungsziel 3)**
+Ermittle, welche Updates installiert sind. Plane einen Patch-Durchlauf für den Server in 5 Schritten, führe vorher einen Snapshot oder ein Backup durch und halte das Vorgehen in der Betriebsdokumentation fest.
+
+**5. Monitoring einbinden (30 Minuten, Handlungsziel 4)**
+Installiere den SNMP-Dienst auf `SRV01`, erlaube nur `MON01`, binde `SRV01` in PRTG ein (Ping, CPU, freier Speicherplatz auf D:, Dienststatus DHCP). Lege begründete Grenzwerte fest, richte eine Benachrichtigung ein und teste sie, indem du einen Dienst stoppst.
+
+**6. Berechtigungen (20 Minuten, Handlungsziel 5)**
+Lege einen neuen Mitarbeiter `Sara Keller` an, nimm ihn in die Gruppe der Buchhaltung auf und prüfe, dass sie auf `\\SRV01\Buchhaltung` ändern darf, aber keinen Zugriff auf `\\SRV01\Geschaeftsleitung` hat. Dokumentiere die Rechte.
+
+**7. Umsystem (10 Minuten, Handlungsziel 6)**
+Die Firewall auf `SRV01` blockiert die SNMP-Abfrage. Schreibe einen Änderungsauftrag für den externen Netzwerkpartner, mit dem du eine Regel für `MON01` verlangst, und gib an, wie du die Änderung testest.
+
+### Bewertungsraster (Vorschlag, 100 Punkte)
+
+| Aufgabe | Punkte | Worauf geachtet wird |
+| --- | --- | --- |
+| 1 Analyse | 10 | Abweichungen gefunden und dokumentiert |
+| 2 Dienste | 10 | Richtige Befehle, Log-Eintrag gefunden |
+| 3 Baseline | 10 | Messwerte mit Zeit und Methode notiert |
+| 4 Patches | 15 | Ablauf vollständig (Test, Backup, Rollback, Doku) |
+| 5 Monitoring | 25 | SNMP korrekt, Sensoren laufen, Grenzwerte begründet, Alarm getestet |
+| 6 Berechtigungen | 15 | AGDLP eingehalten, Test erfolgreich, Doku |
+| 7 Umsystem | 10 | Auftrag vollständig und nachvollziehbar, Testverfahren genannt |
+| Dokumentation durchgehend | 5 | Nachgeführt und verständlich |
+
+### Musterlösung (Kurzfassung)
+
+**1.** `Get-DhcpServerv4Scope`, `Get-DhcpServerv4OptionValue -ScopeId 192.168.10.0`, `Get-DnsServerZone`, `Get-SmbShare`, `Get-ADGroup -Filter "Name -like '*Buchhaltung*'"`. Vergleichen mit der Tabelle. Abweichungen (zum Beispiel falsches Gateway im Scope) als Liste notieren. [W, Befehle zum Teil aus Lernhilfen]
+
+**2.** `Get-Service DNS, DHCPServer, LanmanServer, Spooler`. Gestoppten Dienst mit `Start-Service` starten. In der Ereignisanzeige (System) steht dazu Event 7036 (gestartet oder gestoppt), bei einem Absturz 7034. [Q: Get-Service-Doku, Event-ID-Quellen]
+
+**3.** Zum Beispiel:
+```powershell
+Get-Counter -Counter "\Processor(_Total)\% Processor Time" -SampleInterval 5 -MaxSamples 12
+Get-Counter -Counter "\LogicalDisk(D:)\% Free Space"
+Get-Counter -Counter "\Network Interface(*)\Bytes Total/sec"
+```
+Werte mit Uhrzeit und Intervall notieren. Zählernamen sind auf deutschem System lokalisiert, sie lassen sich mit `Get-Counter -ListSet *` finden. [Q: Get-Counter-Doku]
+
+**4.** `Get-HotFix` listet installierte Updates. Ablauf [Q: n-able, TechTarget]:
+1. Verfügbare Updates sichten und nach Risiko einstufen
+2. Snapshot oder Backup von `SRV01`, Rollback-Plan festhalten
+3. Test auf einer Testmaschine oder einem Klon
+4. Rollout im Wartungsfenster, danach Neustart
+5. Kontrolle (Dienste laufen, Monitoring grün, Hotfix-Liste) und Betriebsdokumentation nachführen
+Quelle des Patches: Hersteller, bei manuellen Paketen Hashwert prüfen. [Q: Modul 188, Kenntnis 3.2]
+
+**5.** SNMP installieren und absichern:
+```powershell
+Install-WindowsFeature SNMP-Service,SNMP-WMI-Provider -IncludeManagementTools
+```
+In den Eigenschaften des SNMP-Dienstes eine Community eintragen (nur lesen) und als erlaubten Host `192.168.10.20` setzen, nicht «alle Hosts». [Q: Paessler] Besser wäre SNMPv3, aber der Windows-Agent bietet v1 und v2c, deshalb Zugriff auf eine IP und Firewall begrenzen. [W]
+In PRTG Gerät `SRV01` anlegen, SNMP-Zugangsdaten hinterlegen, Sensoren hinzufügen: Ping, CPU-Last, Speicherplatz D:, Dienststatus DHCP-Server. Beispiel für begründete Grenzwerte [W]:
+- CPU: Warnung ab 80 Prozent über 5 Minuten, Fehler ab 95 Prozent. Begründung: kurze Spitzen sind normal, dauerhaft hohe Last zeigt echten Engpass.
+- Speicherplatz D:: Warnung bei weniger als 20 Prozent frei, Fehler bei weniger als 10 Prozent. Begründung: Reserve für Wachstum und Backup.
+- Dienststatus: sofort Fehler, wenn gestoppt.
+Grenzwerte am Kanal setzen, State Trigger auf Warning und Down mit E-Mail-Vorlage, mit «Send test notification» testen und dann `Stop-Service DHCPServer` für den echten Test (danach wieder starten). [Q: PRTG-Handbuch]
+
+**6.**
+```powershell
+New-ADUser -Name "Sara Keller" -SamAccountName skeller -UserPrincipalName skeller@muster.local -AccountPassword (Read-Host -AsSecureString) -Enabled $true
+Add-ADGroupMember -Identity GG_Buchhaltung -Members skeller
+```
+AGDLP: `GG_Buchhaltung` ist Mitglied in `DL_Buchhaltung_RW`, die Gruppe `DL_Buchhaltung_RW` hat auf Freigabe und NTFS das Recht «Ändern». Benutzer nie direkt in die ACL. [Q: Tenfold, ManageEngine]
+Test: Anmeldung als `skeller` am Client, Datei in `\\SRV01\Buchhaltung` anlegen (muss gehen), Zugriff auf `\\SRV01\Geschaeftsleitung` (muss abgelehnt werden). Rechtetabelle in die Doku (Matrix Gruppen gegen Shares). [Q: Modul 117, 5.2]
+
+**7.** Beispielauftrag [W]:
+> Bitte auf der Firewall von SRV01 (192.168.10.10) eine eingehende Regel anlegen: Quelle 192.168.10.20 (MON01), Protokoll UDP, Port 161, Zweck SNMP-Überwachung. Alle anderen Quellen bleiben gesperrt. Umsetzung bis Freitag, Testverfahren: Abfrage von MON01 aus und Kontrolle der Sensoren in PRTG. Rückmeldung an den Betrieb.
+Auf `SRV01` selbst: `New-NetFirewallRule -DisplayName "SNMP von MON01" -Direction Inbound -Protocol UDP -LocalPort 161 -RemoteAddress 192.168.10.20 -Action Allow` [Q: New-NetFirewallRule-Doku, Parameter]. Test von `MON01` aus: Sensor wird grün, zusätzlich `Test-NetConnection` für TCP-Ports und `snmpwalk` für UDP 161. [W]
+
+---
+
+## Teil B: Schriftlich (1 Stunde)
+
+1. Nenne drei Inhalte einer Betriebsdokumentation und erkläre, warum sie nachgeführt werden muss.
+2. Erkläre den Unterschied zwischen SNMP v2c und v3.
+3. Warum setzt man Schwellwerte nicht einfach bei 50 Prozent? Wie bestimmst du sinnvolle Werte?
+4. Beschreibe den Patch-Prozess für einen Produktivserver in fünf Schritten.
+5. Welche Gefahren hat ein Patch für ein Unternehmen?
+6. Woran erkennst du auf Windows einen Dienst, der unerwartet beendet wurde?
+7. Erkläre AGDLP an einem Beispiel mit Abteilung Einkauf.
+8. Eine Freigabe hat «Lesen», der NTFS-Ordner «Ändern». Was darf der Benutzer über das Netz?
+9. Was passiert, wenn bei NTFS ein Recht auf «Verweigern» steht und der Benutzer in einer Gruppe mit «Erlauben» ist?
+10. Wozu dienen DHCP-Reservationen? Nenne ein Beispiel.
+11. Warum braucht Active Directory einen funktionierenden DNS-Dienst?
+12. Was bedeutet «Baseline» im Monitoring?
+13. Wie testest du, ob dein Alarmsystem zuverlässig funktioniert?
+14. Nenne zwei Anpassungen auf Umsystemen und wie du sie dem Betreiber beschreibst.
+15. Nenne drei Empfehlungen zu Backups und warum der Restore-Test wichtig ist.
+
+### Musterlösung Teil B
+
+1. Zum Beispiel Netzplan, Serverkonfiguration (Betriebssystem, Speicher, Anwendungen), Verantwortliche und Kontakte, Berechtigungskonzept. Sie muss aktuell sein, weil sonst Wartbarkeit und schnelle Hilfe im Störfall leiden. [Q: Modul 188 1.2, Vorlage Datenschutz.ch]
+2. v2c: Authentifizierung nur über Community-String, Übertragung im Klartext, mit Sniffer mitlesbar. v3: Benutzer, Authentifizierung (MD5 oder SHA), optional Verschlüsselung (DES oder AES), Stufen noAuthNoPriv, authNoPriv, authPriv. [Q: Paessler, NinjaOne]
+3. Weil der Normalwert je nach Serverrolle verschieden ist. Man misst zuerst eine Baseline und leitet Warn- und Fehlergrenzen davon ab, mit Blick auf Risiko und SLA. Kurzzeitige Spitzen sollen keinen Alarm auslösen. [Q: Bildungsplan f5, ChannelPartner]
+4. Inventar und Risikoeinstufung, Test in Testumgebung, Backup und Rollback-Plan, Rollout im Wartungsfenster mit Pilotgruppe, Kontrolle und Doku. [Q: n-able, TechTarget]
+5. Inkompatibilität mit Software, Neustart nötig, Dienstausfall, Fehlverhalten nach dem Update. [Q: Modul 188 3.3, Quellen]
+6. Ereignisanzeige, System-Log, Event 7034. Zusätzlich zeigt `Get-Service` den Status Stopped, und das Monitoring meldet Down. [Q: Event-ID-Quellen, Get-Service-Doku]
+7. Konten der Mitarbeitenden im Einkauf kommen in die globale Gruppe `GG_Einkauf`. Diese ist Mitglied in der domänenlokalen Gruppe `DL_Einkauf_RW`. Auf den Ordner bekommt nur `DL_Einkauf_RW` das Recht «Ändern». [Q: Tenfold, ManageEngine]
+8. Nur Lesen, denn bei Zugriff über die Freigabe gilt die restriktivere Ebene. [Q: Netwrix, Varonis]
+9. «Verweigern» hat Vorrang, der Benutzer hat keinen Zugriff. [Q]
+10. Ein Gerät bekommt immer dieselbe Adresse, bleibt aber zentral verwaltet. Beispiel: Netzwerkdrucker 192.168.10.50. [Q: Microsoft Learn DHCP]
+11. Clients und Domänencontroller finden sich über DNS. Ohne DNS funktionieren Anmeldung und Gruppenrichtlinien nicht richtig. [Q: Microsoft Learn DNS]
+12. Die Normalwerte des Systems im Betrieb. Sie sind Referenz für Schwellwerte und für das Erkennen von Abweichungen. [W, Q: Quellen zu Baseline]
+13. Mit regelmässigen Tests: Testbenachrichtigung auslösen und einen Dienst absichtlich stoppen. Ergebnis dokumentieren. [Q: Bildungsplan f5.4, PRTG-Handbuch]
+14. DNS-Eintrag (Name, Zone, IP, TTL) und Firewall-Regel (Quelle, Ziel, Protokoll, Port, Zweck, Befristung, Testverfahren). Beschreibung so, dass Dritte sie umsetzen können. [Q: Modul 188 6.1 und 6.2]
+15. Regelmässig sichern, externe Medien danach vom System trennen, Cloud nur mit geprüften Daten, Wiederherstellung testen, denn ein Backup ohne getesteten Restore ist nicht sicher. [Q: NCSC über Netzwoche]
+
+---
+
+## Hilfreiche Zusatzinfos für die Praxis
+
+- **SNMP-OIDs** [Q: HOST-RESOURCES-MIB, RFC 2790 laut Mailing-Listen]: CPU-Last pro Prozessor unter `1.3.6.1.2.1.25.3.3.1.2` (hrProcessorLoad, Prozent der Zeit ohne Leerlauf, Mittelwert über die letzte Minute). Mit `snmpwalk` die Instanzen ermitteln, `snmpget` auf die Basis-OID liefert einen Fehler. Speicher und Platten liegen laut meinem Wissen unter `1.3.6.1.2.1.25.2` (hrStorageTable), das ist nicht belegt.
+- **IPERKA** [Q: Stadt Bern bezeichnet es als 6-Schritte-Methode]: Informieren, Planen, Entscheiden, Realisieren, Kontrollieren, Auswerten (Buchstaben aus meinem Wissen). Passt gut für Aufträge im üK und für das Lernjournal.
