@@ -527,6 +527,35 @@ Hinweis für die Praxis [W]: Installiere PRTG nicht auf dem Server, den du über
 
 ---
 
+## 2n. Lab zu Hause aufbauen (Tag 4 im Plan)
+
+Quellen: https://learn.microsoft.com/de-de/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v und die Cmdlet-Dokus New-VM und Checkpoint-VM.
+
+**Hyper-V aktivieren** [Q]
+- Windows 10 oder 11 in der Edition **Pro oder Enterprise** wird gebraucht. Unter Windows 10/11 **Home** lässt sich die Hyper-V-Rolle nicht installieren.
+- Per PowerShell: `Enable-WindowsOptionalFeature -Online -FeatureName Microsoft-Hyper-V -All`. Alternativ per DISM: `DISM /Online /Enable-Feature /All /FeatureName:Microsoft-Hyper-V`.
+- Achtung: Andere Virtualisierungs-Apps wie VMware Workstation oder VirtualBox nutzen dieselben Prozessorfunktionen. Laufen sie zusammen mit Hyper-V, können VMs nicht starten oder unzuverlässig laufen. Wähle also eine Lösung.
+- Auf einem Windows Server installierst du die Rolle mit dem Server-Manager oder `Install-WindowsFeature`.
+
+**Windows Server zum Testen** [Q]
+- Microsoft verweist in der Hyper-V-Doku für Windows Server 2025 auf das Evaluation Center: https://www.microsoft.com/evalcenter/evaluate-windows-server-2025 (die Seite war für mich gerade nicht abrufbar, wegen hoher Last). Eine Evaluierungskopie ist zeitlich begrenzt gültig [W].
+
+**VM per PowerShell** [Q: New-VM-Doku]
+```powershell
+New-VM -Name "SRV01" -MemoryStartupBytes 2GB -NewVHDPath D:\vhd\srv01.vhdx -NewVHDSizeBytes 40GB
+```
+Mehr Arbeitsspeicher nach Bedarf. Zwei VMs (Server und Client) in ein internes virtuelles Netz hängen und dem Server eine feste IP geben [W].
+
+**Snapshot vor jeder Änderung** [Q: Checkpoint-VM-Doku]
+```powershell
+Checkpoint-VM -Name SRV01 -SnapshotName BeforeInstallingUpdates
+```
+Das passt zum Patch-Prozess (Backup und Rollback-Plan) und lässt dich Fehler gefahrlos ausprobieren.
+
+**Empfohlene Mindestgrösse** [W]: Host mit 16 GB RAM, damit Server (2 bis 4 GB), Client (4 GB) und Monitoring-VM (2 bis 4 GB) parallel laufen. Mit 8 GB geht es, wenn du die VMs nacheinander startest.
+
+---
+
 ## 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 Voraussetzung: Ein Laptop mit Hyper-V oder VirtualBox und eine Windows-Server-Testversion (Evaluation). Falls das nicht geht, nur die Theorie-Teile und Befehle lesen.
