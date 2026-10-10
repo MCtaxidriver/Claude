@@ -618,6 +618,11 @@ Quellen: https://www.paessler.com/manuals/prtg/system_requirements, https://www.
 | Ereignisse | Event Log (Windows API) Sensor, WMI Event Log Sensor |
 | Updates | Windows Updates Status (PowerShell) Sensor |
 | Eigene OIDs | SNMP Library Sensor |
+Einzelheiten aus den Sensorseiten [Q: PRTG-Handbuch, DHCP Sensor, DNS v2 Sensor, SNMP Windows Service v2 Sensor]:
+- **DHCP Sensor:** sendet einen Broadcast und wartet auf die Antwort eines DHCP-Servers, zeigt dessen Adresse und die angebotene IP. Das Probe-Gerät muss eine statische IP haben, sonst droht Datenverlust. Der Sensor zeigt einen Timeout, wenn kein DHCP antwortet oder wenn mehr als zwei DHCP-Sensoren pro Gerät angelegt sind.
+- **DNS v2 Sensor:** fragt einen DNS-Server nach einem Namen ab und vergleicht das Ergebnis mit einem Filter. Er schlägt an, wenn der Server den Namen nicht korrekt auflöst. Der Abfragetyp ist wählbar.
+- **SNMP Windows Service v2 Sensor:** überwacht den Status eines Windows-Dienstes per SNMP. Er braucht SNMP-Zugangsdaten, die weiter oben im Gerätebaum hinterlegt sind, und liest die Dienste aus der LAN-Manager-MIB.
+
 Das deckt sich mit den geprüften Themen der LBV: AD, DNS, DHCP und Updates haben jeweils einen eigenen Sensor. Welche davon die Learnfactory verwendet, weiss ich nicht.
 
 Hinweis für die Praxis [W]: Installiere PRTG nicht auf dem Server, den du überwachst, sondern auf einer eigenen VM (`MON01` in der Probeprüfung). So testest du auch den Netzwerkzugriff und die Firewall-Regel.
