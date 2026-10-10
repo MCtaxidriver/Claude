@@ -592,15 +592,15 @@ Voraussetzung: Ein Laptop mit Hyper-V oder VirtualBox und eine Windows-Server-Te
 | 1 | Modul verstehen | `UEK-188-Vorbereitung.md` Abschnitte 1, 2 und 2a lesen. Fragen fürs Sekretariat abschicken. Kursprogramm suchen. |
 | 2 | Vorwissen 117 | Selbsttest und Subnetting: 10 Aufgaben (z.B. /24 bis /30), Lernkarten 44 bis 46. |
 | 3 | Vorwissen 123 | DHCP, DNS, File, Print erklären können. Lernkarten 45 bis 47. |
-| 4 | Lab aufbauen | VM mit Windows Server, zweite VM als Client, internes Netz, feste Server-IP. |
-| 5 | AD und DNS | `Install-ADDSForest`, Benutzer und Gruppen anlegen, Client in die Domäne. Lernkarten 31 und 32. |
+| 4 | Lab aufbauen | VM mit Windows Server, zweite VM als Client, internes Netz, feste Server-IP. Siehe Abschnitt 2n. |
+| 5 | AD und DNS | `Install-ADDSForest`, Benutzer und Gruppen anlegen, Client in die Domäne. Lernkarten 31, 32, 57 und 58, Abschnitt 2i. |
 | 6 | DHCP | Scope, Optionen, Reservation, Client mit `ipconfig /release` und `/renew` testen. |
-| 7 | Rechte | Freigabe und NTFS: eine Freigabe, zwei Gruppen, Zugriff testen. AGDLP umsetzen. Lernkarten 33 bis 39. |
+| 7 | Rechte | Freigabe und NTFS: eine Freigabe, zwei Gruppen, Zugriff testen. AGDLP umsetzen. Lernkarten 33 bis 39 und 61 bis 63, Abschnitt 2i. |
 | 8 | Betriebsdoku | Kurze Doku zum Lab schreiben (Netzplan, Server, Dienste, Rechte). Lernkarten 1 bis 5. |
-| 9 | Bordmittel-Monitoring | `Get-Counter`, Ressourcenmonitor, Ereignisanzeige. Eine Baseline notieren. Lernkarten 6 bis 13. |
-| 10 | SNMP und PRTG | SNMP-Dienst installieren, PRTG (Gratisversion) einrichten, drei Sensoren, Grenzwerte, Benachrichtigung, Testalarm. Lernkarten 20 bis 30. |
-| 11 | Dienst-Ausfall | Einen Dienst stoppen, Alarm prüfen, Ereignis 7036 finden, Dienst wieder starten, alles dokumentieren. |
-| 12 | Patches | `Get-HotFix`, Patch-Prozess durchspielen (Snapshot, Update, Kontrolle, Doku). Lernkarten 14 bis 19. |
+| 9 | Bordmittel-Monitoring | `Get-Counter`, Ressourcenmonitor, Ereignisanzeige. Eine Baseline notieren. Lernkarten 6 bis 13, Abschnitte 2e und 2k. |
+| 10 | SNMP und PRTG | SNMP-Dienst installieren, PRTG (Gratisversion) einrichten, drei Sensoren, Grenzwerte, Benachrichtigung, Testalarm. Lernkarten 20 bis 30, Abschnitte 2d und 2m. |
+| 11 | Dienst-Ausfall | Einen Dienst stoppen, Alarm prüfen, Ereignis 7036 finden, Dienst wieder starten, alles dokumentieren. Optional das Script aus Abschnitt 2f einrichten. |
+| 12 | Patches | `Get-HotFix`, Patch-Prozess durchspielen (Snapshot, Update, Kontrolle, Doku). Lernkarten 14 bis 19 und 64 bis 67, Abschnitt 2l. |
 | 13 | Umsysteme und Backup | Firewall-Regel für SNMP nur von der PRTG-IP, Änderungsauftrag schreiben, Backup und Restore testen. Lernkarten 40 bis 43, 49, 50. |
 | 14 | Generalprobe | Alle Lernkarten durchgehen. Ein Mini-Szenario aus dem Kopf: Service aufsetzen, überwachen, patchen, Rechte vergeben, dokumentieren. 1 Stunde Zeit, so wie die Praxisprüfung (2 Stunden) plus schriftlich (1 Stunde). |
 
