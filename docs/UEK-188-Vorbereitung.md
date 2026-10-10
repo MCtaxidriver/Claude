@@ -117,6 +117,8 @@ Webseite: https://www.modulbaukasten.ch/module/188/1/de-DE?title=Services-betrei
    - 6.2 Anforderungen so beschreiben, dass Dritte sie umsetzen können
    - 6.3 Anpassungen an Umsystemen testen
 
+Hinweis zum Stand (Change Log des Modulbaukastens, https://www.modulbaukasten.ch/change-log): Die Fachkommission Modulbaukasten hat am 06.06.2025 beschlossen, dass es keine handlungsnotwendigen Kenntnisse mehr gibt. Sie wurden am 21.01.2026 in der Anzeige deaktiviert und stehen bei älteren Modulen nur noch im PDF der Modulidentifikation. Für 188 (Version 1 von 2021) sind die Kenntnisse oben also der letzte Stand, sie dienen nur zur Orientierung. Die Lernziele legt die Learnfactory fest. In der Modulbaukasten-Anzeige zu 188 ist auch keine Kompetenzmatrix hinterlegt («keine Daten der Kompetenzmatrix verfügbar»). Im Change Log kam am 02.03.2026 eine Kompetenzmatrix zu Modul 187 dazu, zu 188 steht dort nichts.
+
 Die Kenntnisse sind laut Dokument nicht abschliessend. Die genauen Lernziele und den Lernweg legt der Bildungsanbieter fest (also die ICT-Learnfactory).
 
 ## 2a. Leistungsbeurteilung (LBV 188-1, Modulbaukasten, publiziert 10.06.2022)
