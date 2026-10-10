@@ -193,6 +193,34 @@ M117 Netz- und Infrastruktur:
 
 Wenn du bei einem Punkt ins Stocken kommst, ist das ein guter Repetitionskandidat vor dem Kurs.
 
+### Microsoft-Doku und Befehle (geprüft)
+
+- WSUS (Updates zentral verwalten, mit PowerShell-Cmdlets steuerbar, SHA-256-Hash). Microsoft nennt WSUS veraltet, es wird aber weiter unterstützt: https://learn.microsoft.com/de-de/windows-server/administration/windows-server-update-services/get-started/windows-server-update-services-wsus
+- Performance-Werte per PowerShell mit `Get-Counter`: https://learn.microsoft.com/de-de/powershell/module/microsoft.powershell.diagnostics/get-counter
+  - `Get-Counter -Counter "\Processor(_Total)\% Processor Time" -SampleInterval 2 -MaxSamples 3`
+  - `Get-Counter -Counter "\LogicalDisk(_Total)\% Free Space"`
+  - `Get-Counter -ListSet *` listet alle Zählersätze. Die Namen sind lokalisiert (auf deutschem System deutsch).
+- Wichtige Zähler und Richtwerte (ChannelPartner): https://www.channelpartner.de/article/3894353/know-how-windows-performance-counter.html
+  - CPU: Processor % Processor Time. Warteschlange (System Processor Queue Length) dauerhaft über 2 deutet auf Überlast hin.
+  - RAM: viele Page Reads/Writes pro Sekunde heissen meist RAM-Mangel
+  - Disk: PhysicalDisk Current Disk Queue Length dauerhaft hoch heisst Platte ausgelastet
+  - Netz: Network Interface Bytes Total/sec gegen die Bandbreite der Netzwerkkarte halten
+  - Konkrete Schwellwerte hängen von der Serverrolle ab, deshalb zuerst eine Baseline messen.
+- Lab-Beispiel zum Nachbauen (Mitschrift einer Schule in Österreich, Windows Server 2025 in einer VM mit zwei Netzwerkadaptern, AD, Benutzer, DHCP, Domänen-Beitritt, Freigabe, Gruppenrichtlinien, Software per GPO): https://lernemit.duckdns.org/it-doku/pdf/WINDOWS_SERVER_WINCLIENT_ACTIVE-DIRECTORY.pdf (30 Seiten, nur als Übungsidee, nicht Kursmaterial)
+
+### Abgleich mit der Gemini-Zusammenfassung
+
+Passt zu den offiziellen Quellen:
+- Vier Kernbereiche Analysieren, Betreiben, Updates und Patches, Monitoring
+- Berechtigungen nach Firmenkonzept, manuelle Patches und Softwareverteilung
+- Bezug zu 117 und 123 und die Folgemodule 190 und 109
+
+Nicht belegt, bitte nicht als Fakt nehmen:
+- Webserver (Apache, Nginx, IIS) und Datenbanken (MariaDB, PostgreSQL) als Kursinhalt. Das Modul nennt File-, Print-, DHCP-, DNS- und Verzeichnis-Services.
+- Zabbix, Nagios und Prometheus als Kurs-Tools. Das Modul sagt nur «bestehende Monitoring-Tools». Die Learnfactory nennt kein Tool.
+- Linux oder Windows. Das Modul legt sich nicht fest, die genannten Services sprechen eher für Windows Server.
+- Die Quellenangaben bei Gemini (ict-sh.ch, bit.admin.ch, wiss.ch, YouTube) enthalten zu Modul 188 nichts, was ich dort finden konnte.
+
 ## 5. Konkrete Übungen für die zwei Wochen
 
 - Zwei VMs aufsetzen (VirtualBox oder Hyper-V), eine als Server, eine als Client
