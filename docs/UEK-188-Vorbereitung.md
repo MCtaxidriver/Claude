@@ -170,6 +170,29 @@ Die Gliederung folgt den offiziellen Handlungszielen. Die konkreten Beispiele un
 - PRTG: WMI-Dienst-Sensor: https://www.paessler.com/manuals/prtg/wmi_service_sensor (WMI belastet stärker, Paessler empfiehlt höchstens etwa 200 solcher Sensoren pro Probe)
 - Hinweis: SNMP v1 und v2c übertragen die Community im Klartext. Für die Handlungsziel-Kenntnis 4.1 (Sicherheitsmechanismen) gehört SNMPv3 mit Authentifizierung und Verschlüsselung dazu.
 
+## 4b. Selbsttest zum Vorwissen (aus den Kompetenzmatrizen ZH, Stufe Beginner)
+
+Die üK-Broschüre Bern verlangt, 117 und 123 zu repetieren. Die Kompetenzmatrizen (https://kompetenzmatrix.ch/cluster-platform/m123/ und .../m117/) formulieren das als Ich-Aussagen. Kannst du das erklären oder tun?
+
+M123 Serverdienste:
+- Wesentliche Merkmale von Serverhardware aufzählen
+- Das Server-Client-Prinzip, die per DHCP zugewiesenen Angaben und die DNS-Namensauflösung erklären
+- Netzwerkfreigaben erklären, Vor- und Nachteile eines Druckservers gegenüber Direktdruck nennen
+- Serverrollen installieren und prüfen, ob der Dienst korrekt startet
+- Auf dem Client die Funktion einrichten
+- Zugriffsschutz im Netzwerk und im Dateisystem erklären
+- Systeme und Software warten, laufende Dienste erkennen
+- Mit einfachen Tests einen Dienst prüfen und ihn dokumentieren
+
+M117 Netz- und Infrastruktur:
+- Anforderungen eines Netzwerks beschreiben und dokumentieren, Basisdienste (DHCP, DNS, Fileserver) erläutern
+- Netzwerkschemas lesen, IP-Adressierung erläutern
+- Switch, Router, Access Point im Schema deuten, OSI-Modell erklären, Protokolle den Schichten zuordnen
+- Netzwerk-Ressourcen und Zugriffsberechtigungen erklären, grundlegende Fehlersuche
+- Nutzen von Tests und Dokumentation aufzeigen
+
+Wenn du bei einem Punkt ins Stocken kommst, ist das ein guter Repetitionskandidat vor dem Kurs.
+
 ## 5. Konkrete Übungen für die zwei Wochen
 
 - Zwei VMs aufsetzen (VirtualBox oder Hyper-V), eine als Server, eine als Client
