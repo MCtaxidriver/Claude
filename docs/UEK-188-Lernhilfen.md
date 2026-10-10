@@ -627,6 +627,12 @@ Quellen: https://www.paessler.com/manuals/prtg/system_requirements, https://www.
 5. Danach folgt laut Handbuch der Smart Setup (Schritt 2) zum Einrichten der ersten Geräte.
 Das Ändern von Standardpasswörtern gehört auch in die Betriebsdokumentation und passt zum Sicherheitsgedanken von Handlungsziel 5.
 
+**Zugangsdaten und Auto-Discovery in PRTG** [Q: https://www.paessler.com/manuals/prtg/smart_setup/ und https://www.paessler.com/manuals/prtg/auto-discovery]
+- **Zugangsdaten** trägst du in den Einstellungen ein. Für WMI-Überwachung von Windows-Servern braucht PRTG Windows-Administratorzugangsdaten, bei Active Directory empfiehlt das Handbuch ein Domänenadministratorkonto. Für SNMP-Geräte gilt als Standard SNMP v2c mit dem Community String `public` auf Port 161. Zugangsdaten werden in der Root-Gruppe gespeichert und an untergeordnete Geräte vererbt, auf jeder Ebene lässt sich die Vererbung abschalten.
+- Aus Sicht von Handlungsziel 5 (Least Privilege) ist ein Domänenadministrator für das Monitoring eher zu viel. Ein eigenes Dienstkonto mit den nötigen Rechten wäre sauberer, dazu Abschnitt 2i [W].
+- **Auto-Discovery:** PRTG pingt das Subnetz des Core-Servers durch, fügt erreichbare Geräte hinzu, erkennt den Gerätetyp per SNMP, WMI und weiteren Protokollen und legt passende Sensoren aus Gerätevorlagen an. Stufen: Standard, Detailed und eigene Gerätevorlagen. Standardmässig läuft sie nur einmal, häufige Läufe können die Leistung belasten.
+- **Voraussetzungen auf Windows-Zielen für WMI:** Die Dienste Remote Registry und RPC laufen und stehen auf «Automatisch», WMI ist aktiv, die Firewall des Ziels erlaubt WMI. SNMP lässt sich unter neueren Windows-Clients über die optionalen Features installieren.
+
 **Passende PRTG-Sensoren** [Q: Sensorverzeichnis im PRTG-Handbuch, https://www.paessler.com/manuals/prtg/]
 | Was du überwachst | Sensor (Name laut Handbuch) |
 | --- | --- |
