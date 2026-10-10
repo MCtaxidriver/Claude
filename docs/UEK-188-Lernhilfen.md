@@ -208,7 +208,7 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 46. **Wann statische, wann dynamische IP?** Server, Drucker, Netzkomponenten statisch oder per Reservation. Clients dynamisch. [Q: Modul 123 1.5, W]
 47. **Welche Schritte hat die Inbetriebnahme eines Serverdienstes?** Installieren, konfigurieren, starten, auf Client verfügbar machen, testen. [Q: Modul 123 2.1]
 48. **Was ist RAID 5, wie viele Platten, wie viel Kapazität?** Striping mit Parität, mindestens 3 Platten, eine Platte Kapazität geht für Parität weg, eine Platte darf ausfallen. [Q: Lerndokumentation]
-49. **Welche Backup-Arten gibt es?** Voll, differentiell (alles seit dem letzten Voll-Backup), inkrementell (seit dem letzten Backup). [W]
+49. **Welche Backup-Arten gibt es?** Voll, differentiell (alles, was sich seit dem letzten Vollbackup geändert hat), inkrementell (was sich seit dem letzten Backup irgendeiner Art geändert hat). Differentielle Backups wachsen mit der Zeit, für die Wiederherstellung aus inkrementellen Backups braucht man die ganze Kette. Beide setzen auf einem Vollbackup auf. [Q: ComputerWeekly, Netzwelt, EaseUS]
 50. **Was rät das NCSC beim Backup?** Regelmässig sichern, externe Medien danach trennen, Wiederherstellung testen. [Q: Netzwoche]
 
 ### Zusatzkarten: Print, GPO, Backup (51 bis 56)
@@ -258,7 +258,7 @@ Das Modul legt sich nicht auf ein Betriebssystem fest. Hier die Linux-Entsprechu
 | Logs lesen | Ereignisanzeige, `Get-WinEvent` | `journalctl -u <dienst>`, `--since`, `-b` (seit Boot) [Q: Ubuntu man journalctl] |
 | Updates | WSUS, Windows Update | `apt update`, `apt upgrade`, automatisch mit `unattended-upgrades` [Q: Ubuntu Server Docs] |
 | Berechtigungen | NTFS, `icacls` | `chmod`, `chown`, ACLs mit `setfacl -m` und `getfacl` [Q: Ubuntu man setfacl, W] |
-| Firewall | `New-NetFirewallRule` | `ufw`, z.B. `sudo ufw allow from <IP> to any port <Port>` [Q: Ubuntu Server Docs beschreiben «Allow access from specific hosts», Syntax aus meinem Wissen] |
+| Firewall | `New-NetFirewallRule` | `ufw`, z.B. `sudo ufw allow proto tcp from 192.168.0.2 to any port 22` (SSH nur von einem Host). Für SNMP: `sudo ufw allow proto udp from <Monitoring-IP> to any port 161`. Statt einer IP geht auch ein Netz wie 192.168.0.0/24. [Q: Ubuntu Server Docs, Firewall]. Regeln werden der Reihe nach geprüft, ein früheres «deny» kann eine spätere Erlaubnis aushebeln. |
 | SNMP-Agent | Feature SNMP-Service | Paket `snmpd`, Konfiguration in `/etc/snmp/snmpd.conf` [W] |
 | Performance | `Get-Counter` | `top`, `vmstat`, `iostat`, `free -h`, `df -h` [W] |
 
@@ -308,6 +308,10 @@ In meinen Worten, nach den Übersichtsseiten von Microsoft Learn.
 - Berechtigungen legen die Art des Zugriffs auf ein Objekt fest, zum Beispiel Lesen, Ändern, Besitzer ändern, Löschen.
 - Microsoft empfiehlt, Berechtigungen Gruppen zuzuweisen und nicht einzelnen Benutzern. Das verbessert auch die Leistung beim Prüfen des Zugriffs.
 - Authentifizierung kommt zuerst (wer bist du), danach die Autorisierung (was darfst du).
+
+**Backup-Begriffe** [Q: Sekundärquellen, keine Behördenquelle gefunden]
+- **3-2-1-Regel:** drei Kopien der Daten, auf zwei verschiedenen Medientypen, eine davon extern. Eine moderne Erweiterung ist 3-2-1-1-0 mit einer zusätzlichen unveränderlichen oder vom Netz getrennten Kopie und null Fehlern beim Wiederherstellungstest (Veeam, ComputerWeekly, SentinelOne). Die CISA soll die Regel in einem Leitfaden nennen, den Originaltext habe ich nicht gelesen.
+- **RPO** (Recovery Point Objective, verkraftbarer Datenverlust): maximale Zeit an Daten, die bei einem Ausfall verloren gehen darf, zum Beispiel 30 Minuten. Das Backup-Intervall muss dazu passen. **RTO** (Recovery Time Objective, Wiederanlaufzeit): wie lange die Wiederherstellung maximal dauern darf. Kürzere Werte kosten meist mehr. [Q: Microsoft Azure Well-Architected Framework und Azure Business Continuity]
 
 **Überwachung allgemein** [Q: Bildungsplan f5, PRTG-Handbuch]
 - Erst festlegen, was überwacht wird und mit welcher Methode (Script, Software, Benachrichtigung). Dann Schwellwerte und Aktionen definieren und dabei Risiko und SLA beachten. Danach das Überwachungssystem regelmässig testen und die Ergebnisse dokumentieren. Bei Alarm rasch handeln.
