@@ -88,6 +88,20 @@ Webseite: https://www.modulbaukasten.ch/module/188/1/de-DE?title=Services-betrei
 
 Die Kenntnisse sind laut Dokument nicht abschliessend. Die genauen Lernziele und den Lernweg legt der Bildungsanbieter fest (also die ICT-Learnfactory).
 
+## 2a. Leistungsbeurteilung (LBV 188-1, Modulbaukasten, publiziert 10.06.2022)
+
+Quelle: https://www.modulbaukasten.ch/module/188/1/de-DE?title=Services-betreiben,-warten-und-%C3%BCberwachen (Reiter LBV)
+
+- Die Beurteilung deckt alle Handlungskompetenzen des Moduls ab.
+- Du baust über das Modul hinweg die Systemumgebung eines kleinen KMU mit mehreren Services auf. Mit Aufträgen im Kursverlauf wird sie erweitert.
+- Zwei Teile:
+  - Element 1, praktischer Umsetzungsteil: Services in einem KMU-Netz erfassen, verwalten und aktualisieren. Gewichtung 60 Prozent, Richtzeit 2 Stunden.
+  - Element 2, schriftlicher Teil: praxisnahe und auch konzeptionelle Fragen. Gewichtung 40 Prozent, Richtzeit 1 Stunde.
+- Richtzeit total 3 Stunden.
+- Hinweis: Die Seite trägt im Titel fälschlich «Dienste in der Public Cloud betreiben und überwachen» (das ist Modul 109). Die Beschreibung passt aber zu 188. Der Kurs der Learnfactory kann davon abweichen, die genauen Aufgaben sind nicht öffentlich.
+
+Das heisst: Üben, wie du einen Service aufsetzt, überwachst, patchst und Rechte vergibst, wiegt mehr als reines Auswendiglernen. Für den schriftlichen Teil sollten die Begründungen sitzen (warum Schwellwert, warum Testumgebung).
+
 ## 2b. Noch offen
 
 - Die Kompetenzmatrizen ZH (https://kompetenzmatrix.ch/cluster-platform/m188/) führen M188 als «ÜK-Modul, keine Matrix vorhanden». Dort gibt es keine Lernziele dazu.
@@ -220,6 +234,36 @@ Nicht belegt, bitte nicht als Fakt nehmen:
 - Zabbix, Nagios und Prometheus als Kurs-Tools. Das Modul sagt nur «bestehende Monitoring-Tools». Die Learnfactory nennt kein Tool.
 - Linux oder Windows. Das Modul legt sich nicht fest, die genannten Services sprechen eher für Windows Server.
 - Die Quellenangaben bei Gemini (ict-sh.ch, bit.admin.ch, wiss.ch, YouTube) enthalten zu Modul 188 nichts, was ich dort finden konnte.
+
+### Fachgrundlagen zu den Handlungszielen (aus Quellen, mit Vorbehalt)
+
+**SNMP-Versionen (Handlungsziel 4, Kenntnis 4.1 «Sicherheitsmechanismen»)**
+- v1 und v2c: Authentifizierung nur über den Community-String, Übertragung im Klartext. Mit Wireshark mitlesbar. v2c bringt GetBulk und 64-Bit-Zähler, bleibt aber unsicher.
+- v3: Benutzer, Authentifizierung und optional Verschlüsselung. Stufen noAuthNoPriv, authNoPriv, authPriv. Authentifizierung per HMAC mit MD5 oder SHA, Verschlüsselung mit DES oder AES. MD5 und DES gelten als veraltet.
+- Quellen: https://blog.paessler.com/snmp-v2-vs-v3-understanding-snmps-evolution-in-network-management und https://www.ninjaone.com/de/blog/unterschiede-zwischen-snmp-versionen/
+
+**Berechtigungskonzept AGDLP (Handlungsziel 5)**
+- Accounts kommen in globale Gruppen (Rollen, z.B. Abteilung), diese in domänenlokale Gruppen (Zugriffsgruppen), erst dort werden die Rechte (Permissions) auf Ressourcen gesetzt.
+- Vorteil: In den ACLs stehen nur Gruppen, das ist übersichtlicher und bei Wechseln einfacher. Bei mehreren Domänen kommt AGUDLP mit universellen Gruppen dazu.
+- Schwäche: Muss konsequent gepflegt werden, sonst driftet es durch Ausnahmen auf Benutzerebene.
+- Quellen: https://www.tenfold-security.com/?p=9261 und https://www.manageengine.com/products/ad-manager/blog/what-is-agdlp.html
+
+**Freigabe- gegen NTFS-Rechte (Handlungsziel 5)**
+- Freigaberechte gelten nur beim Zugriff über die Freigabe und kennen nur Lesen, Ändern, Vollzugriff. NTFS-Rechte gelten immer und sind feiner.
+- Beim Zugriff über das Netz gilt die restriktivere der beiden Ebenen. «Verweigern» hat Vorrang.
+- Übliche Praxis: Freigabe grosszügig, Feinsteuerung per NTFS.
+- Quellen (keine Microsoft-Seiten, bitte mit Kursunterlagen abgleichen): https://netwrix.com/de/resources/blog/ntfs-vs-share-permissions/ und https://www.varonis.com/de/blog/der-unterschied-zwischen-freigaben-und-ntfs-berechtigungen
+
+**Patch-Prozess (Handlungsziel 3, Kenntnisse 3.1 bis 3.4)**
+- Ablauf: Inventar, Priorisierung nach Risiko, Test in Testumgebung, Backup und Rollback-Plan, Pilotgruppe, gestaffelter Rollout im Wartungsfenster, Kontrolle, Dokumentation (Betriebsdoku nachführen).
+- Vertrauenswürdige Quellen: Hersteller selbst, Hashwert und Signatur prüfen.
+- Gefahren: Inkompatibilität, Neustart nötig, Dienst fällt aus. Deshalb zuerst auf weniger kritischen Systemen testen.
+- Quellen: https://www.n-able.com/de/blog/effective-patch-management-a-guide-for-it-security-and-system-stability und https://www.techtarget.com/cybersecurity/tip/Key-software-patch-testing-best-practices
+- Offizielle Vorgabe zum Abgleichen: BSI IT-Grundschutz, Baustein OPS.1.1.3 Patch- und Änderungsmanagement (ich habe ihn nicht selbst gelesen).
+
+**Weitere Dateien**
+- Modulplan Plattformentwicklung (Kanton SH): https://ict-sh.ch/wp-content/uploads/2023/06/Modulplan_INF-Plattform_BiVo2021_Kt_SH_v1.0.pdf
+- Lernzielkatalog als Excel (Leistungsziele des Bildungsplans, ohne zusätzliche Details zu 188): https://ict-sh.ch/wp-content/uploads/2023/06/Lernzielkatalog_Informatiker_BiVo21-Plattformentwickler.xlsm
 
 ## 5. Konkrete Übungen für die zwei Wochen
 
