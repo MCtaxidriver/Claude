@@ -151,6 +151,9 @@ Quelle: https://www.modulbaukasten.ch/module/188/1/de-DE?title=Services-betreibe
 | Zugriffs- und Berechtigungskonzept **ergänzen und begründen** | 20 bis 30 % | 5 |
 | Fragen zur Analyse von Umsystemen | 5 bis 10 % | (6) |
 
+### Hilfsmittel (Hinweis)
+Für 188 gilt im schriftlichen Teil «nach Vorgabe des üK-Anbieters». Beim Folgemodul 190 erlaubt dieselbe Stelle laut LBV «keine oder 1 Seite A4 handschriftliche Notizen» (https://www.modulbaukasten.ch/module/190/1/de-DE, Reiter LBV). Frag beim Sekretariat, ob bei 188 eine handschriftliche A4-Seite erlaubt ist. Der Spickzettel `UEK-188-Spickzettel.md` eignet sich dann als Vorlage zum Abschreiben.
+
 ### Was daraus folgt
 - **Berechtigungen sind der grösste Brocken** (bis 40 Prozent im Praxisteil, bis 30 Prozent im schriftlichen Teil). Übe AGDLP, Freigabe- und NTFS-Rechte und vor allem das Begründen.
 - **AD, DNS und DHCP** sind die geprüften Services, also sehr wahrscheinlich ein Windows Server. Print, File und Linux-Dienste werden in der LBV nicht genannt.

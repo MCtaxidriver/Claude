@@ -56,4 +56,4 @@ ipconfig /release  &  ipconfig /renew
 - Passwörter laut NCSC: mindestens 12 Zeichen, nicht im Wörterbuch, pro Dienst ein eigenes, Passwortmanager.
 
 ## Offene Fragen ans Sekretariat
-Windows oder Linux? Welche Monitoring-Tools? Zugang zur Lernplattform vor dem Kurs? Eigenes Notebook? Genaue Leistungsbeurteilung? sekretariat@ict-learnfactory.ch, +41 31 521 00 90.
+Windows oder Linux? Welche Monitoring-Tools? Zugang zur Lernplattform vor dem Kurs? Eigenes Notebook? Genaue Leistungsbeurteilung? Ist eine handschriftliche A4-Seite als Hilfsmittel erlaubt? sekretariat@ict-learnfactory.ch, +41 31 521 00 90.
