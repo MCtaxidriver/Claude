@@ -156,6 +156,41 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 
 ---
 
+## 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
+
+Das Modul legt sich nicht auf ein Betriebssystem fest. Hier die Linux-Entsprechungen, damit du in beiden Fällen vorbereitet bist.
+
+| Aufgabe | Windows | Linux (Ubuntu) |
+| --- | --- | --- |
+| Dienst prüfen | `Get-Service` | `systemctl status <dienst>`, `systemctl is-active <dienst>`, `systemctl list-units --failed` [Q: Ubuntu man systemctl] |
+| Dienst steuern | `Start-Service`, `Restart-Service` | `systemctl start/stop/restart/enable <dienst>` [Q] |
+| Logs lesen | Ereignisanzeige, `Get-WinEvent` | `journalctl -u <dienst>`, `--since`, `-b` (seit Boot) [Q: Ubuntu man journalctl] |
+| Updates | WSUS, Windows Update | `apt update`, `apt upgrade`, automatisch mit `unattended-upgrades` [Q: Ubuntu Server Docs] |
+| Berechtigungen | NTFS, `icacls` | `chmod`, `chown`, ACLs mit `setfacl -m` und `getfacl` [Q: Ubuntu man setfacl, W] |
+| Firewall | `New-NetFirewallRule` | `ufw`, z.B. `sudo ufw allow from <IP> to any port <Port>` [Q: Ubuntu Server Docs beschreiben «Allow access from specific hosts», Syntax aus meinem Wissen] |
+| SNMP-Agent | Feature SNMP-Service | Paket `snmpd`, Konfiguration in `/etc/snmp/snmpd.conf` [W] |
+| Performance | `Get-Counter` | `top`, `vmstat`, `iostat`, `free -h`, `df -h` [W] |
+
+Belegte Details zu Updates [Q: https://documentation.ubuntu.com/server/how-to/software/automatic-updates/]:
+- Das Paket `unattended-upgrades` ist bei Ubuntu standardmässig installiert, Sicherheitsupdates werden automatisch eingespielt, der Lauf erfolgt einmal pro Tag.
+- Konfiguration: `/etc/apt/apt.conf.d/50unattended-upgrades` (Verhalten, Neustart, gesperrte Pakete) und `/etc/apt/apt.conf.d/20auto-upgrades` (an oder aus, wie oft).
+- Logs: `/var/log/unattended-upgrades`.
+- Mit der Option `--dry-run` testest du, ohne wirklich zu installieren. Das passt zu Kenntnis 3.4 (Testszenarien für Patches).
+
+Belegte Details zu SNMP [Q: https://manpages.ubuntu.com/manpages/noble/en/man5/snmpd.conf.5.html]:
+- `agentaddress` legt fest, auf welchen Adressen der Agent lauscht.
+- SNMPv3-Benutzer legst du mit `createUser <name> SHA <authpass> AES <privpass>` an. Unterstützt sind MD5 und SHA-Varianten für die Authentifizierung sowie DES und AES für die Verschlüsselung.
+- Zugriff gibst du mit `rouser <name> priv` (nur lesen, mit Verschlüsselung) oder `rwuser` frei. Die Stufen heissen `noauth`, `auth`, `priv` und entsprechen noAuthNoPriv, authNoPriv, authPriv.
+- Prüfen von einem anderen Rechner aus [W]: `snmpwalk -v3 -l authPriv -u <name> -a SHA -A <authpass> -x AES -X <privpass> <ip>`
+
+Weitere Linux-Quellen:
+- https://manpages.ubuntu.com/manpages/noble/en/man1/journalctl.1.html
+- https://manpages.ubuntu.com/manpages/noble/en/man1/systemctl.1.html
+- https://documentation.ubuntu.com/server/how-to/security/firewalls/
+- https://manpages.ubuntu.com/manpages/noble/en/man1/setfacl.1.html
+
+---
+
 ## 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 Voraussetzung: Ein Laptop mit Hyper-V oder VirtualBox und eine Windows-Server-Testversion (Evaluation). Falls das nicht geht, nur die Theorie-Teile und Befehle lesen.
