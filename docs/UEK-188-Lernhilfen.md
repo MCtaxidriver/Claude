@@ -137,7 +137,7 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 9. **Was bedeuten viele Page Reads und Writes pro Sekunde?** Meist zu wenig RAM. [Q]
 10. **Was zeigt `Current Disk Queue Length` dauerhaft hoch?** Die Platte ist ausgelastet. [Q]
 11. **Wie liest du den Dienststatus per PowerShell?** `Get-Service`, mit Filter zum Beispiel `Get-Service "wmi*"`. [Q]
-12. **Event-ID 7036 und 7034, was heisst das?** 7036: Dienst gestartet oder gestoppt. 7034: Dienst unerwartet beendet. [Q: Drittquellen]
+12. **Event-ID 7036 und 7034, was heisst das?** 7036: Dienst gestartet oder gestoppt. 7034: Dienst unerwartet beendet. [Q: Drittquellen] Sicherheitslog: 4624 Anmeldung ok, 4625 Anmeldung fehlgeschlagen, 4740 Konto gesperrt. [Q: Microsoft Learn]
 13. **Was ist eine Baseline und wozu brauchst du sie?** Normalwerte des Systems im Betrieb. Schwellwerte sinnvoll setzen geht nur im Vergleich dazu. [Q, W]
 
 ### Handlungsziel 3: Updates und Patches
@@ -284,6 +284,26 @@ In meinen Worten, nach den Übersichtsseiten von Microsoft Learn.
 **Wahl SNMP gegen WMI** [W, zusammengefasst aus den Quellen]
 - SNMP: schlank, plattformübergreifend (auch Switches, Drucker), v1 und v2c unsicher, v3 sicherer.
 - WMI: Windows-spezifisch, sehr detailliert (Dienste, Event-Logs), braucht Domänen- oder lokales Konto mit Rechten, belastet bei vielen Sensoren stärker (Paessler: höchstens etwa 200 WMI-Sensoren pro Probe).
+
+---
+
+## 2e. Sicherheits-Events für Berechtigungen und Anmeldungen (offiziell)
+
+Diese Event-IDs stehen im Sicherheitsprotokoll und helfen beim Nachweisen und Prüfen von Rechten. Definition laut Microsoft Learn (https://learn.microsoft.com/de-de/previous-versions/windows/it-pro/windows-10/security/threat-protection/auditing/event-4624 und analog /event-4625, /event-4740, /event-4720, /event-4732):
+
+| Event | Bedeutung [Q] | Wofür im Betrieb [W] |
+| --- | --- | --- |
+| 4624 | Konto erfolgreich angemeldet. Entsteht auf dem Computer, auf den zugegriffen wurde. | Prüfen, wer sich wann angemeldet hat |
+| 4625 | Anmeldung fehlgeschlagen (jeder Fehlversuch) | Viele in kurzer Zeit können auf Angriffe hindeuten |
+| 4740 | Benutzerkonto gesperrt | Support-Fall «Ich komme nicht mehr rein» |
+| 4720 | Benutzerkonto erstellt | Kontrolle nach dem Anlegen eines Mitarbeiters |
+| 4732 | Mitglied zu einer sicherheitsrelevanten lokalen Gruppe hinzugefügt | Nachweis von Rechteänderungen |
+
+Zur Abfrage dient `Get-WinEvent` mit `-FilterHashtable`, zum Beispiel für Anmeldefehler der letzten Stunde [W]:
+```powershell
+Get-WinEvent -FilterHashtable @{LogName='Security'; Id=4625; StartTime=(Get-Date).AddHours(-1)}
+```
+Hinweis: Diese Auditing-Events müssen aktiviert sein (Richtlinie «Überwachung»). In einer frischen Lab-VM sind nicht alle standardmässig an. [W]
 
 ---
 
