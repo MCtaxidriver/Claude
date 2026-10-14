@@ -12,7 +12,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 **Inhalt**
 
 - 1. Cheatsheet: Befehle für die Lab-Umgebung
-- 2. Lernkarten (Frage, Antwort), 78 Stück
+- 2. Lernkarten (Frage, Antwort), 98 Stück
 - 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 - 2c. Konzepte in Kürze (für den schriftlichen Teil)
 - 2d. SNMP und WMI auf dem Server einrichten (Kenntnis 4.2)
@@ -30,6 +30,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 - 2p. Muster: Berechtigungskonzept dokumentieren und begründen
 - 2q. Muster: IP-Adress- und Namenskonzept (für AD, DNS, DHCP)
 - 2r. Muster: Betriebsdokumentation der Muster AG (zum Üben des Nachführens)
+- 2s. Ergänzungen aus dem Script von ICT-BZ (Bulk-User, GPO, FSRM, Hashwerte, Zabbix, MIB)
 - 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 <!-- /toc -->
@@ -206,7 +207,7 @@ WMIC nur noch als Feature on Demand, PowerShell 2.0 nicht mehr enthalten, WSUS n
 
 ---
 
-## 2. Lernkarten (Frage, Antwort), 78 Stück
+## 2. Lernkarten (Frage, Antwort), 98 Stück
 
 Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und sprich sie laut.
 
@@ -315,6 +316,28 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 76. **Was zählt als Unredlichkeit und was droht?** Fälschen, nicht deklarierte Hilfe Dritter, Übernehmen fremder Texte, Konfigurationen oder Codes ohne Quelle, Selbstplagiat, andere Täuschung. Du hast 5 Arbeitstage für eine schriftliche Stellungnahme, bei Unredlichkeit gilt Note 1 für den betroffenen Teil. [Q: üK-Reglement Art. 12]
 77. **Welche Gründe gelten bei Fernbleiben von einer Leistungsbeurteilung?** Ärztlich attestierte Krankheit oder Unfall, Todesfall in der Familie mit Bestätigung, Verspätung im öffentlichen Verkehr mit Bestätigung des Transportanbieters, rechtlich gültige Verfügung (Militär, Zivilschutz, Gericht, Polizei). Ohne schriftlichen Nachweis gilt die LB als nicht besucht. [Q: üK-Reglement Art. 13]
 78. **Wie wird die Kompetenz eines Moduls ausgewiesen?** Mit einer halben oder ganzen Note (Kompetenznachweis), geprüft anhand einer Leistungsbeurteilung nach LBV. [Q: üK-Reglement Art. 9 und 10]
+
+### Zusatzkarten: Script ICT-BZ (79 bis 98)
+79. **Was ist der Unterschied zwischen SNMP-Polling und SNMP-Traps?** Beim Polling fragt das Monitoring aktiv ab (UDP 161). Traps schickt das Gerät spontan bei einem Ereignis (UDP 162). Traps sind unzuverlässig (keine Empfangsbestätigung), melden keine Recovery und können das Monitoring fluten. [Q: Script ICT-BZ, Seite SNMP]
+80. **Welche SNMP-Version ist in der Praxis üblich und warum?** v2c, weil es Bulk-Abfragen und 64-Bit-Counter kann. Sicherheitstechnisch ist es wie v1, die Community geht im Klartext über das Netz. v3 verschlüsselt, ist aber aufwendiger und braucht mehr Rechenleistung. [Q: Script ICT-BZ]
+81. **Was sind OID und MIB?** Eine OID ist die Zahlenfolge im Baum, die ein Objekt auf dem Gerät eindeutig benennt. Die MIB übersetzt die Zahlen in Namen, Typen und Beschreibungen, oft herstellerspezifisch. [Q: Script ICT-BZ]
+82. **Warum heisst SNMP-Monitoring «agentenlos», obwohl es einen SNMP-Agenten gibt?** Der SNMP-Agent ist vom Hersteller schon eingebaut. Du installierst keine zusätzliche Monitoring-Software auf dem Gerät. [Q: Script ICT-BZ]
+83. **Wann nimmst du WMI und wann SNMP?** WMI nur für Windows-Systeme, es ist vorinstalliert und liefert tiefe Betriebssystemdaten. SNMP funktioniert herstellerübergreifend, vor allem für Netzwerkgeräte, Drucker und USVs, liefert bei Servern aber meist nur Hardwaredaten. [Q: Script ICT-BZ, Seiten WMI und SNMP]
+84. **Was ist WMI technisch und was ersetzt `Get-CimInstance`?** WMI ist die Microsoft-Umsetzung von WBEM auf Basis von CIM. `Get-CimInstance` löst `Get-WmiObject` ab und nutzt WinRM statt DCOM, das ist firewallfreundlicher. [Q: Script ICT-BZ]
+85. **Wann ist ein Agent besser als SNMP?** Wenn du Betriebssystem und Anwendungen tief überwachen willst. Der Agent liefert mehr Details und braucht weniger Ressourcen, muss aber installiert und gepflegt werden. [Q: Script ICT-BZ]
+86. **Nenne die fünf Phasen eines Monitoring-Störungsfalls.** Erkennung und Alarmierung, Klassifizierung und Priorisierung, Analyse und Diagnose, Behebung und Wiederherstellung, Abschluss und Nachbereitung. [Q: Script ICT-BZ, Ablauf Monitoring Case]
+87. **Was ist der Unterschied zwischen Fix und Workaround?** Ein Fix behebt die Ursache. Ein Workaround entschärft das Problem nur kurzfristig, die Ursache wird später behoben. [Q: Script ICT-BZ]
+88. **Wozu dient «Acknowledge» im Monitoring?** Es zeigt anderen, dass jemand das Problem bearbeitet, mit Kommentar. So laufen keine parallelen Analysen. In Zabbix lässt sich der Status auch für Eskalationen nutzen. «Suppress» blendet ein Problem aus. [Q: Script ICT-BZ, Zabbix-Doku]
+89. **Wie prüfst du den Hashwert einer heruntergeladenen Datei unter Windows?** `certutil -hashfile Datei SHA256` oder `Get-FileHash Datei -Algorithm SHA256`, dann mit dem Wert der Herstellerseite vergleichen. Bei Abweichung nicht installieren, neu laden und die Quelle prüfen. [Q: Script ICT-BZ für certutil, W für Get-FileHash]
+90. **Beweist ein passender Hashwert, dass eine Datei harmlos ist?** Nein. Er zeigt nur, dass die Datei dem Original entspricht und nicht verändert wurde. Die Quelle muss vertrauenswürdig sein. [Q: Script ICT-BZ]
+91. **Wie verhinderst du Musik- und Videodateien auf einem Fileserver?** Mit dem Feature File Server Resource Manager (FSRM) eine aktive Dateiprüfung (File Screen) auf den Ordner legen, mit der Dateigruppe «Audio and Video Files». Bereits gespeicherte Dateien bleiben zugänglich. [Q: Microsoft Learn New-FsrmFileScreen, Gruppenname W]
+92. **Wie erzeugst du einen HTML-Bericht über die gespeicherten Dateitypen?** FSRM-Speicherbericht vom Typ `FilesByFileGroup` im Format HTML, zum Beispiel mit `New-FsrmStorageReport`. [Q: Microsoft Learn New-FsrmStorageReport]
+93. **Was unterscheidet Ressourcenmonitor und Systemmonitor?** Der Ressourcenmonitor (`resmon`) zeigt live, welcher Prozess CPU, RAM, Datenträger und Netzwerk nutzt. Der Systemmonitor (`perfmon`) misst Leistungsindikatoren und zeichnet sie über die Zeit auf (Datensammlersätze, Alarme). [W]
+94. **Wie testest du die Aufzeichnung für das Wachstum eines Datenlaufwerks?** Mit Dummy-Dateien: `fsutil file createnew D:\Test\dummy.bin 1073741824` legt 1 GiB an. Dann prüfen, ob der Verlauf in der Aufzeichnung sichtbar ist. [W, das Script nennt fsutil]
+95. **Wo stellst du Kennwortalter, Chronik und Mindestlänge für die Domäne ein?** In der Default Domain Policy unter Computerkonfiguration > Richtlinien > Windows-Einstellungen > Sicherheitseinstellungen > Kontorichtlinien > Kennwortrichtlinie. Es gibt pro Domäne nur eine, auf OU-Ebene gilt sie nur für lokale Konten. Für einzelne Gruppen gibt es Fine-Grained Password Policies. [Q: Microsoft Learn]
+96. **Wie zeigst du in einer Freigabe nur die Ordner an, auf die der Benutzer Zugriff hat?** Mit der zugriffsbasierten Aufzählung (Access-based Enumeration): `Set-SmbShare -Name Firma -FolderEnumerationMode AccessBased`. [Q: Microsoft Learn Set-SmbShare]
+97. **Wie verbindest du ein Netzlaufwerk per GPO?** Benutzerkonfiguration > Einstellungen > Windows-Einstellungen > Laufwerkzuordnungen, Aktion Erstellen oder Aktualisieren mit UNC-Pfad und Laufwerksbuchstabe. [W]
+98. **Welche OIDs brauchst du für den Tonerstand eines Druckers und wie rechnest du in Prozent?** `prtMarkerSuppliesLevel` (1.3.6.1.2.1.43.11.1.1.9) geteilt durch `prtMarkerSuppliesMaxCapacity` (1.3.6.1.2.1.43.11.1.1.8) mal 100. Negative Werte sind Sonderwerte (zum Beispiel unbekannt) und kein Füllstand. [Q: PRINTER-MIB bei Observium für die OIDs, Sonderwerte W]
 
 ## 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 
@@ -927,6 +950,143 @@ In der Prüfung bekommst du eine Betriebsdokumentation vorgegeben, analysierst d
 
 Übung: Mach eine Änderung im Lab und trage sie vollständig ein (Datum, Änderung, wer, Test). So trainierst du das «Nachführen» aus Handlungsziel 3.
 
+## 2s. Ergänzungen aus dem öffentlichen Script von ICT-BZ (Tag 2 bis 5)
+
+Quelle: https://m188.ict-bz.ch (Script zum üK 188 der ICT-Berufsbildung Zentralschweiz). Das ist nicht das Script der Learnfactory, Aufgaben und Tools können bei dir anders sein. Ich habe hier nur ergänzt, was in meinen Unterlagen fehlte, in eigenen Worten. Die Befehle stammen aus Microsoft Learn (mit [Q]) oder aus meinem Fachwissen (mit [W]). Überblick über das Script: `UEK-188-Vorbereitung.md`, Abschnitt 2f.
+
+### Bulk-User aus einer CSV-Datei (Tag 2)
+Aufgabe im Script: Benutzerliste aus Excel per PowerShell im AD anlegen. Gerüst: Modul laden, Datei mit `Import-Csv` lesen, mit `foreach` jede Zeile verarbeiten. Spaltennamen und Domäne unten sind Beispiele [W]:
+```powershell
+Import-Module ActiveDirectory
+$pw    = Read-Host -AsSecureString "Startpasswort"
+$users = Import-Csv -Path "C:\Temp\Benutzer.csv" -Delimiter ";" -Encoding UTF8
+foreach ($u in $users) {
+    New-ADUser -Name "$($u.Vorname) $($u.Nachname)" `
+        -GivenName $u.Vorname -Surname $u.Nachname `
+        -SamAccountName $u.Benutzername `
+        -UserPrincipalName "$($u.Benutzername)@contoso.local" `
+        -Path "OU=Verkauf,OU=Firma,DC=contoso,DC=local" `
+        -AccountPassword $pw -ChangePasswordAtLogon $true -Enabled $true
+    Write-Output "Benutzer angelegt: $($u.Vorname) $($u.Nachname)"
+}
+```
+Fallen bei CSV-Dateien (die Aufgabe fragt danach) [W]:
+- Trennzeichen: Excel speichert hier meist mit Semikolon, `Import-Csv` erwartet standardmässig Komma. Darum `-Delimiter ";"`.
+- Zeichensatz: Beim Speichern «CSV UTF-8» wählen, sonst sind Umlaute kaputt. Beim Import `-Encoding UTF8`.
+- Die Spaltennamen der ersten Zeile werden zu Eigenschaften. Leerzeichen oder Tippfehler darin brechen das Skript.
+- Benutzernamen ohne Leerzeichen und Umlaute, jeder nur einmal. Die Ziel-OU muss existieren. Das Startpasswort muss zur Kennwortrichtlinie passen.
+
+### Kennwortrichtlinie per GPO (Aufgabe: 60 Tage, Chronik 10, Länge 10)
+- Pfad: Default Domain Policy bearbeiten, Computerkonfiguration > Richtlinien > Windows-Einstellungen > Sicherheitseinstellungen > Kontorichtlinien > Kennwortrichtlinie [Q: Microsoft Learn, Modul «Configure a domain password policy»].
+- Werte der Aufgabe: Maximales Kennwortalter 60 Tage, Kennwortchronik erzwingen 10, Minimale Kennwortlänge 10, Komplexitätsvoraussetzungen aktiviert.
+- «Mit Sonderzeichen»: Die Komplexitätsregel verlangt drei von vier Zeichengruppen (Gross, Klein, Ziffer, Sonderzeichen), nicht zwingend ein Sonderzeichen [W].
+- Es gibt pro Domäne nur eine Kontorichtlinie. Auf OU-Ebene verknüpft gilt sie nur für lokale Konten auf Mitgliedsservern. Für einzelne Gruppen nimmt man Fine-Grained Password Policies [Q: Microsoft Learn, ältere Quellen].
+- Danach `gpupdate /force`. Mit `net accounts /domain` siehst du die aktiven Werte [W].
+- Die Frage «Was macht ein gutes Passwort aus?» beantwortest du mit Abschnitt 2g (NCSC).
+
+### Laufwerke, ausgeblendete Ordner, Hintergrundbild per GPO
+- Zwei Laufwerke verbinden (Transfer als `G:`, Firmenlaufwerk als `M:`): Benutzerkonfiguration > Einstellungen > Windows-Einstellungen > Laufwerkzuordnungen, Aktion Erstellen oder Aktualisieren, UNC-Pfad und Buchstabe [W].
+- Nur erlaubte Ordner in `M:` anzeigen: zugriffsbasierte Aufzählung auf der Freigabe [Q: Microsoft Learn]:
+```powershell
+Set-SmbShare -Name Firma -FolderEnumerationMode AccessBased
+```
+  Das blendet nur aus. Der Schutz kommt weiterhin von den NTFS-Rechten (AGDLP).
+- Hintergrundbild: Benutzerkonfiguration > Richtlinien > Administrative Vorlagen > Desktop > Desktop > Desktophintergrund [W]. Die Aufgabe fragt, was du beachten musst. Meine Antwort: Der Pfad muss ein UNC-Pfad sein, auf den alle Benutzer lesen dürfen (Freigabe und NTFS), kein lokaler Serverpfad. Die GPO muss mit der OU der Benutzer verknüpft sein, und die Benutzer brauchen eine neue Anmeldung [W, eigene Annahme, nicht aus dem Script].
+
+### Rollen und Features für die Betriebsdoku auslesen (Server Manager)
+```powershell
+Get-WindowsFeature | Where-Object Installed | Select-Object DisplayName, Name, InstallState | Out-File C:\Doku\Features.txt
+Get-WindowsFeature -ComputerName SRV01 | Where-Object Installed     # Remote-Server
+```
+Die Aufgabe will das Resultat mit Servername, Administrator, Datum und Unterschrift abgeben [Q: Script ICT-BZ]. Befehle [W].
+
+### Dateidienste: Musik und Videos blockieren, Bericht (FSRM)
+Das Szenario im Script: Der Platz auf dem Datenlaufwerk wächst, ein neuer Mitarbeiter legt Musik und Videos ab. Mit dem Feature File Server Resource Manager lässt sich das blockieren und auswerten.
+```powershell
+Install-WindowsFeature FS-Resource-Manager -IncludeManagementTools
+Get-FsrmFileGroup | Select-Object Name                                   # vorhandene Dateigruppen
+New-FsrmFileScreen -Path "D:\Daten" -IncludeGroup "Audio and Video Files" -Active
+New-FsrmStorageReport -Name "Dateitypen D" -Namespace @("D:\Daten") `
+    -ReportType @("FilesByFileGroup") -ReportFormat @("Html") -Interactive
+```
+- `-Active` blockiert wirklich und ist laut Doku standardmässig an. Eine passive Prüfung, die nur protokolliert, legst du mit `-Active:$false` an. Bereits gespeicherte Dateien bleiben zugänglich [Q: Microsoft Learn, New-FsrmFileScreen].
+- Interaktive Berichte erzeugt der Server sofort und legt sie unter `C:\StorageReports\Interactive` ab. Berichtstypen sind unter anderem `LargeFiles`, `FilesByFileGroup`, `FilesByOwner`, `QuotaUsage`. Formate sind `Html`, `DHtml`, `Csv`, `Text`, `XML` [Q: Microsoft Learn, New-FsrmStorageReport].
+- Den Namen der Dateigruppe prüfst du mit `Get-FsrmFileGroup`. «Audio and Video Files» ist der Standardname auf englischen Systemen [W]. Mit einer Vorlage geht es auch: `New-FsrmFileScreen -Path "D:\Daten" -Template "Block Image Files"` ist das Beispiel von Microsoft, für Medien gibt es eine ähnliche Standardvorlage [Q und W].
+
+### Systemmonitor und Verlauf des Datenplatzes
+- Ressourcenmonitor: `resmon`, live pro Prozess. Systemmonitor: `perfmon`, Indikatoren über die Zeit. `perfmon /res` öffnet ebenfalls den Ressourcenmonitor [W].
+- Wachstum von `D:` aufzeichnen mit einem Datensammlersatz, zum Beispiel per Kommandozeile [W]:
+```cmd
+logman create counter DiskGrowth -c "\LogicalDisk(D:)\Free Megabytes" "\LogicalDisk(D:)\% Free Space" -si 00:15:00 -o C:\PerfLogs\DiskGrowth
+logman start DiskGrowth
+fsutil file createnew D:\Test\dummy1.bin 1073741824
+```
+  Die letzte Zeile legt zum Testen eine 1 GiB grosse Datei an (`fsutil` kennt die Länge in Byte). Nach dem Test die Dummy-Dateien wieder löschen.
+- Als Alternative zeigt ein Monitoring-Tool (Zabbix, PRTG) den Verlauf automatisch als Graph.
+
+### Hashwerte und Signaturen (Tag 4)
+```cmd
+certutil -hashfile setup.iso SHA256
+```
+```powershell
+Get-FileHash .\setup.iso -Algorithm SHA256
+```
+- Häufige Algorithmen: SHA-256 (heute Standard), SHA-1 und MD5 gelten als schwach und taugen nur noch gegen versehentliche Beschädigung [W].
+- Stimmt der Hash nicht, nicht installieren: Datei neu laden, Quelle prüfen, anderen Spiegelserver nehmen.
+- Ein passender Hash ist keine Virenfreiheit. Er bestätigt nur «unverändert gegenüber dem Original» [Q: Script ICT-BZ].
+- Ein Hash schützt nicht, wenn Datei und Hash von derselben manipulierten Seite kommen. Eine Signatur (Herstellerschlüssel) ist stärker. Unter Windows prüft `Get-AuthenticodeSignature` signierte Programme [W].
+
+### Windows Admin Center (Tag 4)
+- Installation auf einem der Clients, Aufruf im Browser über HTTPS. Das Zertifikat ist im Lab selbstsigniert, die Browserwarnung ist dort normal [W].
+- Ziele hinzufügen: Server oder Client mit Name oder IP und Anmeldedaten. Auf dem Ziel muss WinRM laufen, darum die Aufgabe `Enable-PSRemoting` auf dem Client (siehe 2o).
+- Das kannst du damit: Übersicht und Leistung (Systemmonitor im Browser), PowerShell-Sitzung, Remotedesktop, Rollen und Features installieren, Ereignisse lesen, Dienste und Updates [W].
+- Aufgabe DHCP: Rolle über das Admin Center installieren, Bereich anlegen und im AD autorisieren (siehe Cheatsheet). Dann im Netz den DHCP des Routers abschalten, sonst gibt es zwei DHCP-Server. Genau das meint «Passen Sie alle Konfigurationen im Netzwerk an» [W, Deutung]. Danach die Betriebsdokumentation nachführen.
+
+### Zabbix, falls ihr es auch einsetzt (Tag 3)
+Das Script von ICT-BZ arbeitet mit der Zabbix Appliance (fertige VM). Ob die Learnfactory Zabbix, PRTG oder etwas anderes nimmt, ist unbekannt. Die Konzepte sind in jedem Tool ähnlich.
+
+| Begriff | Bedeutung [W] |
+| --- | --- |
+| Host und Host Group | überwachtes Gerät und Gruppierung (z.B. «Network», «Windows-Server») |
+| Template | Vorlage mit Items, Triggern und Graphen, die mehrere Hosts bekommen |
+| Item | ein einzelner Messwert (CPU, freier Platz, Interface-Status) |
+| Trigger | Bedingung auf Messwerten, die ein Problem mit einer Schwere auslöst |
+| Graph, Map, Dashboard | Verlauf, Netzplan mit Verbindungen, Übersichtsseite (z.B. für den Service Desk) |
+| Discovery | automatisches Finden von Geräten oder Objekten wie Interfaces und Laufwerken |
+
+- Schweregrade eines Problems in Zabbix: Not classified, Information, Warning, Average, High, Disaster [Q: Zabbix-Doku].
+- Acknowledge meldet «ich bearbeite das» mit Kommentar. Suppress blendet ein Problem aus [Q: Zabbix-Doku]. Zum Pausieren eines Hosts nimmt man eine Wartungsperiode (Maintenance) oder deaktiviert den Host [W].
+- SNMP-Gerät einbinden: Host mit SNMP-Interface (IP, Port 161, Version, Community) anlegen und das Template «Network Generic Device by SNMP» verknüpfen [Q: Script ICT-BZ]. Konfigurieren musst du SNMP an zwei Orten: auf dem Gerät (SNMP an, Community, erlaubter Manager) und im Monitoring (Host-Interface). Ob die Verbindung geht, siehst du am Verfügbarkeits-Symbol des Hosts und an Werten unter «Latest data» [W].
+- Windows-Server oder Client per Agent: Zabbix-Agent installieren (siehe 2g), Servername und Hostname müssen zusammenpassen, Port 10050 in der Firewall für den Zabbix-Server öffnen, Template «Windows by Zabbix Agent» verknüpfen [Q: Script ICT-BZ für das Template, W für den Rest].
+- Ausfälle simulieren: einen Dienst stoppen, den Agenten stoppen, ein Netzwerkkabel ziehen. Das Problem erscheint unter Monitoring > Problems und im Dashboard [W].
+- Eine Website ausserhalb des Netzes (www.ict-bz.ch) überwachst du vom Monitoring-Server aus, zum Beispiel mit einem Web-Szenario oder einer einfachen Prüfung auf Port 443 [W].
+- Die Zabbix-Standardzugangsdaten ändert man im echten Betrieb sofort. Nach dem ersten Start der Appliance dauert es einige Minuten, bis das Webinterface bereit ist [Q: Script ICT-BZ].
+
+### SNMP-Abfragen mit dem MIB-Browser (Tag 3)
+Die Aufgabe: Werte von Router, Switch und Server per SNMP abfragen und die Einstellungen und OIDs dokumentieren. Die OIDs stammen aus Standard-MIBs [W], die Drucker-OIDs sind belegt [Q: PRINTER-MIB bei Observium].
+
+| Gesucht | Objekt und OID | Hinweis |
+| --- | --- | --- |
+| Name der Interfaces | ifDescr `1.3.6.1.2.1.2.2.1.2` | liefert den Index, zum Beispiel für das WAN-Interface |
+| MAC-Adressen | ifPhysAddress `1.3.6.1.2.1.2.2.1.6` | pro Interface-Index |
+| Geschwindigkeit | ifSpeed `1.3.6.1.2.1.2.2.1.5` (bit/s), ifHighSpeed `1.3.6.1.2.1.31.1.1.1.15` (Mbit/s) | ifSpeed ist bei schnellen Ports begrenzt, dann ifHighSpeed nehmen |
+| Fehler am Switchport | ifInErrors `1.3.6.1.2.1.2.2.1.14`, ifOutErrors `1.3.6.1.2.1.2.2.1.20` | Zähler, besser den Verlauf ansehen |
+| Freier Platz auf C: | hrStorage `1.3.6.1.2.1.25.2.3.1` mit Descr .3, AllocationUnits .4, Size .5, Used .6 | frei = (Size - Used) mal AllocationUnits |
+| Tonerstand | prtMarkerSuppliesLevel `1.3.6.1.2.1.43.11.1.1.9`, MaxCapacity `...1.8` | Prozent = Level / MaxCapacity mal 100 |
+
+- Auf Windows muss dafür der SNMP-Dienst mit Community laufen (Abschnitt 2d).
+- Mit Net-SNMP auf der Kommandozeile: `snmpwalk -v2c -c <Community> <IP> 1.3.6.1.2.1.2.2.1.2` zum Finden des Index, dann `snmpget -v2c -c <Community> <IP> 1.3.6.1.2.1.2.2.1.5.<Index>` [W].
+- Sonderwerte beim Toner: negative Zahlen bedeuten kein Füllstand (nach meinem Wissen -2 unbekannt und -3 mindestens noch etwas vorhanden, im RFC 3805 nachlesen) [W]. Farbtoner, die ein Schwarzweiss-Drucker gar nicht hat, filtert man über die Beschreibung der Verbrauchsmaterialien, damit keine erfundenen Werte entstehen.
+- Merksatz aus dem Script: «Wer Mist misst, misst Mist.» Prüfe jeden Wert auf Plausibilität.
+
+### Zwei Vorfälle durchdenken (Aufgabe im Script)
+Beide Szenarien verlangen eine kurze Dokumentation: Vorgehen, geprüfte Systeme und Sensoren, Begründung. Meine Antworten sind [W]:
+1. **Download ist langsam, aber nur bei einem Benutzer.** Eingrenzen: Ist es lokal oder die Infrastruktur? Andere Clients im Vergleich testen. Im Monitoring die Auslastung des WAN-Interface ansehen. Den Switchport des Clients auf Fehler und Duplex prüfen (ifInErrors, Geschwindigkeit). Auf dem Client CPU, RAM, Datenträger und DNS-Auflösung prüfen. Weil nur ein Benutzer betroffen ist, liegt es eher am Client oder am Port als am Internetzugang.
+2. **Backup meldet zu wenig freien Platz auf dem AD-Server.** Im Monitoring den Verlauf des freien Platzes ansehen und herausfinden, was gewachsen ist (Logs, Backup-Versionen, Update-Reste). Mit `wbadmin get versions` die alten Sicherungen ansehen, aufräumen oder die Platte erweitern. Den Schwellwert früher alarmieren lassen, zum Beispiel Warnung bei 20 Prozent und kritisch bei 10 Prozent frei. Das Ereignis dokumentieren.
+
+### Trial-Lizenz im Lab
+Die Evaluationsversionen laufen ab. Das Script nennt `slmgr.vbs -rearm` zum Verlängern, sonst fährt der Server nach einer Stunde herunter [Q: Script ICT-BZ]. Nach dem Rearm ist ein Neustart nötig, die Anzahl der Rearm-Vorgänge ist begrenzt [W].
+
 ---
 
 ## 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
@@ -949,5 +1109,7 @@ Voraussetzung: Ein Laptop mit Hyper-V oder VirtualBox und eine Windows-Server-Te
 | 12 | Patches | `Get-HotFix`, Patch-Prozess durchspielen (Snapshot, Update, Kontrolle, Doku). Lernkarten 14 bis 19 und 64 bis 67, Abschnitt 2l. |
 | 13 | Umsysteme und Backup | Firewall-Regel für SNMP nur von der PRTG-IP, Änderungsauftrag schreiben, Backup und Restore testen. Lernkarten 40 bis 43, 49, 50. |
 | 14 | Generalprobe | Alle Lernkarten durchgehen, besonders die Berechtigungen (68 bis 70). Ein Mini-Szenario aus dem Kopf: Service aufsetzen, überwachen, patchen, Rechte vergeben, dokumentieren. 1 Stunde Zeit, so wie die Praxisprüfung (2 Stunden) plus schriftlich (1 Stunde). |
+
+Wenn dein Kurs wie das Script von ICT-BZ läuft: Nimm an Tag 10 statt PRTG die Zabbix-Konzepte aus Abschnitt 2s und nutze die freien Tage für Bulk-User, FSRM, Hashwerte, Windows Admin Center und den MIB-Browser (ebenfalls 2s, Lernkarten 79 bis 98).
 
 Hinweis zur Prüfung: Laut Leistungsbeurteilung zählt der Praxisteil 60 Prozent und der schriftliche Teil 40 Prozent. Übe darum auch das Begründen (warum dieser Schwellwert, warum diese Rechtevergabe).

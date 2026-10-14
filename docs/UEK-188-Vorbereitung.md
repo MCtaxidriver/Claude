@@ -2,7 +2,7 @@
 
 Stand: 10.10.2026. Für Informatiker/in EFZ Plattformentwicklung (BiVo 2021), ICT-Learnfactory.
 
-Lernhilfen mit Cheatsheet, 78 Lernkarten, Mustern (Berechtigungskonzept, IP- und Namenskonzept, Betriebsdokumentation) und 14-Tage-Plan: siehe `UEK-188-Lernhilfen.md`. Probeprüfung mit Praxisszenario, 21 schriftlichen Fragen und Musterlösung: siehe `UEK-188-Probepruefung.md`. Einseitiger Spickzettel: `UEK-188-Spickzettel.md`. Vorlage für das Lernjournal: `UEK-188-Lernjournal-Vorlage.md`. Lernkarten als CSV zum Import in Anki oder Quizlet (Tab-getrennt: Frage, Antwort, Kategorie): `UEK-188-Lernkarten.csv`.
+Lernhilfen mit Cheatsheet, 98 Lernkarten, Mustern (Berechtigungskonzept, IP- und Namenskonzept, Betriebsdokumentation) und 14-Tage-Plan: siehe `UEK-188-Lernhilfen.md`. Probeprüfung mit Praxisszenario, 21 schriftlichen Fragen und Musterlösung: siehe `UEK-188-Probepruefung.md`. Einseitiger Spickzettel: `UEK-188-Spickzettel.md`. Vorlage für das Lernjournal: `UEK-188-Lernjournal-Vorlage.md`. Lernkarten als CSV zum Import in Anki oder Quizlet (Tab-getrennt: Frage, Antwort, Kategorie): `UEK-188-Lernkarten.csv`.
 
 
 <!-- toc -->
@@ -15,6 +15,7 @@ Lernhilfen mit Cheatsheet, 78 Lernkarten, Mustern (Berechtigungskonzept, IP- und
 - 2c. Infos der ICT-Learnfactory (https://www.ict-learnfactory.ch/informatiker)
 - 2e. üK-Reglement der ICT-Berufsbildung Bern (gültig ab 01.08.2025)
 - 2d. Was andere Lernende im üK 188 behandelt haben
+- 2f. Script der ICT-Berufsbildung Zentralschweiz (m188.ict-bz.ch)
 - 3. Was ich vor dem Kurs klären würde
 - 4. Vorbereitung nach Themen (aus meinem Fachwissen, entlang der Handlungsziele)
 - 4b. Selbsttest zum Vorwissen (aus den Kompetenzmatrizen ZH, Stufe Beginner)
@@ -168,7 +169,7 @@ Für 188 gilt im schriftlichen Teil «nach Vorgabe des üK-Anbieters». Beim Fol
 ## 2b. Noch offen
 
 - Die Kompetenzmatrizen ZH (https://kompetenzmatrix.ch/cluster-platform/m188/) führen M188 als «ÜK-Modul, keine Matrix vorhanden». Dort gibt es keine Lernziele dazu.
-- Welches Monitoring-Tool die ICT-Learnfactory einsetzt (PRTG, Zabbix, Nagios, nur Bordmittel). Die LBV nennt Reports und Maps, was zu einem Tool wie PRTG passt, bestätigt ist das nicht.
+- Welches Monitoring-Tool die ICT-Learnfactory einsetzt (PRTG, Zabbix, Nagios, nur Bordmittel). Die LBV nennt Reports und Maps, was zu einem Tool wie PRTG passt, bestätigt ist das nicht. Das öffentliche Script von ICT-BZ (anderer Anbieter) nutzt Zabbix, siehe 2f.
 - Windows Server ist wahrscheinlich: Die LBV prüft AD, DNS und DHCP, das Modulobjekt nennt File-, Print-, DHCP-, DNS- und Verzeichnis-Services. Eine Bestätigung der Learnfactory fehlt.
 
 ## 2c. Infos der ICT-Learnfactory (https://www.ict-learnfactory.ch/informatiker)
@@ -246,6 +247,34 @@ Quelle: öffentliche Lerndokumentation eines Lernenden (Robin Rüegg, 2023, ande
 - Hardware: SSD gegen HDD, SATA gegen SAS, RAM-Erweiterung (Typ, Slot, Kompatibilität, Erdung)
 
 Daraus leite ich ab, dass Subnetting, RAID, DHCP-Scope, NTFS-Rechte und Backup-Arten gute Kandidaten für Prüfungsfragen sind. Bei der Learnfactory kann es anders sein.
+
+## 2f. Script der ICT-Berufsbildung Zentralschweiz (m188.ict-bz.ch)
+
+Quelle: https://m188.ict-bz.ch (GitBook-Seite, 48 Seiten laut Sitemap, zuletzt geändert am 14.09.2026). Der Link kam am 14.10.2026 vom Nutzer. Ich habe den gesamten Text gelesen. Anhänge wie das Herdt-Buch, das WISS-Fachbuch, Excel-Listen und Netzpläne habe ich nicht heruntergeladen.
+
+**Wichtig:** Das ist das Script eines anderen Anbieters (ICT-Berufsbildung Zentralschweiz, Kursplattform Moodle unter kurse.ict-bz.ch), nicht das der ICT-Learnfactory in Stettlen. Das Modul ist dasselbe, aber Tools, Aufgaben und die Prüfungsform können bei dir abweichen. Zusammen mit der Lerndokumentation aus 2d (anderer Anbieter, andere Schwerpunkte wie RAID und Subnetting) zeigt sich: Zwischen den Anbietern gibt es grosse Unterschiede.
+
+**Hinweis zur Nutzung:** Die robots.txt der Seite sperrt Crawler und die Nutzung durch KI (Disallow und Content-Signal). Die Seite selbst ist ohne Login erreichbar und bietet auch eine llms.txt an. Ich habe sie auf deine Anfrage hin einmal gelesen und hier nur in eigenen Worten zusammengefasst, ohne Texte zu kopieren. Weitergeben solltest du das Script nicht ohne Rückfrage bei ICT-BZ oder der Person, die es dir gegeben hat.
+
+**Kursablauf dort (5 Tage)**
+
+| Tag | Themen und Aufgaben |
+| --- | --- |
+| 1 | Einführung, Laborumgebung der fiktiven Müller Getränke GmbH nachbauen (Router und Switch von UniFi, Server, Client, Drucker), Windows-Updates, Domain einrichten, Clients beitreten, Betriebsdokumentation lesen und selbst führen |
+| 2 | OU-Struktur nach Organigramm, Bulk-User per PowerShell aus CSV, Benutzer und Gruppen nach AGDLP, Berechtigungskonzept in Excel und auf dem Server umsetzen (Datenpartition, Abteilungsordner, Transfer, Freigabe und NTFS), GPOs (Kennwortrichtlinie, Laufwerke, Ordner ausblenden, Hintergrundbild), Rollen und Features per PowerShell auslesen |
+| 3 | SNMP und WMI als Theorie, Vergleich von Monitoring-Lösungen, Zabbix Appliance in Hyper-V, Hosts per SNMP und Agent einbinden, Map und Dashboard, Ausfälle simulieren, Ablauf eines Monitoring-Störungsfalls, MIB-Browser. Optional: Templates, Alternative wie PRTG, Drucker-Tonerstand |
+| 4 | Systemmonitor (Platzverlauf aufzeichnen), Windows Admin Center, Hashwerte und Schlüssel, Dateidienste mit File Server Resource Manager |
+| 5 | WSUS (installieren, synchronisieren, per GPO steuern, Testgruppe, ein Update einspielen), Repetition, Rückbau, Kursfeedback, praktischer Kompetenznachweis |
+
+**Prüfung dort:** Praktische Umsetzungsarbeit mit Theoriefragen, 100 Prozent, 130 Minuten, am Nachmittag des 5. Tages auf einer VM-Umgebung. Im Kurs arbeitet man in 2er-Gruppen, die Prüfung macht jeder selbst. Das weicht von der LBV 188-1 ab (60 Prozent Praxis in 2 Stunden und 40 Prozent schriftlich in 1 Stunde, siehe 2a). Welche Form die Learnfactory nimmt, ist offen.
+
+**Organisatorisches dort:** Gleitzeitmodell mit 8 Stunden pro Tag zwischen 07:30 und 17:30, Präsenzpflicht 08:30 bis 12:00 und 13:00 bis 16:00, Fachbetreuung durch den Instruktor 08:00 bis 12:00 und 13:00 bis 17:00. Das gilt für ICT-BZ und muss bei der Learnfactory nicht so sein.
+
+**Was daraus für dich folgt**
+- Die sechs Handlungsziele sind bis auf eines abgedeckt: Betriebsdoku (HZ 1), Systemmonitor und Admin Center (HZ 2), WSUS und Hashwerte (HZ 3), SNMP, WMI und Zabbix (HZ 4), AGDLP und Berechtigungskonzept (HZ 5). Umsysteme wie DNS-Einträge und Firewall-Regeln (HZ 6) kommen im Script nicht ausdrücklich vor. Ich würde sie trotzdem üben, weil die LBV sie nennt.
+- Das Script nennt Kapitel im Herdt-Buch «Windows Server 2022, Aufbau und Verwaltung eines Netzwerkes»: 7.5 und 12.3 (OU), 13 bis 13.4 (AGDLP), 16 (GPO), 14.4 (Dateiserver-Ressourcen-Manager), 18.4 (Leistungsdaten und Systemmonitor). Ausserdem das WISS-Fachbuch, Kapitel 3.3 (Betriebsdokumentation). Falls dein Kurs dasselbe Buch nutzt, sind das die Kapitel zum Vorlesen. Ob es bei der Learnfactory so ist, weiss ich nicht.
+- Das Labor ist Windows (Server 2025 und Windows 11 als Testversion), Hyper-V läuft auf dem Server. Das passt zu meiner Annahme in 2b und zu meinem Übungslab (Abschnitt 2n in den Lernhilfen).
+- Themen, die bei mir vorher fehlten und jetzt in `UEK-188-Lernhilfen.md` Abschnitt 2s stehen: Bulk-User aus CSV, Kennwortrichtlinie, Laufwerke und Hintergrundbild per GPO, Ordner ausblenden, FSRM, Hashwerte, Windows Admin Center, Zabbix, MIB-Browser und Drucker-Tonerstand, Monitoring-Störungsfall. Dazu kommen die Lernkarten 79 bis 98.
 
 ## 3. Was ich vor dem Kurs klären würde
 
@@ -336,7 +365,7 @@ Passt zu den offiziellen Quellen:
 
 Nicht belegt, bitte nicht als Fakt nehmen:
 - Webserver (Apache, Nginx, IIS) und Datenbanken (MariaDB, PostgreSQL) als Kursinhalt. Das Modul nennt File-, Print-, DHCP-, DNS- und Verzeichnis-Services.
-- Zabbix, Nagios und Prometheus als Kurs-Tools. Das Modul sagt nur «bestehende Monitoring-Tools». Die Learnfactory nennt kein Tool.
+- Nagios und Prometheus als Kurs-Tools. Das Modul sagt nur «bestehende Monitoring-Tools». Die Learnfactory nennt kein Tool. Zabbix stimmt für das Script von ICT-BZ (anderer Anbieter, siehe 2f), für die Learnfactory ist es nicht belegt.
 - Linux oder Windows. Das Modul legt sich nicht fest. Die LBV prüft aber AD, DNS und DHCP, das spricht klar für Windows Server.
 - Die Quellenangaben bei Gemini (ict-sh.ch, bit.admin.ch, wiss.ch, YouTube) enthalten zu Modul 188 nichts, was ich dort finden konnte.
 
@@ -558,5 +587,7 @@ Damit du nichts doppelt suchst. Ich habe die Suche in diesen Kategorien abgeschl
 **Bewusst nicht genutzt**
 - Der Endpunkt `testAuth.php` des Modulbaukastens gibt öffentlich ein Zugriffstoken für das CRM des Verbands heraus. Ich habe es weder verwendet noch gespeichert. Das sollte man dem Verband melden.
 
-**Ergebnis:** Zu Modul 188 selbst gibt es öffentlich nichts mehr, was nicht schon in diesen Dateien steht. Offen bleibt nur, was die Learnfactory intern festlegt: Monitoring-Tool, Plattform, genaue Aufgaben, Hilfsmittel. Das kann nur das Sekretariat beantworten (sekretariat@ict-learnfactory.ch, +41 31 521 00 90).
+**Nachtrag 14.10.2026:** Der Nutzer hat mir das Script von ICT-BZ (m188.ict-bz.ch) gegeben. Das fand ich vorher nicht, vermutlich weil die Seite Suchmaschinen sperrt. Es ist ein vollständiger Kursablauf eines anderen Anbieters, siehe 2f.
+
+**Ergebnis:** Ausser dem Script aus dem Nachtrag gibt es öffentlich nichts mehr zu Modul 188, was nicht schon in diesen Dateien steht. Offen bleibt, was die Learnfactory intern festlegt: Monitoring-Tool, Plattform, genaue Aufgaben, Hilfsmittel. Das kann nur das Sekretariat beantworten (sekretariat@ict-learnfactory.ch, +41 31 521 00 90).
 

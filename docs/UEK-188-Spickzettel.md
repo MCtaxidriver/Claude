@@ -1,6 +1,6 @@
 # ÜK 188: Spickzettel (eine Seite)
 
-Kurzfassung aus `UEK-188-Vorbereitung.md` und `UEK-188-Lernhilfen.md`. Alle Details und Quellen stehen dort.
+Kurzfassung aus `UEK-188-Vorbereitung.md` und `UEK-188-Lernhilfen.md` (Stand 14.10.2026, mit Ergänzungen aus dem Script von ICT-BZ). Alle Details und Quellen stehen dort.
 
 ## Modul
 Services betreiben, warten und überwachen. Objekt: Server mit File-, Print-, DHCP-, DNS- und Verzeichnis-Services im LAN. 5 Tage. Prüfung: 60 % Praxis (2 h), 40 % schriftlich (1 h). Geprüft werden AD, DNS, DHCP, Monitoring (auch Reports und Maps), Updates und vor allem Berechtigungen (bis 40 % Praxis, bis 30 % schriftlich). Du bekommst eine Betriebsdokumentation vorgegeben und ergänzt sie.
@@ -54,6 +54,20 @@ ipconfig /release  &  ipconfig /renew
 - Prozessor-Warteschlange dauerhaft über 2 deutet auf Überlast.
 - Windows Server 2025: WMIC nur noch als Feature on Demand, PowerShell 2.0 entfernt, WSUS nicht mehr aktiv entwickelt.
 - Passwörter laut NCSC: mindestens 12 Zeichen, nicht im Wörterbuch, pro Dienst ein eigenes, Passwortmanager.
+
+## Falls dein Kurs wie das Script von ICT-BZ läuft (Details in Lernhilfen 2s)
+```powershell
+Get-WindowsFeature | Where-Object Installed                                   # Rollen und Features für die Doku
+Set-SmbShare -Name Firma -FolderEnumerationMode AccessBased                   # nur erlaubte Ordner anzeigen
+Install-WindowsFeature FS-Resource-Manager -IncludeManagementTools            # FSRM
+New-FsrmFileScreen -Path "D:\Daten" -IncludeGroup "Audio and Video Files" -Active   # Medien blockieren
+Get-FileHash .\datei.iso -Algorithm SHA256                                    # Hash prüfen (oder certutil -hashfile)
+```
+- SNMP: Polling UDP 161, Traps UDP 162. v2c in der Praxis üblich, Community im Klartext. OID = Zahlenfolge, MIB = Übersetzung.
+- Toner in Prozent: prtMarkerSuppliesLevel (1.3.6.1.2.1.43.11.1.1.9) durch MaxCapacity (...1.8) mal 100.
+- Zabbix: Host, Template, Item, Trigger. Schweregrade Not classified, Information, Warning, Average, High, Disaster.
+- Störungsfall: Erkennung, Klassifizierung, Analyse, Behebung (Fix oder Workaround), Abschluss.
+- Kennwortrichtlinie: Default Domain Policy, Kontorichtlinien. Eine pro Domäne.
 
 ## Offene Fragen ans Sekretariat
 Windows oder Linux? Welche Monitoring-Tools? Dürfen die Kursunterlagen (laut AGB am ersten Tag verteilt) vorab eingesehen werden? Zugang zur Lernplattform vor dem Kurs? Eigenes Notebook? Genaue Leistungsbeurteilung? Ist eine handschriftliche A4-Seite als Hilfsmittel erlaubt? sekretariat@ict-learnfactory.ch, +41 31 521 00 90.
