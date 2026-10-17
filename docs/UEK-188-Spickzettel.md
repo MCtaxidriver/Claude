@@ -52,6 +52,8 @@ ipconfig /release  &  ipconfig /renew
 - Subnetting /29: 8 Adressen, 6 Hosts. 10.89.14.24/29 hat Broadcast .31, Hosts .25 bis .30.
 - DHCP-Lease Standard 8 Tage. GPO-Hintergrundaktualisierung alle 90 Minuten plus bis 30.
 - Prozessor-Warteschlange dauerhaft über 2 deutet auf Überlast.
+- Ports: RDP 3389, DNS 53, DHCP 67 (Server) und 68 (Client), SNMP 161 (Abfrage) und 162 (Traps). Adresse 169.254.x.x bedeutet APIPA, also keine DHCP-Antwort.
+- Reihenfolge im Lab: AD DS installieren und hochstufen, dann DHCP installieren und im AD autorisieren. Passwort-Rücksetzung läuft über den PDC-Emulator. Eine Freigabe mit `$` am Namen ist versteckt, aber nicht geschützt.
 - Windows Server 2025: WMIC nur noch als Feature on Demand, PowerShell 2.0 entfernt, WSUS nicht mehr aktiv entwickelt.
 - Passwörter laut NCSC: mindestens 12 Zeichen, nicht im Wörterbuch, pro Dienst ein eigenes, Passwortmanager.
 

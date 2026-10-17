@@ -2,7 +2,7 @@
 
 Stand: 10.10.2026. Für Informatiker/in EFZ Plattformentwicklung (BiVo 2021), ICT-Learnfactory.
 
-Lernhilfen mit Cheatsheet, 98 Lernkarten, Mustern (Berechtigungskonzept, IP- und Namenskonzept, Betriebsdokumentation) und 14-Tage-Plan: siehe `UEK-188-Lernhilfen.md`. Probeprüfung mit Praxisszenario, 21 schriftlichen Fragen und Musterlösung: siehe `UEK-188-Probepruefung.md`. Einseitiger Spickzettel: `UEK-188-Spickzettel.md`. Vorlage für das Lernjournal: `UEK-188-Lernjournal-Vorlage.md`. Lernkarten als CSV zum Import in Anki oder Quizlet (Tab-getrennt: Frage, Antwort, Kategorie): `UEK-188-Lernkarten.csv`.
+Lernhilfen mit Cheatsheet, 119 Lernkarten, Mustern (Berechtigungskonzept, IP- und Namenskonzept, Betriebsdokumentation) und 14-Tage-Plan: siehe `UEK-188-Lernhilfen.md`. Probeprüfung mit Praxisszenario, 21 schriftlichen Fragen und Musterlösung: siehe `UEK-188-Probepruefung.md`. Einseitiger Spickzettel: `UEK-188-Spickzettel.md`. Vorlage für das Lernjournal: `UEK-188-Lernjournal-Vorlage.md`. Lernkarten als CSV zum Import in Anki oder Quizlet (Tab-getrennt: Frage, Antwort, Kategorie): `UEK-188-Lernkarten.csv`.
 
 
 <!-- toc -->
@@ -16,6 +16,7 @@ Lernhilfen mit Cheatsheet, 98 Lernkarten, Mustern (Berechtigungskonzept, IP- und
 - 2e. üK-Reglement der ICT-Berufsbildung Bern (gültig ab 01.08.2025)
 - 2d. Was andere Lernende im üK 188 behandelt haben
 - 2f. Script der ICT-Berufsbildung Zentralschweiz (m188.ict-bz.ch)
+- 2g. Unterlagen einer älteren Lernenden (zweite Lieferung vom 17.10.2026)
 - 3. Was ich vor dem Kurs klären würde
 - 4. Vorbereitung nach Themen (aus meinem Fachwissen, entlang der Handlungsziele)
 - 4b. Selbsttest zum Vorwissen (aus den Kompetenzmatrizen ZH, Stufe Beginner)
@@ -275,6 +276,28 @@ Quelle: https://m188.ict-bz.ch (GitBook-Seite, 48 Seiten laut Sitemap, zuletzt g
 - Das Script nennt Kapitel im Herdt-Buch «Windows Server 2022, Aufbau und Verwaltung eines Netzwerkes»: 7.5 und 12.3 (OU), 13 bis 13.4 (AGDLP), 16 (GPO), 14.4 (Dateiserver-Ressourcen-Manager), 18.4 (Leistungsdaten und Systemmonitor). Ausserdem das WISS-Fachbuch, Kapitel 3.3 (Betriebsdokumentation). Falls dein Kurs dasselbe Buch nutzt, sind das die Kapitel zum Vorlesen. Ob es bei der Learnfactory so ist, weiss ich nicht.
 - Das Labor ist Windows (Server 2025 und Windows 11 als Testversion), Hyper-V läuft auf dem Server. Das passt zu meiner Annahme in 2b und zu meinem Übungslab (Abschnitt 2n in den Lernhilfen).
 - Themen, die bei mir vorher fehlten und jetzt in `UEK-188-Lernhilfen.md` Abschnitt 2s stehen: Bulk-User aus CSV, Kennwortrichtlinie, Laufwerke und Hintergrundbild per GPO, Ordner ausblenden, FSRM, Hashwerte, Windows Admin Center, Zabbix, MIB-Browser und Drucker-Tonerstand, Monitoring-Störungsfall. Dazu kommen die Lernkarten 79 bis 98.
+
+## 2g. Unterlagen einer älteren Lernenden (zweite Lieferung vom 17.10.2026)
+
+Vier Dateien, die der Nutzer von einer älteren Lernenden bekommen hat. Der Anbieter ist nicht angegeben. Ich habe alle gelesen, die PDFs Seite für Seite.
+
+| Datei | Inhalt | Wo ich es eingebaut habe |
+| --- | --- | --- |
+| Übungsfragen Theorie (PDF, 4 Seiten) | Ausdruck eines öffentlichen Kahoot-Quiz «Modul 188 (Theorie)» mit 18 Fragen samt richtigen Antworten (Ports, IGDLA, Monitoring, Updates, Freigaben, PowerShell, FSMO, DHCP) | Lernkarten 99 bis 114 |
+| Umsetzung Konzept (PDF, 22 Seiten) | Lab-Anleitung «ADDS, DNS, DHCP gemäss Konzept» mit Kopf einer Aufgabenkachel, dazu zwei Anleitungen für ein Router-Setup im Lab (Windows-Router oder pfSense in VMware Player) | Lernhilfen 2t, Lernkarten 115 bis 119 |
+| Betriebsdoku LB M188 (Word) | Eine Seite Unternehmensprofil der SwissMed AG (siehe unten) | hier |
+| Muster Betriebsdokumentation (Word) | Fiktive, vollständige Kundendoku mit Gliederung, Backup- und Monitoring-Tabellen und Wartungsablauf | Lernhilfen 2u |
+
+**SwissMed AG, vermutlich die Ausgangslage der Leistungsbeurteilung**
+Der Dateiname sagt «LB M188». Die Datei beschreibt die fiktive SwissMed AG (Hersteller medizinischer Geräte, 1987 in Zürich gegründet, 85 Mitarbeitende, Hauptsitz Bern, Produktion in Thun, Vertrieb in Genf). Du bist dort IT-Administrator in einem vierköpfigen Team unter dem IT-Leiter Daniel Keller und verantwortest Wartung und Überwachung der Server und der zentralen Dienste Active Directory, DNS, DHCP und Dateiserver. Das Netz ist ein Schema 10.0.0.0/8 mit Subnetzen pro Standort (10.10.x.x für Bern, 10.20.x.x für Thun, 10.30.x.x für Genf) und funktionsspezifischen Bereichen. Die Infrastruktur umfasst Domänencontroller, Datei- und Druckserver auf Dell PowerEdge, einen Monitoring-Server, einen Update-Server sowie SharePoint- und Backup-Server. Spezielle Medizin-Software betreut die Firma teils selbst, bei schwierigen Problemen kommen externe Spezialisten.
+- Das passt zur LBV (siehe 2a): Du bekommst eine Betriebsdokumentation vorgegeben, analysierst sie und ergänzst sie. Dass hier Monitoring- und Update-Server vorkommen, passt zu den Themen Überwachung und Updates in der LBV.
+- Die Datei enthält nur das Unternehmensprofil. Die eigentliche Betriebsdokumentation und die Aufgaben fehlen. Frag die ältere Lernende, ob sie die restlichen Seiten hat.
+- Übung dazu: Entwirf einen Adressplan für die drei Standorte nach dem Schema (zum Beispiel pro Standort ein /16, darin Subnetze für Server, Clients, Drucker und Management) und beschreibe, wer wo welchen DHCP-Bereich bekommt. Das ist Stoff aus Abschnitt 2q der Lernhilfen.
+
+**Hinweise zur Herkunft**
+- Ein Indiz, dass es näher an der Learnfactory liegt: Standort Bern und eine Kachel-Struktur (Lernziele, Vorwissen, Ergebnis, Zeit, Abhängigkeiten), die zu einem selbstorganisierten Lernen wie in 2c passt. Das ist kein Beweis. Die Musterdoku nennt PRTG als Monitoring-Tool, was zur LBV mit Reports und Maps passt (siehe 2b).
+- Das PDF zeigt nur Kachel 4. Es verweist auf ein Dokument «AD Basics» mit der IP-Tabelle und den Vorgaben, das nicht dabei ist. Die aufklappbaren PowerShell-Beispiele im PDF sind eingeklappt und fehlen. Frag nach «AD Basics» und den anderen Kacheln.
+- Die Kahoot-Fragen sind Grundlagenniveau. Sie zeigen, was zur Theorie gehören kann, geben aber keine Prüfungsfragen vor. Die Musterdoku und die Anleitung sind fremde Arbeiten. Benutze sie zum Lernen, übernimm daraus nichts ohne Quellenangabe (siehe Reglement in 2e).
 
 ## 3. Was ich vor dem Kurs klären würde
 

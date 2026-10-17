@@ -12,7 +12,7 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 **Inhalt**
 
 - 1. Cheatsheet: Befehle für die Lab-Umgebung
-- 2. Lernkarten (Frage, Antwort), 98 Stück
+- 2. Lernkarten (Frage, Antwort), 119 Stück
 - 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 - 2c. Konzepte in Kürze (für den schriftlichen Teil)
 - 2d. SNMP und WMI auf dem Server einrichten (Kenntnis 4.2)
@@ -31,6 +31,8 @@ Ergänzung zu `UEK-188-Vorbereitung.md`. Markierung bei den Quellen:
 - 2q. Muster: IP-Adress- und Namenskonzept (für AD, DNS, DHCP)
 - 2r. Muster: Betriebsdokumentation der Muster AG (zum Üben des Nachführens)
 - 2s. Ergänzungen aus dem Script von ICT-BZ (Bulk-User, GPO, FSRM, Hashwerte, Zabbix, MIB)
+- 2t. Lab-Ablauf: AD DS, DNS und DHCP «gemäss Konzept» (Anleitung der älteren Lernenden)
+- 2u. So ist eine echte Betriebsdokumentation aufgebaut (Musterdoku der älteren Lernenden)
 - 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
 
 <!-- /toc -->
@@ -207,7 +209,7 @@ WMIC nur noch als Feature on Demand, PowerShell 2.0 nicht mehr enthalten, WSUS n
 
 ---
 
-## 2. Lernkarten (Frage, Antwort), 98 Stück
+## 2. Lernkarten (Frage, Antwort), 119 Stück
 
 Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und sprich sie laut.
 
@@ -338,6 +340,29 @@ Reihenfolge nach den 6 Handlungszielen des Moduls. Decke die Antwort ab und spri
 96. **Wie zeigst du in einer Freigabe nur die Ordner an, auf die der Benutzer Zugriff hat?** Mit der zugriffsbasierten Aufzählung (Access-based Enumeration): `Set-SmbShare -Name Firma -FolderEnumerationMode AccessBased`. [Q: Microsoft Learn Set-SmbShare]
 97. **Wie verbindest du ein Netzlaufwerk per GPO?** Benutzerkonfiguration > Einstellungen > Windows-Einstellungen > Laufwerkzuordnungen, Aktion Erstellen oder Aktualisieren mit UNC-Pfad und Laufwerksbuchstabe. [W]
 98. **Welche OIDs brauchst du für den Tonerstand eines Druckers und wie rechnest du in Prozent?** `prtMarkerSuppliesLevel` (1.3.6.1.2.1.43.11.1.1.9) geteilt durch `prtMarkerSuppliesMaxCapacity` (1.3.6.1.2.1.43.11.1.1.8) mal 100. Negative Werte sind Sonderwerte (zum Beispiel unbekannt) und kein Füllstand. [Q: PRINTER-MIB bei Observium für die OIDs, Sonderwerte W]
+
+### Zusatzkarten: Kahoot und Anleitung der älteren Lernenden (99 bis 119)
+99. **Welcher Port gehört zum RDP-Protokoll?** TCP 3389. [Q: Kahoot «Modul 188 (Theorie)»]
+100. **Welcher Dienst nutzt Port 53?** DNS, per UDP und TCP. [Q: Kahoot, W für UDP und TCP]
+101. **Welche Ports nutzt DHCP?** UDP 67 (Server) und UDP 68 (Client). [Q: Kahoot, W für das Protokoll]
+102. **Was bedeutet eine Adresse 169.254.x.x am Client?** Das ist APIPA: Der Client hat keine DHCP-Antwort bekommen und vergibt sich selbst eine lokale Adresse. Dann Scope, DHCP-Dienst und Netzweg prüfen. [Q: Kahoot und Anleitung der älteren Lernenden]
+103. **Was gehört nicht in eine Betriebsdokumentation?** Persönliche Reflexionen zum Projekt. Hinein gehören zum Beispiel Netzwerkeinstellungen, Benutzer- und Gruppentabellen und Checklisten wie die zur Benutzererstellung. [Q: Kahoot]
+104. **Wofür steht IGDLA und was hat es mit AGDLP zu tun?** Identities, Global groups, Domain Local groups, Access (Berechtigungen). Es ist dasselbe Prinzip wie AGDLP, nur anders benannt. [Q: Kahoot, W für die Erklärung]
+105. **Braucht ein Netzwerk immer einen DHCP-Server?** Nein, statische Adressen gehen auch. DHCP spart Aufwand und vermeidet Fehler bei der Vergabe. [Q: Kahoot, W für die Begründung]
+106. **Braucht man zwingend einen internen DNS-Server?** Allgemein nein. Mit Active Directory aber ja, weil AD für Anmeldung und Diensterkennung DNS mit SRV-Records braucht. [Q: Kahoot und Anleitung der älteren Lernenden]
+107. **Welches Monitoring braucht mehr Ressourcen und Wartung, dezentral oder zentral?** Das dezentrale. Dass zentrales Monitoring weniger flexibel sei, stimmt laut Quiz nicht. [Q: Kahoot]
+108. **Dürfen Microsoft-Updates direkt in der Produktivumgebung eingespielt werden?** Nein, zuerst testen (Testgruppe oder Testumgebung), dann ausrollen. [Q: Kahoot]
+109. **Wie werden Microsoft-Updates in einem Windows-Netz verteilt?** Mit einem internen WSUS-Server, mit SCCM (Configuration Manager) oder mit RMM-Software von Drittanbietern. Die Option «Windows Update Proxy Service» war im Quiz die falsche Antwort. [Q: Kahoot]
+110. **Wie versteckst du eine Freigabe in der Netzwerkumgebung?** Mit einem Dollarzeichen am Ende des Freigabenamens, zum Beispiel `Marketing$`. Das versteckt sie nur und schützt sie nicht. [Q: Kahoot, W für den Zusatz]
+111. **Wie zeigst du alle deaktivierten Benutzer in PowerShell an?** `Get-ADUser -Filter {Enabled -eq $false}`. Das Quiz schreibt `"False"` als Text, das funktioniert auch. Alternative: `Search-ADAccount -AccountDisabled -UsersOnly`. [Q: Kahoot, W für die Schreibweise und die Alternative]
+112. **Welche FSMO-Rolle ist für Passwort-Rücksetzungen zuständig?** Der PDC-Emulator. [Q: Kahoot]
+113. **Nenne die fünf FSMO-Rollen.** Schema-Master und Domain Naming Master (je einmal pro Forest), RID-Master, PDC-Emulator und Infrastructure Master (je einmal pro Domäne). [W]
+114. **Wie wird eine DHCP-Reservierung umgesetzt?** Über die MAC-Adresse: Das Gerät bekommt immer dieselbe Adresse aus dem Scope. [Q: Kahoot]
+115. **Was tust du, wenn der Domänenbeitritt wegen eines falschen DNS am Client scheitert?** Den DNS am Client auf den DC stellen. Beim DHCP-Betrieb die Option 006 auf die DC-IP setzen. [Q: Anleitung der älteren Lernenden]
+116. **In welcher Reihenfolge richtest du AD DS, DNS und DHCP ein?** Zuerst AD DS installieren und zum DC hochstufen (DNS kommt dabei mit), danach die DHCP-Rolle installieren und im AD autorisieren. [Q: Anleitung der älteren Lernenden]
+117. **Wozu dient der AD-Papierkorb und wie schaltest du ihn ein?** Er stellt gelöschte AD-Objekte wieder her. Die Aktivierung gilt forestweit und einmalig, im Active Directory Administrative Center oder mit `Enable-ADOptionalFeature -Identity 'Recycle Bin Feature' -Scope ForestOrConfigurationSet -Target <Forest>`. [Q: Anleitung der älteren Lernenden, Microsoft Learn]
+118. **Wozu dient eine Reverse-Zone mit PTR-Einträgen?** Sie löst IP-Adressen in Namen auf. Fehlt sie, ist die Namensauflösung unvollständig. [Q: Anleitung der älteren Lernenden]
+119. **Warum schaltest du Zonentransfers aus, wenn es nur einen DNS-Server gibt?** Es gibt keinen zweiten Server, der die Zone braucht, und so kann niemand die Zone komplett abfragen. `Set-DnsServerPrimaryZone -Name <Zone> -SecureSecondaries NoTransfer`. [Q: Anleitung der älteren Lernenden, Microsoft Learn]
 
 ## 2b. Falls die Learnfactory Linux nimmt: Gegenstücke (Ubuntu Server)
 
@@ -1087,6 +1112,126 @@ Beide Szenarien verlangen eine kurze Dokumentation: Vorgehen, geprüfte Systeme 
 ### Trial-Lizenz im Lab
 Die Evaluationsversionen laufen ab. Das Script nennt `slmgr.vbs -rearm` zum Verlängern, sonst fährt der Server nach einer Stunde herunter [Q: Script ICT-BZ]. Nach dem Rearm ist ein Neustart nötig, die Anzahl der Rearm-Vorgänge ist begrenzt [W].
 
+## 2t. Lab-Ablauf: AD DS, DNS und DHCP «gemäss Konzept» (Anleitung der älteren Lernenden)
+
+Quelle: PDF «Umsetzung Konzept» (22 Seiten, ohne Autor und Anbieter, Kachel 4 «ADDS, DNS, DHCP Installation und Konfiguration», 8 Stunden, Ergebnis «lauffähige Domäne, Betriebsdoku», Lernziel Handlungsziel 2). Die Anleitung baut ein Lab mit neuem Forest `it-champs.local`, einem DC und einem Windows-11-Client. Ich fasse sie in eigenen Worten zusammen. Die IP-Werte sind Beispielwerte aus dem PDF, in deinem Kurs gelten die Werte deines Konzepts.
+
+**Grundsatz:** «Gemäss Konzept umsetzen» heisst, exakt die Werte des Konzepts zu verwenden (IP-Tabelle, DNS- und DHCP-Vorgaben, OU-Ziele), keine eigenen. Das passt zum LBV-Kriterium «AD, DNS, DHCP konfigurieren» (siehe Vorbereitung 2a).
+
+**Ablauf**
+1. Voraussetzungen prüfen: Hostname des künftigen DC gesetzt, statische IPv4, DNS zeigt auf die eigene IP, Konzept vorhanden, keine «wild» vorinstallierten Rollen.
+2. Rolle AD DS installieren (Server Manager oder `Install-WindowsFeature AD-Domain-Services`). Zum Domain Controller hochstufen mit neuem Forest, DNS-Server aktiv, DSRM-Passwort setzen, danach Neustart und als Domänen-Admin anmelden.
+3. DNS konfigurieren: Zone AD-integriert mit sicheren dynamischen Updates, Host-Einträge (A), Alias (CNAME), eine Sonderzone oder bedingte Weiterleitung, Reverse-Zone mit PTR, Zonentransfers aus, DNS horcht nur auf die DC-IPv4 (in der DNS-Konsole unter Servereigenschaften, Schnittstellen) [W].
+4. DHCP-Rolle installieren, im AD autorisieren, Scope mit Optionen und Reservierung anlegen.
+5. Client umbenennen, der Domäne beitreten, neu starten, mit einem Domänenbenutzer anmelden. Das Computerobjekt liegt zuerst im Container `Computers` und wird in die Ziel-OU verschoben.
+6. AD-Papierkorb aktivieren (empfohlen).
+7. Validieren und dokumentieren (5 bis 7 Screenshots, siehe unten).
+
+**Beispielwerte aus dem PDF**
+
+| Thema | Wert |
+| --- | --- |
+| Forest und Zone | `it-champs.local` (AD-integriert, sichere Updates), dazu `_msdcs.it-champs.local` |
+| DC (Name «James») | 192.168.100.10/24, DNS = eigene IP |
+| Fileserver (Name «May») | 192.168.100.20, per DHCP-Reservierung (MAC), nicht statisch |
+| DNS-Einträge | A für `james` und `may`, CNAME `1st` zeigt auf `may`, Sonderzone `richard.local` mit A-Eintrag `www` auf 192.21.129.101 (oder Conditional Forwarder) |
+| Reverse-Zone | `100.168.192.in-addr.arpa` mit PTR für `james` und `may` |
+| DHCP-Scope «IT-Champs» | Range .100 bis .200, Exclusion .1 bis .99, Lease 42 Stunden |
+| DHCP-Optionen | 003 Router 192.168.100.1, 006 DNS 192.168.100.10, 015 DNS-Suffix `it-champs.local` |
+
+Hinweis zum Beispiel: Eine Exclusion .1 bis .99 liegt ausserhalb eines Scopes, der erst bei .100 beginnt. Sie wäre dann überflüssig oder wird vom Server abgelehnt (nach meinem Wissen, nicht geprüft) [W]. Sinnvoll wäre ein Scope ab .1 mit dieser Exclusion. Prüfe das bei deinem Konzept.
+
+**Befehle** (belegte Befehle stehen bei Microsoft Learn, die übrigen sind [W])
+```powershell
+# DNS
+Add-DnsServerResourceRecordA -Name "james" -ZoneName "it-champs.local" -IPv4Address 192.168.100.10 -CreatePtr
+Add-DnsServerResourceRecordCName -Name "1st" -HostNameAlias "may.it-champs.local" -ZoneName "it-champs.local"   # [Q]
+Add-DnsServerPrimaryZone -NetworkId "192.168.100.0/24" -ReplicationScope Domain                                  # Reverse-Zone [W]
+Add-DnsServerConditionalForwarderZone -Name "richard.local" -MasterServers 192.21.129.101 -ReplicationScope Domain   # [Q]
+Set-DnsServerPrimaryZone -Name "it-champs.local" -SecureSecondaries NoTransfer                                   # [Q] keine Zonentransfers
+
+# DHCP
+Add-DhcpServerv4Scope -Name "IT-Champs" -StartRange 192.168.100.100 -EndRange 192.168.100.200 -SubnetMask 255.255.255.0
+Set-DhcpServerv4Scope -ScopeId 192.168.100.0 -LeaseDuration 1.18:00:00                                            # [Q] 42 Stunden = 1 Tag 18 Stunden
+Set-DhcpServerv4OptionValue -ScopeId 192.168.100.0 -Router 192.168.100.1 -DnsServer 192.168.100.10 -DnsDomain "it-champs.local"
+Add-DhcpServerv4Reservation -ScopeId 192.168.100.0 -IPAddress 192.168.100.20 -ClientId "00-15-5D-01-02-03" -Name "may"
+Add-DhcpServerInDC -DnsName "james.it-champs.local" -IPAddress 192.168.100.10                                     # im AD autorisieren
+
+# AD
+Enable-ADOptionalFeature -Identity 'Recycle Bin Feature' -Scope ForestOrConfigurationSet -Target 'it-champs.local'   # [Q] forestweit, einmalig
+```
+
+**Validierung**
+```cmd
+ipconfig /all
+nslookup it-champs.local
+nslookup james.it-champs.local
+ping 192.168.100.10
+```
+```powershell
+Get-ADDomain
+Get-DnsServerZone
+Get-DhcpServerv4Scope | Format-Table ScopeId, StartRange, EndRange, LeaseDuration
+Resolve-DnsName may.it-champs.local
+Get-DhcpServerv4Lease -ScopeId 192.168.100.0
+```
+Erwartet: Lease aus deinem Scope, DNS-Suffix stimmt, Namen lösen auf, Ping zum DC geht, Client liegt in der richtigen OU, die Zone `_msdcs` ist vorhanden.
+
+**Typische Fehler laut Anleitung**
+- Falscher DNS am Client, der Domänenbeitritt scheitert. Fix: DHCP-Option 006 auf die DC-IP.
+- Keine Reverse-Zone, die Auflösung ist unvollständig. Fix: Reverse-Zone und PTR-Einträge.
+- Rollenreihenfolge missachtet. Fix: zuerst AD DS hochstufen, dann DNS und DHCP sauber konfigurieren.
+- DHCP nicht autorisiert, es gibt keine Leases. Fix: im AD autorisieren.
+- OU-Löschschutz blockiert das Aufräumen. Fix: in den Advanced Features «Protect from accidental deletion» gezielt entfernen.
+- Ohne DHCP-Antwort vergibt Windows eine Adresse 169.254.x.x (APIPA), ein klares Zeichen für ein DHCP- oder Netzproblem. Auf dem Server findest du mit `Get-DhcpServerv4Lease -ScopeId <Scope>` das Lease, ohne Treffer prüfst du Scope, Exclusion, DHCP-Dienst und Netzweg.
+
+**Abgabe der Betriebsdokumentation (laut Anleitung)**
+Fünf bis sieben Screenshots: Server Manager mit installiertem AD DS, DNS-Manager mit Zonen (inklusive Reverse), DNS-Records, DHCP-Scope-Eigenschaften, DHCP-Reservierung, ADUC mit OU-Gerüst und Client in der Ziel-OU, Client mit `ipconfig /all` und `nslookup`. Selbstcheck vor der Abgabe: Stimmt jeder Wert mit dem Konzept? Sind die Schritte für Aussenstehende nachvollziehbar (Screens und kurze Begründung)? Laufen `nslookup` und `ping`? Zeigt `Get-DhcpServerv4Scope` die richtige Range und Lease-Dauer?
+
+**Internet fürs Lab (Router-Varianten in der Anleitung)**
+Die Anleitung nutzt VMware Player mit zwei Netzen: WAN per NAT (VMnet8, bekommt DHCP vom Host) und LAN als Host-only (VMnet1, zum Beispiel 192.168.50.0/24). Alle Lab-VMs hängen nur am LAN-Netz. Drei Varianten:
+- Windows-Router-VM mit zwei Netzwerkkarten und Rolle Remote Access (RRAS) mit NAT: Variante A, empfohlen für ein Lab mit GUI.
+- Windows 10 oder 11 oder Server als Router mit PowerShell-NAT (`New-NetNat`): Variante B, schnell und einfach.
+- pfSense als Firewall-VM: Gateway der Lab-VMs ist die pfSense-LAN-Adresse, den DNS liefert weiterhin der AD-DNS. Die Firewallregeln startet man offen (Pass, LAN net, any) und engt sie nach den Tests ein, zum Beispiel DNS nur zum DC.
+
+Wichtig dabei: Windows-ICS (Internetverbindungsfreigabe) nicht benutzen, es erzwingt ein eigenes Netz und einen eigenen DHCP und kollidiert mit dem AD-DHCP. Die Clients dürfen nur den AD-DNS haben und nicht den Router als DNS. Der AD-DNS bekommt einen Forwarder (zum Beispiel 1.1.1.1 oder 8.8.8.8). Wenn du wie in Abschnitt 2n mit Hyper-V arbeitest, gilt dasselbe Prinzip mit einem internen virtuellen Switch und einer Router-VM.
+
+## 2u. So ist eine echte Betriebsdokumentation aufgebaut (Musterdoku der älteren Lernenden)
+
+Quelle: Word-Datei «Muster Betriebsdokumentation». Sie ist eine fiktive Kundendoku (Dienstleister «ICT Security GmbH», Kunde «Block & Chain GmbH», Version 1.2.0 vom 01.01.2023, mit Titelblatt, Versionstabelle und Inhaltsverzeichnis). Ich fasse Aufbau und Lehren in eigenen Worten zusammen. Zusammen mit meinem Muster in Abschnitt 2r gibt dir das ein gutes Bild davon, was du in der Prüfung zu lesen und zu ergänzen bekommst.
+
+**Gliederung**
+1. Quickinfo: Wer ist der Kunde, was betreut der Dienstleister und was nicht, wo liegen die Passwörter und wer gibt sie frei, Geheimhaltung.
+2. Physische Infrastruktur: Standorte mit Ansprechpersonen, Kundenkontakte mit Vertrag, Erreichbarkeit und SLA, Rackaufbau, Raumplan.
+3. Netzwerke: Remote-Zugriff, physische und virtuelle Server (je Zeile IP, Priorität, Betriebssystem, Disk, Funktion), Drucker, Netzwerkkomponenten, VLANs mit DHCP-Bereichen, Internet, Firewall, Switches, WLAN, Patchpanel.
+4. Server: pro Server Hardware, Aufgabe und Besonderheiten. Dazu eine Backup-Tabelle (Häufigkeit, Startzeit, Anzahl behaltener Sicherungen, Kommentar), der Verweis auf den Notfallplan und das Kapitel Wartungsarbeiten.
+5. Software: Liste mit Installationsort, Lizenz und Vertrag, pro Software der Konfigurationsstand mit Abweichungen vom Standard, dazu die Sensortabelle des Monitorings (PRTG).
+6. Clients.
+
+**Was ich daraus lerne**
+- Passwörter stehen nicht in der Doku. Es steht nur, wo sie liegen und wer sie freigibt. Das deckt sich mit Lernkarte 3.
+- Abweichungen vom Standard werden ausdrücklich festgehalten. In der Musterdoku nutzt zum Beispiel der CTO den Domänen-Administrator statt eines persönlichen Administrators. Das ist sicherheitstechnisch heikel (gemeinsames Konto, keine Nachvollziehbarkeit) und gehört in der Analyse benannt [W].
+- Verantwortungsgrenzen sind klar geregelt: Telefonie- und Threema-Server betreut ein Dritter, die Firma betreut nur die Windows-Updates auf dem Anwendungsserver.
+- Die Monitoring-Tabelle nennt je System die Sensoren (zum Beispiel Ping, CPU, RAM, Speicherkapazität, Dienste wie AD, DNS, DHCP, SQL, Backup-Job, Hardware-Health). Schwellwerte stehen dort nicht. Die musst du in der Prüfung selbst festlegen und begründen (LBV, schriftlicher Teil, Schwellwerte 10 bis 20 Prozent) [W].
+- Backups: Domänencontroller und Datenbankserver zweimal täglich mit 60 Sicherungen, Anwendungs- und Telefonieserver täglich mit 30, Infrastruktur- und Citrix-Server samstags voll mit 4 Sicherungen. Die Kopie geht auf ein zweites NAS und ins externe Rechenzentrum, alles verschlüsselt. Das passt zum Abschnitt «Backup» in der Vorbereitung.
+
+**Wartungsablauf aus der Musterdoku (gute Vorlage für Handlungsziel 3)**
+Wartungsfenster: Samstag um 13:00 im Anschluss an den Patch Tuesday (die Formulierung im Original ist unklar). Kritische Updates ausserhalb des Fensters nur mit Freigabe des CTO. Bei fehlerhaften Microsoft-Updates den CTO informieren und ein neues Fenster vereinbaren. Der Ablauf lässt sich so ordnen:
+1. Backup kontrollieren (ob erfolgreich), Fehler beheben, danach die Backup-Jobs pausieren.
+2. Zustand prüfen: Hardware (iLO, Speichersystem), USV (Selbsttest), freier Platz auf den Disks, Ereignisprotokolle.
+3. Snapshots der VMs erstellen.
+4. Windows-Server updaten.
+5. Dienste kontrollieren, ob alles wieder online ist (inklusive Anwendungen, die manuell gestartet werden müssen).
+6. NAS prüfen und updaten, Firewall-Konfiguration sichern und Firewalls updaten, Site-to-Site-VPNs prüfen.
+7. Snapshots löschen, Backup wieder aktivieren und starten.
+8. Bericht an den CTO: alles in Ordnung oder Probleme.
+Das ist der Patch-Zyklus aus Abschnitt 2l in einer echten Umgebung. Vergleiche: Planen (Fenster, Freigabe), Testen (Snapshot als Rückfallpunkt), Installieren, Kontrollieren, Dokumentieren (Bericht).
+
+**Auffälligkeiten in der Musterdoku (Training für «Betriebsdokumentation analysieren»)** [W]
+- Die IP-Adresse 10.0.0.24 ist doppelt vergeben (Citrix Controller und erster Citrix-PVS-Server). Die Serverreihe wäre sonst .24, .25, .26 und so weiter.
+- Kleine Fehler und Widersprüche: Überschrift «BAC-NAS01 & BAC-NAS01» (zweites sollte NAS02 sein), «BAK-APK01» statt «BAC-APK01», beim Synology-NAS steht ein QNAP-Modell dabei.
+- Es fehlen Schwellwerte, und Wartungs- und Backup-Angaben sind verstreut. Beim Lesen lohnt sich die Frage: Was ist unvollständig, widersprüchlich oder veraltet?
+
 ---
 
 ## 3. 14-Tage-Plan (je ca. 45 bis 60 Minuten)
@@ -1111,5 +1256,7 @@ Voraussetzung: Ein Laptop mit Hyper-V oder VirtualBox und eine Windows-Server-Te
 | 14 | Generalprobe | Alle Lernkarten durchgehen, besonders die Berechtigungen (68 bis 70). Ein Mini-Szenario aus dem Kopf: Service aufsetzen, überwachen, patchen, Rechte vergeben, dokumentieren. 1 Stunde Zeit, so wie die Praxisprüfung (2 Stunden) plus schriftlich (1 Stunde). |
 
 Wenn dein Kurs wie das Script von ICT-BZ läuft: Nimm an Tag 10 statt PRTG die Zabbix-Konzepte aus Abschnitt 2s und nutze die freien Tage für Bulk-User, FSRM, Hashwerte, Windows Admin Center und den MIB-Browser (ebenfalls 2s, Lernkarten 79 bis 98).
+
+Wenn du Zeit übrig hast: Abschnitt 2t ist ein fertiger Lab-Ablauf für AD, DNS und DHCP (guter Ersatz für Tag 5 und 6), Abschnitt 2u zeigt, wie eine echte Betriebsdokumentation aufgebaut ist (hilft an Tag 8). Die Lernkarten 99 bis 119 stammen aus dem Quiz und der Anleitung der älteren Lernenden.
 
 Hinweis zur Prüfung: Laut Leistungsbeurteilung zählt der Praxisteil 60 Prozent und der schriftliche Teil 40 Prozent. Übe darum auch das Begründen (warum dieser Schwellwert, warum diese Rechtevergabe).
